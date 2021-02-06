@@ -1,0 +1,41 @@
+{
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "jest": true,
+    "es6": true
+  },
+  "extends": ["airbnb", "prettier"],
+  "plugins": ["import", "react-hooks"],
+  "rules": {
+    "semi": "error",
+    "no-shadow": "off",
+    "import/named": "off",
+    "import/export": "off",
+    "import/extensions": "off",
+    "import/prefer-default-export": "off",
+    "import/no-extraneous-dependencies": ["off", { "devDependencies": true }],
+    "no-unused-expressions": ["warn"],
+    "react/jsx-filename-extension": "off",
+    "react/prop-types": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "camelcase": "warn",
+    "prefer-destructuring": "warn",
+    "arrow-body-style": "warn",
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "react/forbid-prop-types": "off",
+    "react/sort-comp": "off",
+    "react/require-default-props": "off",
+    "react/jsx-props-no-spreading": "off",
+    "no-use-before-define": "off"
+  }
+}
