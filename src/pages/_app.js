@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Head from 'next/head';
 
 import '../utils/styles/global.scss';
+import CONFIG from '@/config/AppConfig';
 
 const App = ({ Component, pageProps }) => (
   <>
@@ -14,6 +15,7 @@ const App = ({ Component, pageProps }) => (
       />
       <title>Mix in</title>
     </Head>
+    <div className="bg-blue-500 text-gray-200">{CONFIG.DEFAULT_THEME}</div>
     <Component {...pageProps} />
   </>
 );
