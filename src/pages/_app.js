@@ -15,7 +15,6 @@ const App = ({ Component, pageProps }) => (
       />
       <title>Mix in</title>
     </Head>
-    <div className="bg-blue-500 text-gray-200">{CONFIG.DEFAULT_THEME}</div>
     <Component {...pageProps} />
   </>
 );

@@ -4,14 +4,15 @@
     "import/resolver": {
       "alias": {
         "map": [
-          ["@/components", "./src/components"],
           ["@/contexts", "./src/contexts"],
+          ["@/components", "./src/components"],
           ["@/layout", "./src/layout"],
           ["@/hooks", "./src/utils/hooks"],
           ["@/config", "./src/utils/config"],
           ["@/utils", "./src/utils"],
           ["@/svg", "./asset/images/svg"]
-        ]
+        ],
+        "extensions": [".js", ".jsx"]
       }
     }
   },
