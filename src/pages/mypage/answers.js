@@ -1,20 +1,21 @@
 import React from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import ProfileLayout from '../../layout/profile'
 
-const Home = () => {
+const Answers = () => {
   const router = useRouter();
   return (
     <>
       <Head>
-        <title>Mix in | 홈</title>
+        <title>Mix in | profile - answers</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div>홈
-        <a onClick={() => router.push('/mypage')}>Profile</a>
-      </div>
+      <ProfileLayout>
+        answers
+      </ProfileLayout>
     </>
   )
 };
 
-export default Home;
+export default Answers;

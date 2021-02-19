@@ -1,20 +1,21 @@
 import React from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import ProfileLayout from '../../layout/profile'
 
-const Home = () => {
+const Bookmark = () => {
   const router = useRouter();
   return (
     <>
       <Head>
-        <title>Mix in | 홈</title>
+        <title>Mix in | profile - bookmark</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div>홈
-        <a onClick={() => router.push('/mypage')}>Profile</a>
-      </div>
+      <ProfileLayout>
+        bookmark
+      </ProfileLayout>
     </>
   )
 };
 
-export default Home;
+export default Bookmark;
