@@ -1,0 +1,57 @@
+.profile_header, .profile_body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #0D0D0D;
+  color: #DCDCDC;
+  width: 100vw;
+  padding: 3vw 0;
+  p {
+    margin: 0;
+    padding: 0;
+  }
+  &__name {
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+  &__job {
+    font-weight: 300;
+  }
+  &__rank {
+
+  }
+  &__urls {
+
+  }
+  &__comment {
+    
+  }
+}
+.profile_body {
+  height: 100%;
+}
+.profile_tabs {
+  padding: 1vw;
+  width: 100vw;
+  text-align: center;
+  border-top: 1px solid #DCDCDC;
+  border-bottom: 1px solid #DCDCDC;
+  &__item {
+    padding: 0 1vw;
+    color: #DCDCDC;
+    text-decoration: none;
+  }
+}
+.avatar {
+  &__img {
+
+  }
+  &__color {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    background-color: #B5B5B5;
+    border-radius: 100%;
+  }
+}
