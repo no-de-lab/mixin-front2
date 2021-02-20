@@ -1,0 +1,44 @@
+@import "../utils/styles/variable.module.scss";
+
+.dropleft__overlay {
+  height: 100vh;
+  left: 0;
+  position: absolute;   
+  top: 0;
+  width: 100vw;
+  z-index: 100;
+}
+
+.dropleft {
+  background: #0D0D0D;
+  box-shadow: -16px 0px 20px rgba(0, 0, 0, 0.7);
+  color: #c8cbcb;
+  height: 100%;
+  overflow: auto;
+  padding: 1.25rem;
+  position: fixed;
+  right: 0;
+  top: 0;
+  transition: all 0.3s ease-in-out;
+  width: 28.125rem;
+  z-index: 300;
+
+  &__content {
+    height: 100vh;
+    width: 100vw;
+    z-index: 1040;
+  }
+}
+
+.dropleft__overlay.hidden {
+  height: 0;
+  width: 0;
+}
+
+.dropleft.hidden {
+  right: -32.125rem;
+
+  .dropleft__content {
+    width: 0;
+  }
+}
