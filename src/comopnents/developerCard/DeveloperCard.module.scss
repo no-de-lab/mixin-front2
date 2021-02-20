@@ -1,0 +1,50 @@
+.cardLayout {
+  border: 1px solid #dcdcdc;
+  height: 190px;
+  width: 380px;
+}
+
+.cardLayout_body {
+  border-bottom: 1px solid #dcdcdc;
+  display: flex;
+  height: 125px;
+  width: 380px;
+}
+
+.cardLayout_body_profile {
+  margin-top: 24px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  width: 264px;
+  color: #dcdcdc;
+  .profile_name {
+    font-weight: 700;
+    font-size: 20px;
+    height: 30px;
+    margin-bottom: 4px;
+  }
+  .profile_job {
+    font: Blender Pro;
+    height: 14px;
+    margin-bottom: 16px;
+    color: #696969;
+  }
+  .profile_rank {
+    height: 17px;
+    font-size: 14px;
+  }
+}
+
+.cardLayout_body_avatar {
+  width: 60px;
+  height: 60px;
+  margin-top: 33px;
+  margin-left: 16px;
+  border-radius: 50%;
+  background-color: #dcdcdc;
+}
+
+.cardLayout_linkBar {
+  height: 65px;
+  width: 380px;
+}

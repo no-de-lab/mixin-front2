@@ -15,6 +15,7 @@
   "dependencies": {
     "@next/bundle-analyzer": "^10.0.6",
     "@zeit/next-source-maps": "0.0.3",
+    "axios": "^0.21.1",
     "next": "^10.0.6",
     "next-compose-plugins": "^2.2.1",
     "prop-types": "^15.7.2",
