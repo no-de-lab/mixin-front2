@@ -4,6 +4,8 @@ import Head from 'next/head';
 
 import '../utils/styles/global.scss';
 import Header from '@/components/Header';
+import LeftSideBar from '@/components/LeftSideBar';
+import RightSideBar from '@/components/RightSideBar';
 
 const App = ({ Component, pageProps }) => (
   <>
@@ -16,7 +18,11 @@ const App = ({ Component, pageProps }) => (
       <title>Mix in</title>
     </Head>
     <Header />
-    <Component {...pageProps} />
+    <main className="container flex flex-row">
+      <LeftSideBar />
+      <Component {...pageProps} />
+      <RightSideBar />
+    </main>
   </>
 );
 

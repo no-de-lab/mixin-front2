@@ -1,0 +1,15 @@
+
+$SIDEBAR_WIDTH: 120px;
+
+.left_sidebar {
+  height: 100vh;
+  position: relative;
+  width: $SIDEBAR_WIDTH;
+
+  & > svg {
+    bottom: 40px;
+    cursor: pointer;
+    left: 40px;
+    position: fixed;
+  }
+}

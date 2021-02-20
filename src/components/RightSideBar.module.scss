@@ -1,0 +1,26 @@
+$SIDEBAR_WIDTH: 120px;
+
+.right_sidebar {
+  height: 100vh;
+  position: relative;
+  right: 0;
+  top: 0;
+  width: $SIDEBAR_WIDTH;
+
+  & svg {
+    cursor: pointer;
+  }
+  
+  &--tool_box {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 104px;
+    justify-content: space-between;
+    position: fixed;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 32px;
+  }
+}
