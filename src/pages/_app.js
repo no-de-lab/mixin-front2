@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Head from 'next/head';
 
 import '../utils/styles/global.scss';
-import CONFIG from '@/config/AppConfig';
+import Header from '@/components/Header';
 
 const App = ({ Component, pageProps }) => (
   <>
@@ -15,6 +15,7 @@ const App = ({ Component, pageProps }) => (
       />
       <title>Mix in</title>
     </Head>
+    <Header />
     <Component {...pageProps} />
   </>
 );
