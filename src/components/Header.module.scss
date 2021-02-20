@@ -1,5 +1,4 @@
-$HEADER_HEIGHT: 120px;
-$COLOR: #dcdcdc;
+@import "../utils/styles/variable.module.scss";
 
 .header {
   -webkit-backdrop-filter: blur(50px);
@@ -12,9 +11,9 @@ $COLOR: #dcdcdc;
 }
 
 .header__nav {
-  color: $COLOR;
+  color: $gray2;
   display: flex;
-  height: $HEADER_HEIGHT;
+  height: $HEADER_HEIGT;
 
   & > div {
     align-items: center;
@@ -32,7 +31,7 @@ $COLOR: #dcdcdc;
   }
 
   & .nav__link::after {
-    background: $COLOR;
+    background: $gray2;
     content: '';
     height: 1px;
     left: 50%;
@@ -68,7 +67,7 @@ $COLOR: #dcdcdc;
 }
 
 .nav__link {
-  color: $COLOR;
+  color: $gray2;
   font-family: 'Blender Pro', sans-serif;
   font-size: 20px;
   font-style: normal;

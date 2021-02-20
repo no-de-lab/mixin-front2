@@ -1,4 +1,4 @@
-$SIDEBAR_WIDTH: 120px;
+@import "../utils/styles/variable.module.scss";
 
 .right_sidebar {
   height: 100vh;
@@ -10,7 +10,7 @@ $SIDEBAR_WIDTH: 120px;
   & svg {
     cursor: pointer;
   }
-  
+
   &--tool_box {
     align-items: center;
     display: flex;

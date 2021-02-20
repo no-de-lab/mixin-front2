@@ -7,6 +7,7 @@ import ROUTE from '@/constant/route';
 import { LogoIcon, MenuIcon } from '@/svg';
 
 import styles from './Header.module.scss';
+import Modal from './Modal';
 
 function NavMenu({ children, route }) {
   const router = useRouter();
@@ -59,6 +60,11 @@ export default function Header() {
               handleClick={toggleToolModal}
             />
           </div>
+          <Modal
+            position="right"
+            visible={toggleTool}
+            setVisible={setToggleTool}
+          />
         </nav>
       </header>
     </>
