@@ -9,9 +9,9 @@ export default function DropLeft({ render, setVisible, visible }) {
     setVisible(!visible);
   }, [visible]);
 
-  const noneEvent = useCallback(e => e.stopPropagation(), []);
+  const noneEvent = useCallback((e) => e.stopPropagation(), []);
 
-  const escapeKey = e => {
+  const escapeKey = (e) => {
     if (e.key === 'Escape') {
       toggle();
     }
@@ -28,11 +28,21 @@ export default function DropLeft({ render, setVisible, visible }) {
   if (typeof window === 'undefined') return null;
   return createPortal(
     <>
-      <div className={visible ? styles.dropleft__overlay : [styles.dropleft__overlay, styles.hidden].join(' ')} onClick={toggle} />
-      <div className={visible ? styles.dropleft : [styles.dropleft, styles.hidden].join(' ')} onClick={noneEvent}>
-        <div className={styles.dropleft__content}>
-          {render}
-        </div>
+      <div
+        className={
+          visible
+            ? styles.dropleft__overlay
+            : [styles.dropleft__overlay, styles.hidden].join(' ')
+        }
+        onClick={toggle}
+      />
+      <div
+        className={
+          visible ? styles.dropleft : [styles.dropleft, styles.hidden].join(' ')
+        }
+        onClick={noneEvent}
+      >
+        <div className={styles.dropleft__content}>{render}</div>
       </div>
     </>,
     document.body,
@@ -50,4 +60,3 @@ DropLeft.propTypes = {
   setVisible: PropTypes.func,
   visible: PropTypes.bool,
 };
-

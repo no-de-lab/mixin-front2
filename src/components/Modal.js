@@ -15,9 +15,9 @@ export default function Modal({
     setVisible(!visible);
   }, [visible]);
 
-  const noneEvent = useCallback(e => e.stopPropagation(), []);
+  const noneEvent = useCallback((e) => e.stopPropagation(), []);
 
-  const escapeKey = e => {
+  const escapeKey = (e) => {
     if (e.key === 'Escape') {
       toggle();
     }
@@ -34,32 +34,33 @@ export default function Modal({
   if (typeof window === 'undefined') return null;
   return visible && process.browser
     ? createPortal(
-      <>
-        <div className={styles.modal__overlay} />
-        <div onClick={toggle} className={styles.modal}>
-          <div
-            onClick={noneEvent}
-            className={[
+        // eslint-disable-next-line react/jsx-indent
+        <>
+          <div className={styles.modal__overlay} />
+          <div onClick={toggle} className={styles.modal}>
+            <div
+              onClick={noneEvent}
+              className={[
                 styles[`modal--${position}`],
                 styles.modal__content,
               ].join(' ')}
-          >
-            <div
-              onClick={toggle}
-              tabIndex={0}
-              role="button"
-              className={
+            >
+              <div
+                onClick={toggle}
+                tabIndex={0}
+                role="button"
+                className={
                   closeButtonDisplayNone
                     ? [styles['modal--close'], styles.hidden].join(' ')
                     : styles['modal--close']
                 }
-            >
-              <CloseIcon />
+              >
+                <CloseIcon />
+              </div>
+              {render}
             </div>
-            {render}
           </div>
-        </div>
-      </>,
+        </>,
         document.body,
       )
     : null;

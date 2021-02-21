@@ -10,7 +10,7 @@ export default function SearchBar({ cb }) {
   const router = useRouter();
 
   // 엔터시 submit 막기
-  const keyDownEnter = event => {
+  const keyDownEnter = (event) => {
     if (event.key === 'Enter') {
       event.preventDefault();
     }
@@ -24,7 +24,7 @@ export default function SearchBar({ cb }) {
   }, [value]);
 
   const changeValue = useCallback(
-    e => {
+    (e) => {
       setValue(e.target.value);
     },
     [value],

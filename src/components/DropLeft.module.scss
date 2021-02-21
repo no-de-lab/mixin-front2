@@ -1,16 +1,16 @@
-@import "../utils/styles/variable.module.scss";
+@import '../utils/styles/variable.module.scss';
 
 .dropleft__overlay {
   height: 100vh;
   left: 0;
-  position: absolute;   
+  position: absolute;
   top: 0;
   width: 100vw;
   z-index: 100;
 }
 
 .dropleft {
-  background: #0D0D0D;
+  background: #0d0d0d;
   box-shadow: -16px 0px 20px rgba(0, 0, 0, 0.7);
   color: #c8cbcb;
   height: 100%;

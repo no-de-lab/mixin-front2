@@ -26,7 +26,7 @@ export default function ThemeSwitch() {
 
   return (
     <button type="button" onClick={toggleMode}>
-      {mode === "light" ? <LightThemeIcon /> : <DarkThemeIcon /> }
+      {mode === 'light' ? <LightThemeIcon /> : <DarkThemeIcon />}
     </button>
   );
 }
