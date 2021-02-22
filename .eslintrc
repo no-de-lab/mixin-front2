@@ -1,5 +1,21 @@
 {
   "parser": "babel-eslint",
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "map": [
+          ["@/contexts", "./src/contexts"],
+          ["@/components", "./src/components"],
+          ["@/layout", "./src/layout"],
+          ["@/hooks", "./src/utils/hooks"],
+          ["@/config", "./src/utils/config"],
+          ["@/utils", "./src/utils"],
+          ["@/svg", "./asset/images/svg"]
+        ],
+        "extensions": [".js", ".jsx"]
+      }
+    }
+  },
   "parserOptions": {
     "ecmaVersion": 2020,
     "sourceType": "module",

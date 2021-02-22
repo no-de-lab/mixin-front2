@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-
+import ThemeSwitch from '@/components/ThemeSwitch';
 const Home = () => {
   const router = useRouter();
   return (
@@ -13,6 +13,7 @@ const Home = () => {
       <div>홈
         <a onClick={() => router.push('/mypage')}>Profile</a>
       </div>
+      <ThemeSwitch />
     </>
   )
 };

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Head from 'next/head';
 
 import '../utils/styles/global.scss';
+import CONFIG from '@/config/AppConfig';
 
 const App = ({ Component, pageProps }) => (
   <>

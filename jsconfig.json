@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/components/*": ["src/components/*"],
+      "@/contexts/*": ["src/contexts/*"],
+      "@/layout/*": ["src/layout/*"],
+      "@/hooks/*": ["src/utils/hooks/*"],
+      "@/config/*": ["src/utils/config/*"],
+      "@/utils": ["src/utils"],
+      "@/svg/*": ["asset/images/svg/*"]
+    }
+  },
+  "exclude": ["node_modules"]
+}
