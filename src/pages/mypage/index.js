@@ -1,19 +1,56 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Head from 'next/head';
-import ProfileLayout from '../../layout/profile'
+import ProfileLayout from '../../layout/profile';
+import styles from './index.module.scss';
 
-const Mypage = () => {
+/*
+  TODO: Profile Edit page 
+    - connect mobx
+    - 
+
+
+
+*/
+const ProfileForm = (props) => {
+  // TODO: use mobx for update profile update
+  const {children} = props;
   return (
-    <>
-      <Head>
-        <title>Mix in | my page</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <ProfileLayout>
-          indexxxxx
-      </ProfileLayout>
-    </>
-  )
+    <div className={styles.mypage__form}>
+      {children}
+    </div>
+  );
 };
+
+const ProfileInput = (props) => {
+  const {value, label, name, placeHolder} = props;
+  const [content, setContent] = useState(value);
+  const handleChange = (e) => {
+    setContent(e.target.name);
+  };
+  return (
+    <label className={styles.mypage__form_input} htmlFor={name}>
+      {label}
+      <input type="text" id={name} name={name} autoComplete="off" placeholder={placeHolder} value={content} onChange={handleChange} />
+    </label> 
+  );
+};
+
+const Mypage = () => (
+  <>
+    <Head>
+      <title>Mix in | my page</title>
+      <link rel="icon" href="/favicon.ico" />
+    </Head>
+    <ProfileLayout>
+      <ProfileForm>
+        <ProfileInput name="nickname" label="nickname" placeHolder="믹스인에서 사용할 닉네임을 입력해주세요." />
+        <ProfileInput name="job" label="job" placeHolder="본인이 주로 작업하는 분야를 선택해주세요" />
+        <ProfileInput name="url" label="url" placeHolder="url을 넣어주세요." />
+        <ProfileInput name="about" label="about us" placeHolder="자신을 짧게 소개해주세요." />
+        <button type="button">complete</button>
+      </ProfileForm>
+    </ProfileLayout>
+  </>
+  );
 
 export default Mypage;
