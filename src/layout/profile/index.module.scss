@@ -1,3 +1,8 @@
+.container {
+  position: relative;
+  height: 100vh;
+  background-color: #0D0D0D;
+}
 .profile_header, .profile_body {
   position: relative;
   display: flex;
@@ -30,17 +35,30 @@
 }
 .profile_body {
   height: 100%;
+  &.sticky {
+    margin-top: 60px;
+  }
 }
 .profile_tabs {
+  position: relative;
+  height: 60px;
   padding: 1vw;
   width: 100vw;
   text-align: center;
   border-top: 1px solid #DCDCDC;
   border-bottom: 1px solid #DCDCDC;
+  background-color: #0D0D0D;
   &__item {
     padding: 0 1vw;
     color: #DCDCDC;
     text-decoration: none;
+  }
+  &.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
   }
 }
 .avatar {
