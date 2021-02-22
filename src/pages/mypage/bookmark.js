@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import ProfileLayout from '../../layout/profile'
+import ProfileLayout from '../../layout/profile';
 
 const Bookmark = () => {
   const router = useRouter();
@@ -15,7 +15,7 @@ const Bookmark = () => {
         bookmark
       </ProfileLayout>
     </>
-  )
+  );
 };
 
 export default Bookmark;
