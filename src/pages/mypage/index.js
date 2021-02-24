@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import Head from 'next/head';
-import ProfileLayout from '../../layout/profile';
+import ProfileLayout from '@/layout/profile';
 import styles from './index.module.scss';
 
 /*
