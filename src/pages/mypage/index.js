@@ -11,6 +11,13 @@ import styles from './index.module.scss';
 
 
 */
+const FormButton = (props) => {
+  const {children} = props;
+  return (
+    <button className={styles.form__botton} type="button">{children}</button>
+  );
+};
+
 const ProfileForm = (props) => {
   // TODO: use mobx for update profile update
   const {children} = props;
@@ -23,15 +30,16 @@ const ProfileForm = (props) => {
 
 const ProfileInput = (props) => {
   const {value, label, name, placeHolder} = props;
-  const [content, setContent] = useState(value);
+  const [content, setContent] = useState(value || '');
   const handleChange = (e) => {
-    setContent(e.target.name);
+    setContent(e.target.value);
   };
   return (
-    <label className={styles.mypage__form_input} htmlFor={name}>
-      {label}
+    <div className={styles.mypage__form_input}>
+      <label htmlFor={name}>{label}</label> 
       <input type="text" id={name} name={name} autoComplete="off" placeholder={placeHolder} value={content} onChange={handleChange} />
-    </label> 
+    </div>
+    
   );
 };
 
@@ -47,7 +55,7 @@ const Mypage = () => (
         <ProfileInput name="job" label="job" placeHolder="본인이 주로 작업하는 분야를 선택해주세요" />
         <ProfileInput name="url" label="url" placeHolder="url을 넣어주세요." />
         <ProfileInput name="about" label="about us" placeHolder="자신을 짧게 소개해주세요." />
-        <button type="button">complete</button>
+        <FormButton>complete</FormButton>
       </ProfileForm>
     </ProfileLayout>
   </>
