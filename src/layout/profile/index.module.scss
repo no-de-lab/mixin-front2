@@ -73,12 +73,22 @@
   border-bottom: 1px solid #DCDCDC;
   background-color: #191919;
   &__item {
+    position: relative;
     font-size: var(--tab-font);
     line-height: calc(var(--tab-height) + 2px);
     padding: 0 1vw;
     color: #DCDCDC;
     text-decoration: none;
     cursor: pointer;
+    &[data-current="true"]::before {
+      content: '';
+      width: calc(var(--tab-font) * 2);
+      height: 1px;
+      background-color: white;
+      position: absolute;
+      bottom: calc(var(--tab-font) * -0.5 );
+      left: calc(50% - var(--tab-font));
+    }
   }
   &.sticky {
     position: fixed;

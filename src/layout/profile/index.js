@@ -1,5 +1,6 @@
 import React, {useState, useRef, useEffect} from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import Image from 'next/image';
 import styles from './index.module.scss';
 
@@ -26,17 +27,31 @@ const ProfileBody = ({children, sticky}) => (
   </div>
 );
 
+const Tabs = (props) => {
+  const {path, prefix} = props;
+  const router = useRouter();
+  const href = path === 'profile' ? '' : `/${path}`;
+  const current = router.pathname === `${prefix}${href}`;
+  return (
+    <Link href={`${prefix}${href}`}>
+      <span data-current={current} className={styles.profile_tabs__item}>
+        {path.toLocaleUpperCase()}
+      </span>
+    </Link>
+  );
+};
+
 export default function ProfileLayout(props) {
   const {children, comment} = props;
   const [sticky, setSticky] = useState(false);
   const tabs = ['profile', 'questions', 'answers', 'bookmark'];
+  // const router = useRouter();
   const ref = useRef(null);
   const handleScroll = () => {
     if (ref.current) {
       setSticky(ref.current.getBoundingClientRect().bottom <= 1);
     }
   };
-
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => {
@@ -68,11 +83,7 @@ export default function ProfileLayout(props) {
         </p>
       </div>
       <div className={[styles.profile_tabs, sticky && styles.sticky].filter(Boolean).join(' ')}>
-        {tabs.map((tab) => (
-          <Link key={tab} href={`/mypage/${tab === 'profile' ? '/' : tab}`}>
-            <span className={styles.profile_tabs__item}>{tab.toLocaleUpperCase()}</span>
-          </Link>
-        ))}
+        {tabs.map((tab) => <Tabs key={tab} path={tab} prefix="/mypage" />)}
       </div>
       <ProfileBody sticky={sticky}>{children}</ProfileBody>
     </div>
