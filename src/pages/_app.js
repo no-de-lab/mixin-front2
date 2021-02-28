@@ -6,6 +6,7 @@ import '../utils/styles/global.scss';
 import Header from '@/components/Header';
 import LeftSideBar from '@/components/LeftSideBar';
 import RightSideBar from '@/components/RightSideBar';
+import Footer from '@/components/Footer';
 
 const App = ({ Component, pageProps }) => (
   <>
@@ -23,6 +24,7 @@ const App = ({ Component, pageProps }) => (
       <Component {...pageProps} />
       <RightSideBar />
     </main>
+    <Footer />
   </>
 );
 
