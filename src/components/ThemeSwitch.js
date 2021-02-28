@@ -1,4 +1,5 @@
 import CONFIG from '@/config/AppConfig';
+import { LightThemeIcon, DarkThemeIcon } from '@/svg';
 import React, { useState, useEffect } from 'react';
 
 export default function ThemeSwitch() {
@@ -24,11 +25,8 @@ export default function ThemeSwitch() {
   };
 
   return (
-    <>
-      <div className="bg-blue-500 text-gray-200">{mode}</div>
-      <button type="button" onClick={toggleMode}>
-        테마 버튼
-      </button>
-    </>
+    <button type="button" onClick={toggleMode}>
+      {mode === 'light' ? <LightThemeIcon /> : <DarkThemeIcon />}
+    </button>
   );
 }

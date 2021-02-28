@@ -1,0 +1,35 @@
+.searchbar {
+  align-items: center;
+  display: flex;
+  outline: none;
+  
+  &__input {
+    background-color: transparent;
+    border: none;
+    color: #dcdcdc;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: bold;
+    height: 60px;
+    line-height: 60px;
+    width: 780px;
+
+    &::placeholder {
+      color: #dcdcdc;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: bold;
+      line-height: 60px;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__icons {
+    cursor: pointer;
+    height: 52px;
+    width: 52px;
+  }  
+}

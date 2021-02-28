@@ -9,6 +9,7 @@
           ["@/layout", "./src/layout"],
           ["@/hooks", "./src/utils/hooks"],
           ["@/config", "./src/utils/config"],
+          ["@/constant", "./src/utils/constant"],
           ["@/utils", "./src/utils"],
           ["@/svg", "./asset/images/svg"]
         ],
@@ -52,6 +53,13 @@
     "react/sort-comp": "off",
     "react/require-default-props": "off",
     "react/jsx-props-no-spreading": "off",
-    "no-use-before-define": "off"
+    "no-use-before-define": "off",
+    "jsx-a11y/anchor-is-valid": [ "error", {
+      "components": [ "Link" ],
+      "specialLink": [ "hrefLeft", "hrefRight" ],
+      "aspects": [ "invalidHref", "preferButton" ]
+    }],
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/no-static-element-interactions": "off"
   }
 }

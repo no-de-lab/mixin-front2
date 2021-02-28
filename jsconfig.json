@@ -7,7 +7,9 @@
       "@/layout/*": ["src/layout/*"],
       "@/hooks/*": ["src/utils/hooks/*"],
       "@/config/*": ["src/utils/config/*"],
+      "@/constant/*": ["src/utils/constant/*"],
       "@/utils": ["src/utils"],
+      "@/svg": ["asset/images/svg"],
       "@/svg/*": ["asset/images/svg/*"]
     }
   },
