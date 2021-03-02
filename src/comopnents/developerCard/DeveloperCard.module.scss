@@ -1,50 +1,68 @@
-.cardLayout {
+.card_layout {
   border: 1px solid #dcdcdc;
   height: 190px;
   width: 380px;
 }
 
-.cardLayout_body {
+.card_layout__body {
   border-bottom: 1px solid #dcdcdc;
   display: flex;
   height: 125px;
   width: 380px;
 }
 
-.cardLayout_body_profile {
-  margin-top: 24px;
-  margin-left: 20px;
-  margin-bottom: 20px;
-  width: 264px;
+.card_layout__body__profile {
   color: #dcdcdc;
-  .profile_name {
-    font-weight: 700;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-top: 24px;
+  width: 264px;
+
+  .profile__name {
     font-size: 20px;
+    font-weight: 700;
     height: 30px;
     margin-bottom: 4px;
   }
-  .profile_job {
-    font: Blender Pro;
+
+  .profile__job {
+    color: #696969;
     height: 14px;
     margin-bottom: 16px;
-    color: #696969;
   }
-  .profile_rank {
-    height: 17px;
+
+  .profile__rank {
     font-size: 14px;
+    height: 17px;
   }
 }
 
-.cardLayout_body_avatar {
-  width: 60px;
-  height: 60px;
-  margin-top: 33px;
-  margin-left: 16px;
-  border-radius: 50%;
+.card_layout__body__avatar {
   background-color: #dcdcdc;
+  border-radius: 50%;
+  height: 60px;
+  margin-left: 16px;
+  margin-top: 33px;
+  width: 60px;
 }
 
-.cardLayout_linkBar {
+.card_layout__link_bar {
+  align-items: center;
+  display: flex;
   height: 65px;
+  justify-content: space-between;
   width: 380px;
+}
+
+.card_layout__link_bar__social {
+  align-items: center;
+  display: flex;
+
+  .icon {
+    margin-left: 20px;
+  }
+}
+
+.card_layout__link_bar__bookmark {
+  margin-right: 24px;
 }

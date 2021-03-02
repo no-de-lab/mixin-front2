@@ -3,5 +3,7 @@
     "source.fixAll.eslint": true,
     "source.fixAll.stylelint": true
   },
-  "stylelint.enable": true
+  "stylelint.enable": true,
+  "editor.detectIndentation": false,
+  "editor.tabSize": 2
 }
