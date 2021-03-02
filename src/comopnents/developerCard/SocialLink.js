@@ -3,7 +3,15 @@ import { GithubIcon, UrlIcon } from '../../../asset/images/svg';
 
 export default function SocialLink({ social }) {
   if (social.type === 'GITHUB') {
-    return <GithubIcon />;
+    return (
+      <a href={social.url} rel="noopener noreferrer" target="_blank">
+        <GithubIcon />
+      </a>
+    );
   }
-  return <UrlIcon />;
+  return (
+    <a href={social.url} rel="noopener noreferrer" target="_blank">
+      <UrlIcon />
+    </a>
+  );
 }
