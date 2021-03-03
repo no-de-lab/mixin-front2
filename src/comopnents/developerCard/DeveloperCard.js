@@ -3,17 +3,28 @@ import { BookmarkIcon, ProfileIcon } from '../../../asset/images/svg';
 import styles from './DeveloperCard.module.scss';
 import SocialLink from './SocialLink';
 
-function DeveloperCardBody({ name, job, rank }) {
+function DeveloperCardBody({ name, job, rank, imgUrl }) {
+  console.log(job);
   return (
     <div className={styles.card_layout__body}>
       <div className={styles.card_layout__body__profile}>
         <div className={styles.profile__name}>{name}</div>
-        <div className={styles.profile__job}>{job}</div>
+        <div className={styles.profile__job}>
+          [
+          {job.length ? job[0].Occupation.type : 'No Job'}
+          ]
+        </div>
         <div className={styles.profile__rank}>{rank}</div>
       </div>
-      <div className={styles.card_layout__body__avatar}>
+      {imgUrl ? (
+        <img
+          src={imgUrl}
+          alt="user avatar"
+          className={styles.card_layout__body__avatar}
+        />
+      ) : (
         <ProfileIcon />
-      </div>
+      )}
     </div>
   );
 }
@@ -36,12 +47,14 @@ function DeveloperCardLinkBar({ socials }) {
 }
 
 function DeveloperCard({ developer }) {
+  console.log(developer);
   return (
     <div className={styles.card_layout}>
       <DeveloperCardBody
         name={developer.name}
-        job={developer.UserOccupation[0].Occupation.type}
+        job={developer.UserOccupation}
         rank={developer.userLevel}
+        imgUrl={developer.imgUrl}
       />
       <DeveloperCardLinkBar socials={developer.SocialUrl} />
     </div>

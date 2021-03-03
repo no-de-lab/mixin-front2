@@ -9,6 +9,8 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 const nextConfig = {
   webpack: (config) => {
+    config.resolve.modules.push(__dirname);
+
     const prod = process.env.NODE_ENV === 'production';
 
     config.plugins.push(new webpack.IgnorePlugin(/(?:\/tests|__mocks)/));

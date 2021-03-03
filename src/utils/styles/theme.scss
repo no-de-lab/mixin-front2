@@ -1,0 +1,17 @@
+body {
+  &.light {
+    --font-color: black;
+    --background-color: white;
+  }
+
+  &.dark {
+    --font-color: white;
+    --background-color: black;
+  }
+
+  background-color: var(--background-color);
+  color: var(--font-color);
+
+  height: 100%;
+  width: 100%;
+}
