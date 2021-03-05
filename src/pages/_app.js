@@ -18,7 +18,7 @@ const App = ({ Component, pageProps }) => (
       <title>Mix in</title>
     </Head>
     <Header />
-    <main className="container flex flex-row">
+    <main className="container flex flex-row 2xl:max-w-full">
       <LeftSideBar />
       <Component {...pageProps} />
       <RightSideBar />
