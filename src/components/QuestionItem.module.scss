@@ -102,8 +102,12 @@
 .actionButton__thumbsUpCount {
   @apply absolute w-4 h-5 ;
   // TODO: replace color with variable
-  background: #191919;
+  background: #fff;
   bottom: -0.7rem;
   font-size: 0.688rem;
   left: -0.5rem;
+
+  :global(.dark) & {
+    background: #191919;
+  }
 }
