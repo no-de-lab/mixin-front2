@@ -4,7 +4,6 @@ import styles from './DeveloperCard.module.scss';
 import SocialLink from './SocialLink';
 
 function DeveloperCardBody({ name, job, rank, imgUrl }) {
-  console.log(job);
   return (
     <div className={styles.card_layout__body}>
       <div className={styles.card_layout__body__profile}>
@@ -46,18 +45,21 @@ function DeveloperCardLinkBar({ socials }) {
   );
 }
 
-function DeveloperCard({ developer }) {
-  console.log(developer);
+function DeveloperCard({ developerList }) {
   return (
-    <div className={styles.card_layout}>
-      <DeveloperCardBody
-        name={developer.name}
-        job={developer.UserOccupation}
-        rank={developer.userLevel}
-        imgUrl={developer.imgUrl}
-      />
-      <DeveloperCardLinkBar socials={developer.SocialUrl} />
-    </div>
+    <>
+      {developerList.map((developer) => (
+        <div className={styles.card_layout}>
+          <DeveloperCardBody
+            name={developer.name}
+            job={developer.UserOccupation}
+            rank={developer.userLevel}
+            imgUrl={developer.imgUrl}
+          />
+          <DeveloperCardLinkBar socials={developer.SocialUrl} />
+        </div>
+      ))}
+    </>
   );
 }
 

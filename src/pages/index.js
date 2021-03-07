@@ -8,7 +8,7 @@ const Home = () => (
       <title>Mix in | 홈</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    <div style={{ margin: '200px' }}>
+    <div style={{ margin: '160px auto' }}>
       <DeveloperPageLayout />
     </div>
   </>

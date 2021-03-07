@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import DeveloperCard from '../../comopnents/developerCard/DeveloperCard';
+import DeveloperCard from '../../components/developerCard/DeveloperCard';
+import styles from './index.module.scss';
 
 export default function DeveloperPageLayout() {
   const url = 'https://api.mix-in.net/api/dashboard';
@@ -23,8 +24,8 @@ export default function DeveloperPageLayout() {
   if (!developerList) return null;
   console.log(developerList);
   return (
-    <>
-      <DeveloperCard developer={developerList[2]} />
-    </>
+    <div className={styles.developer_layout}>
+      <DeveloperCard developerList={developerList} />
+    </div>
   );
 }
