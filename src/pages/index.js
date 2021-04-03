@@ -1,21 +1,20 @@
 import React from 'react';
 import Head from 'next/head';
+import Counter from '@/components/Counter';
 
-const Home = (props) => {
-  console.log('props', props);
-  return (
-    <>
-      <Head>
-        <title>Mix in | 홈</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <div>홈</div>
-    </>
-  );
-};
+const Home = () => (
+  <div>
+    <Head>
+      <title>Mix in | 홈</title>
+      <link rel="icon" href="/favicon.ico" />
+    </Head>
+    <Counter />
+  </div>
+);
 
 export function getServerSideProps() {
-  return { props: { initialState: { counterStore: 3 } } };
+  // 1. auth
+  return { props: { initialState: { counterStore: { count: 3 } } } };
 }
 
 export default Home;

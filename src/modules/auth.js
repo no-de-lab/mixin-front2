@@ -1,4 +1,4 @@
-import { makeAutoObservable } from 'mobx';
+import { action, observable } from 'mobx';
 import { Article, Auth } from '@/utils/api';
 import { handleAsync } from '@/utils/mobx';
 
@@ -12,17 +12,16 @@ export const initialAuth = {
 */
 
 class UserStore {
-  user
+  @observable use
 
-  articles
+  @observable articles
 
   constructor(initialData = initialAuth) {
     this.user = initialData?.user;
     this.articles = initialData?.articles;
-    makeAutoObservable(this);
   }
 
-  async signIn({ email, password }) {
+  @action async signIn({ email, password }) {
     const [res, err] = await handleAsync(Auth.signIn({ email, password }));
 
     if (res) {
@@ -31,7 +30,7 @@ class UserStore {
     return [err === undefined, err];
   }
 
-  async fetchArticles() {
+  @action async fetchArticles() {
     const [res, err] = await handleAsync(Article.all());
 
     if (res) {
