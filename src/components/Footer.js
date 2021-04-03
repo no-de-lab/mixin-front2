@@ -1,9 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
 
-import ROUTE from '@/constant/route';
+import ROUTE from '@/utils/constant/route';
 
-import CONFIG from '@/config/AppConfig';
+import CONFIG from '@/utils/config/AppConfig';
 import styles from './Footer.module.scss';
 
 export default function Footer() {

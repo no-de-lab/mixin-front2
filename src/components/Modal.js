@@ -62,7 +62,7 @@ export default function Modal({
           </div>
         </>,
         document.body,
-      )
+    )
     : null;
 }
 

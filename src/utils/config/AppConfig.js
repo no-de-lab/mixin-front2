@@ -1,4 +1,5 @@
 const CONFIG = {
+  REQUEST_TIME_OUT: 3000,
   // --- general configs --- //
   DEFAULT_THEME: 'dark',
 
