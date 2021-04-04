@@ -2,7 +2,7 @@
 import { enableStaticRendering } from 'mobx-react-lite';
 import { useMemo } from 'react';
 import AuthStore, { initialAuth } from './auth';
-import CounterStore, { initialCounter } from './counter';
+import ArticleStore, { initialArticle } from './crawling';
 
 const isServer = typeof window === 'undefined';
 enableStaticRendering(isServer);
@@ -11,16 +11,16 @@ let store = null;
 
 const initalRoot = {
   authStore: initialAuth,
-  counterStore: initialCounter,
+  articleStore: initialArticle,
 };
 
 class RootStore {
   authStore;
 
-  counterStore;
+  articleStore;
 
   constructor(initialData) {
-    this.counterStore = new CounterStore(initialData.counterStore || initialCounter);
+    this.articleStore = new ArticleStore(initialData.articleStore || initialArticle);
     this.authStore = new AuthStore(initialData.authStore || initialAuth);
   }
 }

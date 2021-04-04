@@ -12,8 +12,6 @@ import { useStore } from '../modules';
 
 const App = ({ Component, pageProps }) => {
   const store = useStore(pageProps.initialState);
-  console.log(pageProps.initialState);
-  console.log(store.counterStore);
   return (
     <>
       <Head>

@@ -1,6 +1,8 @@
 import React from 'react';
 import Head from 'next/head';
-import Counter from '@/components/Counter';
+import { handleAsync } from '@/utils/mobx';
+import { Article } from '@/utils/api';
+import ArticleList from '@/components/ArticleList';
 
 const Home = () => (
   <div>
@@ -8,13 +10,15 @@ const Home = () => (
       <title>Mix in | 홈</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    <Counter />
+    <ArticleList />
   </div>
 );
 
-export function getServerSideProps() {
-  // 1. auth
-  return { props: { initialState: { counterStore: { count: 3 } } } };
+export async function getServerSideProps() {
+  // call api
+  const [res] = await handleAsync(Article.all());
+
+  return { props: { initialState: { articleStore: { articles: res.data.articles || [] } } } };
 }
 
 export default Home;
