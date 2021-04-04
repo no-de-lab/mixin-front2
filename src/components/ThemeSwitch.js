@@ -1,4 +1,4 @@
-import CONFIG from '@/config/AppConfig';
+import CONFIG from '@/utils/config/AppConfig';
 import { LightThemeIcon, DarkThemeIcon } from '@/svg';
 import React, { useState, useEffect } from 'react';
 

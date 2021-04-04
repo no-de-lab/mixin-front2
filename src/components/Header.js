@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 
-import ROUTE from '@/constant/route';
+import ROUTE from '@/utils/constant/route';
 import { LogoIcon, MenuIcon } from '@/svg';
 
 import styles from './Header.module.scss';

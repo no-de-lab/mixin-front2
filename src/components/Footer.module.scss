@@ -1,0 +1,24 @@
+@import '../utils/styles/variable.module.scss';
+
+.footer {
+  align-items: center;
+  border-top: 1px solid $gray2;
+  display: flex;
+  height: $FOOTER_HEIGT;
+  justify-content: space-between;
+  padding: 0 40px;
+
+  &__item {
+    font-size: 12px;
+    line-height: 16px;
+
+    &--title {
+      color: $gray4;
+      margin-right: 10px;
+    }
+
+    &--content {
+      color: $gray2;
+    }
+  }
+}
