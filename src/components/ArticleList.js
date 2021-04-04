@@ -3,10 +3,9 @@ import { observer } from 'mobx-react-lite';
 import React from 'react';
 
 const ArticleList = ({ store }) => {
-  console.log('articleStore', store.articleStore);
   const { articles } = store.articleStore;
-  return (
 
+  return (
     <div className="bg-white">
       {
     articles.length > 0 && articles.map((article) => (
@@ -20,4 +19,5 @@ const ArticleList = ({ store }) => {
   );
 };
 
+// inject("store") 고정
 export default inject('store')(observer(ArticleList));

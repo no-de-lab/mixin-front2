@@ -22,6 +22,7 @@ const App = ({ Component, pageProps }) => {
         />
         <title>Mix in</title>
       </Head>
+      {/* SSR에서 만든 애를 Hydrate 해서 클라이언트 브라우저에다가 동기화 */}
       <Provider store={store}>
         <Header />
         <main className="container flex flex-row">
