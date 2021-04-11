@@ -1,9 +1,9 @@
 slsNextApp:
   component: '@sls-next/serverless-component@1.18.0'
   inputs:
-	  bucketName: 'nodelab.mixin'
-	  cloudfront:
-	    distributionId: 'EOL6OV62VGD1C'
-	  name:
-	    defaultLambda: 'mixin-default-lambda'
-	    apiLambda: 'mixin-api-lambda'
+    bucketName: 'mixin-front2'
+    cloudfront:
+      distributionId: E3JDQ3YRX14XWN
+    name:
+      defaultLambda: 'mixin-front-lambda'
+      apiLambda: 'mixin-front-api-lambda'

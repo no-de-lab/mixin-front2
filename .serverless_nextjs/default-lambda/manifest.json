@@ -1,0 +1,1 @@
+{"buildId":"BQ28O_ZQ_pywI_b5kWCmS","logLambdaExecutionTimes":false,"pages":{"ssr":{"dynamic":{},"nonDynamic":{"/":"pages/index.js","/_error":"pages/_error.js"}},"html":{"dynamic":{},"nonDynamic":{"/404":"pages/404.html"}}},"publicFiles":{"/robots.txt":"robots.txt"},"trailingSlash":false,"domainRedirects":{},"enableHTTPCompression":false}

@@ -1,6 +1,5 @@
 {
   "*.{js,jsx}": [
-    "eslint --quiet --fix",
     "git add"
   ],
   "*.{html,scss,json}": [
