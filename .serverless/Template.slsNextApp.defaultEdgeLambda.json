@@ -1,6 +1,6 @@
 {
   "name": "mixin-front-lambda",
-  "hash": "figNaf0koH4ZMI8kQeTbYaiAw2WVDwGKXZOK3HAdBpk=",
+  "hash": "PGoDpRKH1bQ2fMyCH3uA+gMUOObP/mXnYuyl9XC+Zew=",
   "description": "Default Lambda@Edge for Next CloudFront distribution",
   "memory": 512,
   "timeout": 10,
