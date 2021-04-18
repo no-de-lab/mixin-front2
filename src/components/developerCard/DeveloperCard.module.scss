@@ -23,6 +23,9 @@
     font-weight: 700;
     height: 30px;
     margin-bottom: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .profile__job {

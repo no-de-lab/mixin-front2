@@ -1,53 +1,66 @@
-import axios from 'axios';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, {
+  useCallback, useEffect, useRef, useState,
+} from 'react';
 import throttle from 'lodash/throttle';
+import { inject } from 'mobx-react';
+import { observer } from 'mobx-react-lite';
+import { Developer } from '@/utils/api';
+import { handleAsync } from '@/utils/mobx';
 import DeveloperCard from '../../components/developerCard/DeveloperCard';
 import styles from './index.module.scss';
 
-export default function DeveloperPageLayout() {
+function DeveloperPageLayout({ store }) {
   const DEVELOPER_COUNT = 10;
-  const url = 'https://api.mix-in.net/api/dashboard';
   const [developerList, setDeveloperList] = useState([]);
+  const [endPage, setEndPage] = useState(0);
   const currentPage = useRef(1);
-  const getDeveloperList = async (url, page) => {
+
+  // page 별 Developer 리스트 가져오기
+  const getDeveloperList = async () => {
     try {
-      const fetchUrl = `${url}?page=${page}`;
-      const {
-        data: { users },
-      } = await axios.get(fetchUrl);
+      const [res] = await handleAsync(Developer.all(currentPage.current));
+      const { data: { users } } = res;
+      setEndPage(res.data.endPageNumber);
       const dl = developerList.concat(users);
       setDeveloperList(dl);
     } catch (e) {
       console.log(e);
     }
   };
+
+  // 스크롤 다운 시 Developer 리스트 추가
   const handleScroll = useCallback(
     throttle(() => {
       if (
-        window.scrollY + document.documentElement.clientHeight >
-        document.documentElement.scrollHeight - 400
+        window.scrollY + document.documentElement.clientHeight
+        > document.documentElement.scrollHeight - 400
       ) {
-        if (DEVELOPER_COUNT * currentPage.current === developerList.length) {
-          currentPage.current += 1;
-          console.log(developerList.length);
-          getDeveloperList(url, currentPage.current);
+        if (currentPage.current < endPage) {
+          if (DEVELOPER_COUNT * currentPage.current === developerList.length) {
+            currentPage.current += 1;
+            getDeveloperList(currentPage.current);
+          }
         }
       }
     }, 250),
   );
+
   useEffect(() => {
-    getDeveloperList(url, currentPage.current);
+    getDeveloperList();
   }, []);
+
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [developerList]);
 
   if (developerList.length === 0) return null;
-  console.log(developerList);
+
   return (
     <div className={styles.developer_layout}>
       <DeveloperCard developerList={developerList} />
     </div>
   );
 }
+
+export default inject('store')(observer(DeveloperPageLayout));

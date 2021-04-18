@@ -2,7 +2,6 @@ import React from 'react';
 import Head from 'next/head';
 import { handleAsync } from '@/utils/mobx';
 import { Article } from '@/utils/api';
-import ArticleList from '@/components/ArticleList';
 import DeveloperPageLayout from '@/layout/developer';
 
 const Home = () => (
@@ -21,7 +20,7 @@ const Home = () => (
 // Nextjs 페이지를 만들기 전에 실행되는 함수
 export async function getServerSideProps() {
   // call api
-  const [res] = await handleAsync(Article.all());
+  // const [res] = await handleAsync(Article.all());
 
   // 프론트 서버 안에서
   // 페이지 그리기 전에 Mobx Store 여기서 초기화

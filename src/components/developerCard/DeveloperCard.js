@@ -3,7 +3,9 @@ import { BookmarkIcon, ProfileIcon } from '../../../asset/images/svg';
 import styles from './DeveloperCard.module.scss';
 import SocialLink from './SocialLink';
 
-function DeveloperCardBody({ name, job, rank, imgUrl }) {
+function DeveloperCardBody({
+  name, job, rank, imgUrl,
+}) {
   return (
     <div className={styles.card_layout__body}>
       <div className={styles.card_layout__body__profile}>
@@ -22,7 +24,9 @@ function DeveloperCardBody({ name, job, rank, imgUrl }) {
           className={styles.card_layout__body__avatar}
         />
       ) : (
-        <ProfileIcon />
+        <div className={styles.card_layout__body__avatar}>
+          <ProfileIcon />
+        </div>
       )}
     </div>
   );
