@@ -7,9 +7,7 @@
           ["@/contexts", "./src/contexts"],
           ["@/components", "./src/components"],
           ["@/layout", "./src/layout"],
-          ["@/hooks", "./src/utils/hooks"],
-          ["@/config", "./src/utils/config"],
-          ["@/constant", "./src/utils/constant"],
+          ["@/modules", "./src/modules"],
           ["@/utils", "./src/utils"],
           ["@/svg", "./asset/images/svg"]
         ],
@@ -30,7 +28,7 @@
     "jest": true,
     "es6": true
   },
-  "extends": ["airbnb", "prettier"],
+  "extends": ["airbnb"],
   "plugins": ["import", "react-hooks"],
   "rules": {
     "semi": "error",
