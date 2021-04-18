@@ -1,0 +1,180 @@
+.border{
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23DCDCDCFF' stroke-width='1' stroke-dasharray='26%2c 16' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e") !important;
+  border:0 !important;
+}
+.card {
+  &_container {
+    border: 1px solid #dcdcdc;
+    box-sizing: border-box;
+    color: #dcdcdc;
+    display: flex;
+    flex-direction: column;
+    font-weight: 400;
+    height: 437px;
+    justify-content: center;
+    width: 396px;
+
+  }
+  &_box {
+    height: 94%;
+    margin: 24px 20px 24px 20px;
+
+    width: 356px;
+  }
+  &_header {
+    margin-bottom: 1.25rem;
+  }
+  &_content {
+    p {
+      font-size: 14px;
+
+      line-height: 28px;
+    }
+    &_withImg {
+      height: 52px;
+      margin-bottom: 1rem;
+    }
+    &_text {
+      border: 1px solid;
+      height: 148px;
+    }
+    &_Img {
+      border: 1px solid;
+      height: 220px;
+    }
+    div {
+      border: 1px solid;
+      height: 156px;
+    }
+  }
+  &_footer {
+    border-top: 1px solid;
+    height: 64px;
+    &_box {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px;
+      &_left {
+        align-content: center;
+        align-items: center;
+        display: flex;
+        height: 1.5rem;
+        width: 236px;
+        img {
+          border: 1px solid;
+          height: 1.5rem;
+          width: 1.5rem;
+        }
+        a {
+          color: #696969;
+          font-size: 0.75rem;
+          height: 1rem;
+          margin-left: 0.5rem;
+        }
+      }
+      &_right {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+        svg {
+          cursor: pointer;
+          margin-left: 20px;
+        }
+      }
+    }
+  }
+  &__icon{
+  color: #f5f5f5;
+  cursor: pointer;
+  height: 20px;
+  position: relative;
+    width: 20px;
+  &:hover{
+    fill: #df78ef;
+  }
+  
+  }
+  &__comment__container{
+    height: 24px;
+    margin-right: 20px;
+    position: relative;
+    width: 24px;
+  }
+  &__comment__count{
+
+    align-items: center;
+    background: rgb(20, 19, 34);
+    bottom: 0px;
+    display: flex;
+    font-family: 'Blender Pro', sans-serif;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: normal;
+    height: 16px;
+    justify-content: center;
+    line-height: 13px;
+    // margin-left: 20px;
+    // margin-right: 20px; 
+    position: absolute;
+    right: -24px;
+    
+    text-transform: uppercase;
+    width: 16px; 
+  } 
+
+
+}
+.card__comment{
+  background: #0D0D0D;
+  box-sizing: border-box;
+  color: #dcdcdc;
+  display: flex;
+  flex-direction: column;
+  font-weight: 400;
+  height: 87%;
+  padding: 19px 20px 24px 20px;
+  // justify-content: center;
+  width: 100%;
+  &__tag{
+    margin-bottom: 8px;
+  span {
+    border: 1px solid #696969;
+    color: #696969;
+    font-size: 0.75rem;
+    height: 1rem;
+    line-height: 16.37px;
+    text-align: center;
+  }
+  }
+  &__text{
+    // 13인치 기준으로 설정. 추가 수정 예정
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    height: 6em;
+    -webkit-line-clamp: 4;
+    line-height: 1.5;
+    overflow: hidden;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: normal;
+    word-wrap: break-word;
+  }
+}
+
+.title {
+  font-weight: bold;
+  height: 48px;
+  line-height: 24px;
+}
+
+.tag {
+  margin-bottom: 1rem;
+  span {
+    border: 1px solid #696969;
+    color: #696969;
+    font-size: 0.75rem;
+    height: 1rem;
+    line-height: 16.37px;
+    text-align: center;
+  }
+}

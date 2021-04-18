@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function FilterIcon() {
+export default function CloseIcon() {
   return (
     <svg
       width="32"
