@@ -3,7 +3,17 @@
 @import '~tailwindcss/utilities';
 @import './theme.scss';
 
+html {
+  font-family: 'Nunito Sans', 'Spoqa Han Sans Neo', 'Segoe UI', 'Roboto',
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
 body {
   margin: 0;
   padding: 0;
+}
+
+button {
+  outline: none;
 }

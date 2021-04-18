@@ -1,0 +1,13 @@
+{
+  "region": "us-east-1",
+  "privateZone": false,
+  "domain": "mix-in.net",
+  "subdomains": [
+    {
+      "domain": "www.mix-in.net",
+      "distributionId": "E3JDQ3YRX14XWN",
+      "url": "https://d3ipoymp6ta7lj.cloudfront.net",
+      "type": "awsCloudFront"
+    }
+  ]
+}

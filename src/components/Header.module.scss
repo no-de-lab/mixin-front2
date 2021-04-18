@@ -1,0 +1,78 @@
+@import '../utils/styles/variable.module.scss';
+
+.header {
+  -webkit-backdrop-filter: blur(50px);
+  backdrop-filter: blur(50px);
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 200;
+}
+
+.header__nav {
+  color: $gray2;
+  display: flex;
+  height: $HEADER_HEIGT;
+
+  & > div {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    position: relative;
+  }
+
+  & .nav__link {
+    font-size: 20px;
+    letter-spacing: 0.4em;
+    line-height: 24px;
+    position: relative;
+  }
+
+  & .nav__link::after {
+    background: $gray2;
+    content: '';
+    height: 1px;
+    left: 50%;
+    position: absolute;
+    top: 34px;
+    transform: translateX(-50%);
+    width: 0px;
+  }
+
+  & .nav__link:hover::after {
+    width: 15px;
+  }
+}
+
+.active {
+  &::after {
+    width: 15px !important;
+  }
+}
+
+.logo {
+  cursor: pointer;
+  left: 40px;
+  position: absolute;
+  top: 44px;
+}
+
+.header__subbar {
+  cursor: pointer;
+  position: absolute;
+  right: 40px;
+  top: 44px;
+}
+
+.nav__link {
+  color: $gray2;
+  font-family: 'Blender Pro', sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: normal;
+  letter-spacing: 0.4em;
+  line-height: 24px;
+  text-transform: uppercase;
+}

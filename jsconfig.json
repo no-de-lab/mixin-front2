@@ -5,11 +5,13 @@
       "@/components/*": ["src/components/*"],
       "@/contexts/*": ["src/contexts/*"],
       "@/layout/*": ["src/layout/*"],
-      "@/hooks/*": ["src/utils/hooks/*"],
-      "@/config/*": ["src/utils/config/*"],
       "@/utils": ["src/utils"],
+      "@/utils/*": ["src/utils/*"],
+      "@/modules/*": ["src/modules/*"],
+      "@/svg": ["asset/images/svg"],
       "@/svg/*": ["asset/images/svg/*"]
-    }
+    },
+    "experimentalDecorators": true
   },
   "exclude": ["node_modules"]
 }
