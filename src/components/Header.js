@@ -9,6 +9,8 @@ import { LogoIcon, MenuIcon } from '@/svg';
 import styles from './Header.module.scss';
 import Modal from './Modal';
 
+import Login from './Login';
+
 function NavMenu({ children, route }) {
   const router = useRouter();
 
@@ -64,6 +66,7 @@ export default function Header() {
             position="right"
             visible={toggleTool}
             setVisible={setToggleTool}
+            render={<Login />}
           />
         </nav>
       </header>
