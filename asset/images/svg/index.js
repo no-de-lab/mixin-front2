@@ -6,3 +6,4 @@ export { default as SearchIcon } from './SearchIcon';
 export { default as LightThemeIcon } from './LightThemeIcon';
 export { default as DarkThemeIcon } from './DarkThemeIcon';
 export { default as LargeSearchIcon } from './LargeSearchIcon';
+export { default as GoogleLogo } from './GoogleLogo';

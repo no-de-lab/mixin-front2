@@ -1,0 +1,24 @@
+.login {
+  &__button {
+    width: 225px;
+    height: 60px;
+    border: solid 2px #c8cbcb;
+    background-color: #131314;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    cursor: pointer;
+    color: #c8cbcb;
+    margin : 0 15px;
+  }
+  &__text {
+    width: 135px;
+    height: 21px;
+    font-size: 14px;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    text-align: center;
+  }
+}
