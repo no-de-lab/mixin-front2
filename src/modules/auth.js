@@ -17,9 +17,8 @@ class UserStore {
     this.user = initialData?.user;
   }
 
-  @action async signIn({ email, password }) {
-    const [res, err] = await handleAsync(Auth.signIn({ email, password }));
-
+  @action async login({ provider, accessToken }) {
+    const [res, err] = await handleAsync(Auth.login({ provider, accessToken }));
     if (res) {
       this.user = res.data;
     }
