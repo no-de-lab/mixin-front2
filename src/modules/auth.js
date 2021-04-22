@@ -15,14 +15,17 @@ class UserStore {
 
   constructor(initialData = initialAuth) {
     this.user = initialData?.user;
+    this.loaded = false;
   }
 
   @action async login({ provider, accessToken }) {
     const [res, err] = await handleAsync(Auth.login({ provider, accessToken }));
-    if (res) {
-      this.user = res.data;
-    }
     return [err === undefined, err];
+  }
+
+  @action setAuth(user) {
+    this.user = user;
+    this.loaded = true;
   }
 }
 

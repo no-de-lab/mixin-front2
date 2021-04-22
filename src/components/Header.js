@@ -2,6 +2,8 @@ import React, { useCallback, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
+import { observer } from "mobx-react-lite"
+import { useStore } from '../modules';
 
 import ROUTE from '@/utils/constant/route';
 import { LogoIcon, MenuIcon } from '@/svg';
@@ -29,9 +31,9 @@ function NavMenu({ children, route }) {
   );
 }
 
-export default function Header() {
+export default observer(function Header() {
   const [toggleTool, setToggleTool] = useState(false);
-
+  const {authStore} = useStore();
   const toggleToolModal = useCallback(() => {
     setToggleTool(!toggleTool);
   }, [toggleTool, setToggleTool]);
@@ -66,17 +68,17 @@ export default function Header() {
             position="right"
             visible={toggleTool}
             setVisible={setToggleTool}
-            render={<Login />}
+            render={authStore.loaded ? <div>login!!</div> : <Login />}
           />
         </nav>
       </header>
     </>
   );
-}
+});
 
-Header.defaultProps = {};
+// Header.defaultProps = {};
 
-Header.propTypes = {};
+// Header.propTypes = {};
 
 NavMenu.defaultProps = {};
 

@@ -6,17 +6,16 @@ import { useStore } from '../modules';
 
 
 export default observer(function Login(props) {
-  const {authStore} = useStore('');
+  const {authStore} = useStore();
   async function onSuccess(res, provider) {
+    const [success, err] = await authStore.login({ provider, accessToken: res.tokenId});
 
-    const {accessToken} = res;  
-    
-    
-    const [success, err] = await authStore.login({ provider, accessToken});
     if (!success) {
       alert(err);
       return;
     }
+    authStore.setAuth(res.profileObj);
+
   }
   
   function onFailure() {
