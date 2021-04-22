@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import styles from './index.module.scss';
+import { observer } from "mobx-react-lite"
+import { useStore } from '../../modules';
 
 /*
   TODO: mypage
@@ -11,11 +13,10 @@ import styles from './index.module.scss';
 */
 
 const Avatar = (props) => {
-  const img = '';
-  const { imgUrl } = props;
+  const {imgUrl} = props;
   return (
     <>
-      {img
+      {imgUrl
         ? <img src={imgUrl} className={styles.avatar__img} alt="user avatar" />
         : <div className={styles.avatar__color} />}
     </>
@@ -41,10 +42,11 @@ const Tabs = (props) => {
   );
 };
 
-export default function ProfileLayout(props) {
-  const { children, comment } = props;
+export default observer(function ProfileLayout(props) {
+  const {children, comment} = props;
   const [sticky, setSticky] = useState(false);
   const tabs = ['profile', 'questions', 'answers', 'bookmark'];
+  const {authStore} = useStore();
   // const router = useRouter();
   const ref = useRef(null);
   const handleScroll = () => {
@@ -61,8 +63,8 @@ export default function ProfileLayout(props) {
   return (
     <div className={styles.container}>
       <div className={styles.profile_header} ref={ref}>
-        <Avatar />
-        <p className={styles.profile_header__name}>name</p>
+        <Avatar imgUrl={authStore.user.imageUrl}/>
+        <p className={styles.profile_header__name}>{authStore.user.name}</p>
         <p className={styles.profile_header__job}>[ JOB ]</p>
         <p className={styles.profile_header__rank}>RANK</p>
         <div className={[styles.profile_header__urls, 'flex w-30 my-3'].join(' ')}>
@@ -88,4 +90,4 @@ export default function ProfileLayout(props) {
       <ProfileBody sticky={sticky}>{children}</ProfileBody>
     </div>
   );
-}
+})
