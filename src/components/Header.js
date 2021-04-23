@@ -4,15 +4,32 @@ import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { observer } from "mobx-react-lite"
 import { useStore } from '../modules';
-
+import Image from 'next/image';
 import ROUTE from '@/utils/constant/route';
 import { LogoIcon, MenuIcon } from '@/svg';
 
 import styles from './Header.module.scss';
 import Modal from './Modal';
-
+import Avatar from '@/components/Avatar';
 import Login from './Auth/Login';
 
+
+function SubbarProfile(props) {
+  const {authStore} = props;
+  return (
+    <div className={styles.subbar_profile}>
+      <div className={styles.profile_header}>
+        <Avatar imgUrl={authStore.user.imageUrl} />
+        <div className={styles.icons}>
+          <Image src='/images/svg/url_home.svg' alt='url_home' width={20} height={20} />
+          <Image src='/images/svg/url_git.svg' alt='url_git' width={20} height={20} />
+        </div>
+        <p className={styles.profile_header__name}>{authStore.user.name}</p>
+        <p className={styles.profile_header__email}>{authStore.user.email}</p>
+      </div> 
+    </div>
+  )
+}
 function NavMenu({ children, route }) {
   const router = useRouter();
 
@@ -58,10 +75,7 @@ export default observer(function Header() {
             position="right"
             visible={toggleTool}
             setVisible={setToggleTool}
-            render={authStore.loaded 
-              ? <div>login!!</div> 
-              : <Login />
-            }
+            render={authStore.loaded ? <SubbarProfile authStore={authStore} /> : <Login />}
           />
         </nav>
       </header>
@@ -79,3 +93,7 @@ NavMenu.propTypes = {
   children: PropTypes.string.isRequired,
   route: PropTypes.string.isRequired,
 };
+
+SubbarProfile.propTypes = {
+  authStore: PropTypes.object
+}
