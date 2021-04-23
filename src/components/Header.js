@@ -37,34 +37,23 @@ export default observer(function Header() {
   const toggleToolModal = useCallback(() => {
     setToggleTool(!toggleTool);
   }, [toggleTool, setToggleTool]);
-  
 
   return (
     <>
       <header className={styles.header}>
         <nav className={styles.header__nav}>
-          <div>
-            <Link href="/">
-              <a className={styles.logo}>
-                <LogoIcon />
-              </a>
-            </Link>
-          </div>
-          <div>
-            <NavMenu route={ROUTE.CRAWLING}>CRAWLING</NavMenu>
-          </div>
-          <div>
-            <NavMenu route={ROUTE.QNA}>Q&A</NavMenu>
-          </div>
-          <div>
-            <NavMenu route={ROUTE.DEVELOPER}>DEVELOPERS</NavMenu>
-          </div>
-          <div>
-            <MenuIcon
-              className={styles.header__subbar}
-              handleClick={toggleToolModal}
-            />
-          </div>
+          <Link href="/">
+            <a className={styles.logo}>
+              <LogoIcon />
+            </a>
+          </Link>
+          <NavMenu route={ROUTE.CRAWLING}>CRAWLING</NavMenu>
+          <NavMenu route={ROUTE.QNA}>Q&A</NavMenu>
+          <NavMenu route={ROUTE.DEVELOPER}>DEVELOPERS</NavMenu>
+          <MenuIcon
+            className={styles.header__subbar}
+            handleClick={toggleToolModal}
+          />
           <Modal
             position="right"
             visible={toggleTool}
