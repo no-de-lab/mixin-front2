@@ -14,15 +14,9 @@
   color: $gray2;
   display: flex;
   height: $HEADER_HEIGT;
-
-  & > div {
-    align-items: center;
-    display: flex;
-    flex: 1;
-    justify-content: center;
-    position: relative;
-  }
-
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
   & .nav__link {
     font-size: 20px;
     letter-spacing: 0.4em;
@@ -52,18 +46,8 @@
   }
 }
 
-.logo {
+.logo, .header__subbar {
   cursor: pointer;
-  left: 40px;
-  position: absolute;
-  top: 44px;
-}
-
-.header__subbar {
-  cursor: pointer;
-  position: absolute;
-  right: 40px;
-  top: 44px;
 }
 
 .nav__link {
