@@ -5,10 +5,10 @@ import styles from './Auth.module.scss';
 
 export default function LoginButton({ children, imgIcon, ...props }) {
   return (
-    <button className={styles.login__button} {...props}>
-      {imgIcon}
+    <>
+      <button className={styles.login__button} {...props}>{imgIcon}</button>
       <p className={styles.login__text}>{children}</p>
-    </button>
+    </>
   );
 }
 

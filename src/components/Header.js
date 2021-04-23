@@ -11,7 +11,7 @@ import { LogoIcon, MenuIcon } from '@/svg';
 import styles from './Header.module.scss';
 import Modal from './Modal';
 
-import Login from './Login';
+import Login from './Auth/Login';
 
 function NavMenu({ children, route }) {
   const router = useRouter();
@@ -32,11 +32,12 @@ function NavMenu({ children, route }) {
 }
 
 export default observer(function Header() {
-  const [toggleTool, setToggleTool] = useState(false);
   const {authStore} = useStore();
+  const [toggleTool, setToggleTool] = useState(false);
   const toggleToolModal = useCallback(() => {
     setToggleTool(!toggleTool);
   }, [toggleTool, setToggleTool]);
+  
 
   return (
     <>
@@ -68,7 +69,10 @@ export default observer(function Header() {
             position="right"
             visible={toggleTool}
             setVisible={setToggleTool}
-            render={authStore.loaded ? <div>login!!</div> : <Login />}
+            render={authStore.loaded 
+              ? <div>login!!</div> 
+              : <Login />
+            }
           />
         </nav>
       </header>
