@@ -60,3 +60,31 @@
   line-height: 24px;
   text-transform: uppercase;
 }
+
+.subbar_profile {
+  height: 100%;
+}
+.profile_header {
+  --font-base: 1rem;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #DCDCDC;
+  width: 100%;
+  padding: 3vw 0;
+  &__name {
+    font-size: calc(var(--font-base) * 1.25);
+    font-weight: 700;
+    margin: 0;
+  }
+  &__email {
+    font-size: var(--font-base);
+  }
+  &__urls {
+    .icons {
+      margin: 0 10px;
+    }
+  }
+}
