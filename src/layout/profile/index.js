@@ -5,23 +5,14 @@ import Image from 'next/image';
 import styles from './index.module.scss';
 import { observer } from "mobx-react-lite"
 import { useStore } from '../../modules';
-
+import Avatar from '@/components/Avatar';
 /*
   TODO: mypage
     - connect mobx
     - style refactoring
 */
 
-const Avatar = (props) => {
-  const {imgUrl} = props;
-  return (
-    <>
-      {imgUrl
-        ? <img src={imgUrl} className={styles.avatar__img} alt="user avatar" />
-        : <div className={styles.avatar__color} />}
-    </>  
-  );
-};
+
 const ProfileBody = ({children, sticky}) => (
   <div className={[styles.profile_body, sticky && styles.sticky].filter(Boolean).join(' ')}>
     {children}
@@ -63,7 +54,7 @@ export default observer(function ProfileLayout(props) {
   return (
     <div className={styles.container}>
       <div className={styles.profile_header} ref={ref}>
-        <Avatar imgUrl={authStore.user.imageUrl}/>
+        <Avatar imgUrl={authStore.user.imageUrl} />
         <p className={styles.profile_header__name}>{authStore.user.name}</p>
         <p className={styles.profile_header__job}>[ JOB ]</p>
         <p className={styles.profile_header__rank}>RANK</p>

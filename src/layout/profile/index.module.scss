@@ -3,7 +3,6 @@
 .container {
   --tab-font: 1rem;
   --tab-height: calc(var(--tab-font) * 4);
-  --avatar-size: 80px;
   --font-base: 1rem;
 
   position: relative;
@@ -96,18 +95,5 @@
     left: 0;
     right: 0;
     z-index: 1;
-  }
-}
-.avatar {
-  &__img {
-    border-radius: 100%;
-  }
-  &__color {
-    position: relative;
-    width: var(--avatar-size);
-    height: var(--avatar-size);
-    margin: 1rem;
-    background-color: #B5B5B5;
-    border-radius: 100%;
   }
 }
