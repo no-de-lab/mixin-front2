@@ -1,47 +1,47 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&display=swap');
 
 .mypage__form {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 50%;
-  position: relative;
   margin: 0 auto;
   padding: 2rem 0;
+  position: relative;
+  width: 50%;
   &_input {
-    width: 100%;
-    position: relative;
     margin: 2rem 0;
+    position: relative;
+    width: 100%;
     label {
-      font-size: calc(var(--font-base) * 0.75);
       color: #696969;
+      font-size: calc(var(--font-base) * 0.75);
       text-transform: uppercase;
     }
     input {
-      font-size: var(--font-base);
-      width: 100%;
       background-color: transparent;
       border: none;
-      border-bottom: 1px solid #DCDCDC;
+      border-bottom: 1px solid #dcdcdc;
+      font-size: var(--font-base);
       height: 48px;
       outline: none;
+      width: 100%;
       &::placeholder {
-        color: #DCDCDC;
+        color: #dcdcdc;
       }
     }
   }
   button {
-    outline: none;
     border: none;
+    outline: none;
   }
   .form__botton {
-    --btn-size: calc(var(--font-base) * 0.75); 
-    background-color: #DCDCDC;
-    text-transform: uppercase;
-    font-size: var(--btn-size);
-    padding: calc(var(--btn-size) * 1.5) calc(var(--btn-size) * 2);
-    color: #191919;
-    letter-spacing: 0.15em;
+    --btn-size: calc(var(--font-base) * 0.75);
     align-self: flex-end;
+    background-color: #dcdcdc;
+    color: #191919;
+    font-size: var(--btn-size);
+    letter-spacing: 0.15em;
+    padding: calc(var(--btn-size) * 1.5) calc(var(--btn-size) * 2);
+    text-transform: uppercase;
   }
 }

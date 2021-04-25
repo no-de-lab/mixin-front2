@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { handleAsync } from '@/utils/mobx';
 import { Article } from '@/utils/api';
 import DeveloperPageLayout from '@/layout/developer';
+import ProfileLayout from '@/layout/profile';
 
 const Home = () => (
   <div>
@@ -12,6 +13,7 @@ const Home = () => (
     </Head>
     <div style={{ margin: '200px' }}>
       <DeveloperPageLayout />
+      <ProfileLayout />
     </div>
   </div>
 );
