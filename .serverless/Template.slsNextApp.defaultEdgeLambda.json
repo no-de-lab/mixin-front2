@@ -1,0 +1,17 @@
+{
+  "name": "mixin-front-lambda",
+  "hash": "PGoDpRKH1bQ2fMyCH3uA+gMUOObP/mXnYuyl9XC+Zew=",
+  "description": "Default Lambda@Edge for Next CloudFront distribution",
+  "memory": 512,
+  "timeout": 10,
+  "code": "/Users/johyehyeong/git/mixin/mixin-front2/.serverless_nextjs/default-lambda",
+  "shims": [],
+  "handler": "index.handler",
+  "runtime": "nodejs12.x",
+  "env": {},
+  "role": {
+    "arn": "arn:aws:iam::914504654636:role/vfnpn9r-kcqcqnk"
+  },
+  "arn": "arn:aws:lambda:us-east-1:914504654636:function:mixin-front-lambda",
+  "region": "us-east-1"
+}

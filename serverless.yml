@@ -1,2 +1,10 @@
 slsNextApp:
   component: '@sls-next/serverless-component@1.18.0'
+  inputs:
+    domain: ["www", "mix-in.net"]
+    bucketName: 'mixin-front2'
+    cloudfront:
+      distributionId: E3JDQ3YRX14XWN
+    name:
+      defaultLambda: 'mixin-front-lambda'
+      apiLambda: 'mixin-front-api-lambda'

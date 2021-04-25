@@ -1,30 +1,22 @@
-const webpack = require('webpack');
-
-// next-plugins
-const withPlugins = require('next-compose-plugins');
-const withSourceMaps = require('@zeit/next-source-maps')();
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-});
-
-const nextConfig = {
-  webpack: (config) => {
-    config.resolve.modules.push(__dirname);
-
-    const prod = process.env.NODE_ENV === 'production';
-
-    config.plugins.push(new webpack.IgnorePlugin(/(?:\/tests|__mocks)/));
-    // moment locale size is too big
-    config.plugins.push(
-      new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /(en)/),
-    );
-
-    return {
-      ...config,
-      mode: prod ? 'production' : 'development',
-      devtool: prod ? 'inline-source-map' : 'eval',
-    };
-  },
+module.exports = function (...args) {
+  let original = require('./next.config.original.1618114020833.js');
+  const finalConfig = {};
+  const target = { target: 'serverless' };
+  if (typeof original === 'function' && original.constructor.name === 'AsyncFunction') {
+    // AsyncFunctions will become promises
+    original = original(...args);
+  }
+  if (original instanceof Promise) {
+    // Special case for promises, as it's currently not supported
+    // and will just error later on
+    return original
+      .then((originalConfig) => Object.assign(finalConfig, originalConfig))
+      .then((config) => Object.assign(config, target));
+  } if (typeof original === 'function') {
+    Object.assign(finalConfig, original(...args));
+  } else if (typeof original === 'object') {
+    Object.assign(finalConfig, original);
+  }
+  Object.assign(finalConfig, target);
+  return finalConfig;
 };
-
-module.exports = withPlugins([withSourceMaps, withBundleAnalyzer], nextConfig);
