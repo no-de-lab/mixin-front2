@@ -2,14 +2,12 @@ import React, {
   useCallback, useEffect, useRef, useState,
 } from 'react';
 import throttle from 'lodash/throttle';
-import { inject } from 'mobx-react';
-import { observer } from 'mobx-react-lite';
 import { Developer } from '@/utils/api';
 import { handleAsync } from '@/utils/mobx';
 import DeveloperCard from '../../components/developerCard/DeveloperCard';
 import styles from './index.module.scss';
 
-function DeveloperPageLayout({ store }) {
+function DeveloperLayout() {
   const DEVELOPER_COUNT = 10;
   const [developerList, setDeveloperList] = useState([]);
   const [endPage, setEndPage] = useState(0);
@@ -55,7 +53,6 @@ function DeveloperPageLayout({ store }) {
   }, [developerList]);
 
   if (developerList.length === 0) return null;
-
   return (
     <div className={styles.developer_layout}>
       <DeveloperCard developerList={developerList} />
@@ -63,4 +60,5 @@ function DeveloperPageLayout({ store }) {
   );
 }
 
-export default inject('store')(observer(DeveloperPageLayout));
+export default DeveloperLayout;
+// export default inject('store')(observer(DeveloperLayout));

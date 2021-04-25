@@ -1,3 +1,5 @@
+@import url('//db.onlinewebfonts.com/c/335787aa6f57d71cabe8eb5dc89c6d6b?family=Blender+Pro');
+
 .card_layout {
   border: 1px solid #dcdcdc;
   height: 190px;
@@ -30,12 +32,14 @@
 
   .profile__job {
     color: #696969;
+    font-family: 'Blender Pro';
     font-size: 12px;
     height: 14px;
     margin-bottom: 16px;
   }
 
   .profile__rank {
+    font-family: 'Blender Pro';
     font-size: 14px;
     height: 17px;
   }

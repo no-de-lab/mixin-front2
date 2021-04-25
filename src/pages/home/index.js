@@ -2,8 +2,9 @@ import React from 'react';
 import Head from 'next/head';
 import { handleAsync } from '@/utils/mobx';
 import { Article } from '@/utils/api';
-import DeveloperPageLayout from '@/layout/developer';
+import DeveloperLayout from '@/layout/developer';
 import ProfileLayout from '@/layout/profile';
+import ArticleList from '@/components/ArticleList';
 
 const Home = () => (
   <div>
@@ -11,10 +12,7 @@ const Home = () => (
       <title>Mix in | 홈</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    <div style={{ margin: '200px' }}>
-      <DeveloperPageLayout />
-      <ProfileLayout />
-    </div>
+    <ArticleList />
   </div>
 );
 
