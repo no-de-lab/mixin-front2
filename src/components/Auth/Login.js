@@ -14,12 +14,11 @@ export default observer(function Login(props) {
       alert(err);
       return;
     }
-    authStore.setAuth(res.profileObj);
   }
   return (
     <div className={styles.login__container}>
       <p className={styles.login__header}>Register / Login</p>
-      <GoogleLoginButton onSuccess={(res) => onSuccess(res, 'GOOGLE')} />
+      <GoogleLoginButton onSuccess={(res) => onSuccess(res, 'GOOGLE')} onFailure={() => {}}/>
     </div>
   )
 })

@@ -54,7 +54,7 @@ export default observer(function ProfileLayout(props) {
   return (
     <div className={styles.container}>
       <div className={styles.profile_header} ref={ref}>
-        <Avatar imgUrl={authStore.user.imageUrl} />
+        <Avatar imgUrl={authStore.user.imgUrl} />
         <p className={styles.profile_header__name}>{authStore.user.name}</p>
         <p className={styles.profile_header__job}>[ JOB ]</p>
         <p className={styles.profile_header__rank}>RANK</p>

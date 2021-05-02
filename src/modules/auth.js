@@ -1,6 +1,8 @@
 import { action, observable } from 'mobx';
 import { Auth } from '@/utils/api';
 import { handleAsync } from '@/utils/mobx';
+import Cookies from 'js-cookie';
+// saveTokenInCookies
 
 export const initialAuth = {
   user: [],
@@ -20,11 +22,27 @@ class UserStore {
 
   @action async login({ provider, accessToken }) {
     const [res, err] = await handleAsync(Auth.login({ provider, accessToken }));
+
+    if(res?.data?.token) {
+      Cookies.set('userInfo', res.data.token, { expires: 1 })
+      const [auth, err] = await handleAsync(Auth.info());
+      this.setAuth(auth.data);
+    }
+    return [err === undefined, err];
+  }
+  @action async register({name, email, imgUrl, userAccountId}) {
+    const [res, err] = await handleAsync(Auth.register({ name, email, imgUrl, userAccountId }));
     return [err === undefined, err];
   }
 
-  @action setAuth(user) {
-    this.user = user;
+  @action async info() {
+    const [auth, err] = await handleAsync(Auth.info());
+    this.setAuth(auth.data);
+    return [err === undefined, err];
+  }
+ 
+  @action setAuth(auth) {
+    this.user = auth;
     this.loaded = true;
   }
 }
