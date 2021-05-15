@@ -5,6 +5,7 @@ import { Article } from '@/utils/api';
 import DeveloperLayout from '@/layout/developer';
 import ProfileLayout from '@/layout/profile';
 import ArticleList from '@/components/ArticleList';
+import HomeLayout from '@/layout/crawling/HomeLayout';
 
 const Home = () => (
   <div>
@@ -12,7 +13,7 @@ const Home = () => (
       <title>Mix in | 홈</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    <ArticleList />
+    <HomeLayout />
   </div>
 );
 

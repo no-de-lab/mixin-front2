@@ -1,6 +1,11 @@
 const CONFIG = {
+  // --- pagination offset configs -- //
+  INFINITE_SCROLL_OFFSET: 30,
+
+  // -- api request config -- //
   REQUEST_TIME_OUT: 3000,
-  // --- general configs --- //
+
+  // --- app general configs --- //
   DEFAULT_THEME: 'dark',
 
   SUPPORT_EMAIL: 'nodelab.mixin@gmail.com',

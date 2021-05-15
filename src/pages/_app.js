@@ -25,7 +25,7 @@ const App = ({ Component, pageProps }) => {
       {/* SSR에서 만든 애를 Hydrate 해서 클라이언트 브라우저에다가 동기화 */}
       <Provider store={store}>
         <Header />
-        <main className="container flex flex-row">
+        <main className="flex flex-row">
           <LeftSideBar />
           <Component {...pageProps} />
           <RightSideBar />
