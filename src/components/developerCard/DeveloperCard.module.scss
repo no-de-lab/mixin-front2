@@ -1,0 +1,75 @@
+@import url('//db.onlinewebfonts.com/c/335787aa6f57d71cabe8eb5dc89c6d6b?family=Blender+Pro');
+
+.card_layout {
+  border: 1px solid #dcdcdc;
+  height: 190px;
+  width: 380px;
+}
+
+.card_layout__body {
+  border-bottom: 1px solid #dcdcdc;
+  display: flex;
+  height: 125px;
+  width: 380px;
+}
+
+.card_layout__body__profile {
+  color: #dcdcdc;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-top: 24px;
+  width: 264px;
+
+  .profile__name {
+    font-size: 20px;
+    font-weight: 700;
+    height: 30px;
+    margin-bottom: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .profile__job {
+    color: #696969;
+    font-family: 'Blender Pro';
+    font-size: 12px;
+    height: 14px;
+    margin-bottom: 16px;
+  }
+
+  .profile__rank {
+    font-family: 'Blender Pro';
+    font-size: 14px;
+    height: 17px;
+  }
+}
+
+.card_layout__body__avatar {
+  border-radius: 50%;
+  height: 60px;
+  margin-left: 16px;
+  margin-top: 33px;
+  width: 60px;
+}
+
+.card_layout__link_bar {
+  align-items: center;
+  display: flex;
+  height: 65px;
+  justify-content: space-between;
+  width: 380px;
+}
+
+.card_layout__link_bar__social {
+  align-items: center;
+  display: flex;
+
+  .icon {
+    margin-left: 20px;
+  }
+}
+
+.card_layout__link_bar__bookmark {
+  margin-right: 24px;
+}

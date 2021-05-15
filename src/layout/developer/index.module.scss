@@ -1,0 +1,6 @@
+.developer_layout {
+  column-gap: 60px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 60px;
+}

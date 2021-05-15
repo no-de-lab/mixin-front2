@@ -2,6 +2,8 @@ import React from 'react';
 import Head from 'next/head';
 import { handleAsync } from '@/utils/mobx';
 import { Article } from '@/utils/api';
+import DeveloperLayout from '@/layout/developer';
+import ProfileLayout from '@/layout/profile';
 import ArticleList from '@/components/ArticleList';
 
 const Home = () => (
@@ -18,12 +20,12 @@ const Home = () => (
 // Nextjs 페이지를 만들기 전에 실행되는 함수
 export async function getServerSideProps() {
   // call api
-  const [res] = await handleAsync(Article.all());
+  // const [res] = await handleAsync(Article.all());
 
   // 프론트 서버 안에서
   // 페이지 그리기 전에 Mobx Store 여기서 초기화
   // return된 값은 pages/_app.js의 Props로 전달
-  return { props: { initialState: { articleStore: { articles: res.data.articles || [] } } } };
+  return { props: { initialState: { articleStore: { articles: [] || [] } } } };
 
   // Hydrate 프론트 서버의 Mobx Store 클라이언트 가지고 있는 Mobx Store랑 일치를 시켜줘야 함
 }

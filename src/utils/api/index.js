@@ -10,3 +10,7 @@ export const Auth = {
 export const Article = {
   all: () => axios.get('/api/articles/search?page=1&offset=10'),
 };
+
+export const Developer = {
+  all: (page) => axios.get(`https://api.mix-in.net/api/dashboard?page=${page}`),
+};
