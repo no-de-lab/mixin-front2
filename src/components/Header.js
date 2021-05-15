@@ -39,7 +39,7 @@ export default function Header() {
       <header className={styles.header}>
         <nav className={styles.header__nav}>
           <div>
-            <Link href="/">
+            <Link href="/home">
               <a className={styles.logo}>
                 <LogoIcon />
               </a>

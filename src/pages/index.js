@@ -1,15 +1,25 @@
+import ROUTE from '@/utils/constant/route';
 import React from 'react';
-import Head from 'next/head';
-import HomeLayout from '@/layout/crawling/HomeLayout';
 
-const Home = () => (
+const Main = () => (
   <>
-    <Head>
-      <title>Mix in | 홈</title>
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
-    <HomeLayout />
+    <div>Home으로 리다이렉트</div>
   </>
 );
 
-export default Home;
+export async function getServerSideProps(context) {
+  // or use context.resolvedUrl for conditional redirect
+  if (context.resolvedUrl === '/') {
+    return {
+      redirect: {
+        destination: `/${ROUTE.CRAWLING}`,
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {}, // will be passed to the page component as props
+  };
+}
+export default Main;

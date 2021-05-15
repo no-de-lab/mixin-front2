@@ -1,6 +1,6 @@
 const ROUTE = {
   HOME: 'home',
-  CRAWLING: '',
+  CRAWLING: 'home',
   DEVELOPER: 'developer',
   QNA: 'qna',
   MYPAGE: 'mypage',
