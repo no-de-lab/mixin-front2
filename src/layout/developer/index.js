@@ -4,6 +4,7 @@ import React, {
 import throttle from 'lodash/throttle';
 import { Developer } from '@/utils/api';
 import { handleAsync } from '@/utils/mobx';
+import { Spinner } from '@/components/Spinner';
 import DeveloperCard from '../../components/developerCard/DeveloperCard';
 import styles from './index.module.scss';
 
@@ -11,11 +12,13 @@ function DeveloperLayout() {
   const DEVELOPER_COUNT = 10;
   const [developerList, setDeveloperList] = useState([]);
   const [endPage, setEndPage] = useState(0);
+  const [loading, setLoading] = useState(false);
   const currentPage = useRef(1);
 
   // page 별 Developer 리스트 가져오기
   const getDeveloperList = async () => {
     try {
+      setLoading(true);
       const [res] = await handleAsync(Developer.all(currentPage.current));
       const { data: { users } } = res;
       setEndPage(res.data.endPageNumber);
@@ -23,6 +26,8 @@ function DeveloperLayout() {
       setDeveloperList(dl);
     } catch (e) {
       console.log(e);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -54,9 +59,12 @@ function DeveloperLayout() {
 
   if (developerList.length === 0) return null;
   return (
-    <div className={styles.developer_layout}>
-      <DeveloperCard developerList={developerList} />
-    </div>
+    <>
+      <div className={styles.developer_layout}>
+        <DeveloperCard developerList={developerList} />
+      </div>
+      {loading && <div><Spinner /></div>}
+    </>
   );
 }
 

@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Spinner } from '@/components/Spinner';
 import { Article } from '@/utils/api';
 import useInfiniteScroll from '@/utils/hooks/useInfiniteScroll';
-import { handleAsync } from '@/utils/mobx';
 import HomeCrawlItems from './HomeCrawItems';
 import styles from './HomeLayout.module.scss';
 
