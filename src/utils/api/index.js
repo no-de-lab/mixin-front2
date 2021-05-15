@@ -17,7 +17,7 @@ export const Article = {
       search: search || undefined,
     });
 
-    return axios.get(`/api/articles/search?${queryString}`)
+    return axios.get(`https://api.mix-in.net/api/articles/search?${queryString}`)
   },
 };
 
