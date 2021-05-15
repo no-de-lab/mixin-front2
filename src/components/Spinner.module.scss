@@ -1,0 +1,39 @@
+@keyframes rotator {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+      transform: rotate(180deg);
+    }
+  100% {
+      transform: rotate(360deg);
+    }
+}
+
+.spin-group {
+  display: flex;
+  justify-content: center;
+}
+
+.double-spinner {
+  animation: rotator 1s 0s infinite linear normal;
+  border: 5px solid rgba(150, 150, 150, 0.2);
+  border-radius: 50%;
+  border-top-color: #df78ef;
+  height: 48px;
+  width: 48px;
+}
+
+.double-spinner::after {
+  animation: rotator 0.5s 0s infinite linear reverse;
+  animation-iteration-count: infinite;
+  border: inherit;
+  border-radius: inherit;
+  border-top-color: inherit;
+  content: '';
+  display: block;
+  height: 40%;
+  margin: 10px auto;
+  margin-bottom: 50px;
+  width: 40%;
+}

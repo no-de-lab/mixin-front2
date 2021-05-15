@@ -7,7 +7,7 @@ import CrawlCardComment from './CrawlComment';
 export default function CrawlCardLayout({
   // onBookmark,
   // onShare,
-  dummy,
+  article,
 }) {
   const {
     isBookmark,
@@ -19,8 +19,8 @@ export default function CrawlCardLayout({
     content,
     hashtag,
     author,
-    count,
-  } = dummy;
+    comments,
+  } = article;
 
   const [visible, setVisible] = useState(false);
 
@@ -29,7 +29,6 @@ export default function CrawlCardLayout({
   };
 
   useEffect(() => {
-    console.log(visible);
   });
 
   if (typeof window === 'undefined') return null;
@@ -40,7 +39,7 @@ export default function CrawlCardLayout({
           <a href={url} rel="noopener noreferrer" target="_blank">
             <CrawlCard.Title>{title}</CrawlCard.Title>
           </a>
-          <CrawlCard.Tag tag={dummy?.hashtag?.length > 0 ? hashtag.split(',').map((t) => `# ${t}`) : ['# -']} />
+          <CrawlCard.Tag tag={article?.hashtag?.length > 0 ? hashtag.split(',').map((t) => `# ${t}`) : ['# -']} />
           <a href={url} rel="noopener noreferrer" target="_blank">
             <CrawlCard.Text line={thumbnail ? 2 : 10}>
               {content || (!thumbnail && title)}
@@ -61,7 +60,7 @@ export default function CrawlCardLayout({
               // onBookmark={onBookmark}
               // onShare={onShare}
           onComment={onComment}
-          count={count}
+          count={comments}
         >
           {author || ''}
 
@@ -74,7 +73,7 @@ export default function CrawlCardLayout({
 }
 
 CrawlCardLayout.defaultProps = {
-  dummy: {
+  article: {
     title: 'Title Title Title Title Title Title Title Title Title',
     content:
         'Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text TextText Text',
@@ -82,7 +81,7 @@ CrawlCardLayout.defaultProps = {
     thumbnail: '',
     provider: 'Text',
     url: '/',
-    count: 3,
+    comments: 3,
   },
   //   onBookmark: () => {},
   //   onShare: () => {},
@@ -90,7 +89,7 @@ CrawlCardLayout.defaultProps = {
 };
 
 CrawlCardLayout.propTypes = {
-  dummy: PropTypes.object,
+  article: PropTypes.object,
   // onBookmark: PropTypes.func,
   // onShare: PropTypes.func,
   // onComment: PropTypes.func,

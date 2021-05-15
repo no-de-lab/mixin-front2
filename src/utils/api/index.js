@@ -1,4 +1,6 @@
+import CONFIG from '../config/AppConfig';
 import createAxios from './config';
+import qs from 'qs';
 
 const axios = createAxios();
 
@@ -8,7 +10,15 @@ export const Auth = {
 };
 
 export const Article = {
-  all: () => axios.get('/api/articles/search?page=1&offset=10'),
+  all: ({search, page, offset}) => {
+    const queryString = qs.stringify({
+      page: page || 1,
+      offset: offset || CONFIG.INFINITE_SCROLL_OFFSET,
+      search: search || undefined,
+    });
+
+    return axios.get(`/api/articles/search?${queryString}`)
+  },
 };
 
 export const Developer = {
