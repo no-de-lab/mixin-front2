@@ -1,13 +1,10 @@
 import React from 'react';
 import Head from 'next/head';
-<<<<<<< HEAD
 import { handleAsync } from '@/utils/mobx';
 import { Article } from '@/utils/api';
 import DeveloperLayout from '@/layout/developer';
 import ProfileLayout from '@/layout/profile';
 import ArticleList from '@/components/ArticleList';
-=======
->>>>>>> b63d428 (feat :zap: add infinite scroll)
 import HomeLayout from '@/layout/crawling/HomeLayout';
 
 const Home = () => (
@@ -29,11 +26,7 @@ export async function getServerSideProps() {
   // 프론트 서버 안에서
   // 페이지 그리기 전에 Mobx Store 여기서 초기화
   // return된 값은 pages/_app.js의 Props로 전달
-<<<<<<< HEAD
   return { props: { initialState: { articleStore: { articles: [] || [] } } } };
-=======
-  return { props: { initialState: { articleStore: { articles: [] } } } };
->>>>>>> b63d428 (feat :zap: add infinite scroll)
 
   // Hydrate 프론트 서버의 Mobx Store 클라이언트 가지고 있는 Mobx Store랑 일치를 시켜줘야 함
 }
