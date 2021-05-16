@@ -1,4 +1,7 @@
 const CONFIG = {
+  // --- app component configs -- //
+  TOAST_DURATION: 3000,
+
   // --- pagination offset configs -- //
   INFINITE_SCROLL_OFFSET: 30,
 

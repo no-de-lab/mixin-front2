@@ -29,6 +29,7 @@
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-toastify": "^7.0.4",
     "sass": "^1.32.6",
     "serverless": "^2.35.0",
     "tailwindcss": "^2.0.3"

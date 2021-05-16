@@ -3,11 +3,14 @@ import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { Provider } from 'mobx-react';
 
+import '../utils/styles/Toast.scss';
 import '../utils/styles/global.scss';
 import Header from '@/components/Header';
 import LeftSideBar from '@/components/LeftSideBar';
 import RightSideBar from '@/components/RightSideBar';
 import Footer from '@/components/Footer';
+import { ToastContainer } from 'react-toastify';
+import { CloseIcon } from '@/svg';
 import { useStore } from '../modules';
 
 const App = ({ Component, pageProps }) => {
@@ -31,6 +34,7 @@ const App = ({ Component, pageProps }) => {
           <RightSideBar />
         </main>
         <Footer />
+        <ToastContainer closeButton={<CloseIcon />} />
       </Provider>
     </>
   );

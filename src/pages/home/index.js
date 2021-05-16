@@ -1,10 +1,5 @@
 import React from 'react';
 import Head from 'next/head';
-import { handleAsync } from '@/utils/mobx';
-import { Article } from '@/utils/api';
-import DeveloperLayout from '@/layout/developer';
-import ProfileLayout from '@/layout/profile';
-import ArticleList from '@/components/ArticleList';
 import HomeLayout from '@/layout/crawling/HomeLayout';
 
 const Home = () => (

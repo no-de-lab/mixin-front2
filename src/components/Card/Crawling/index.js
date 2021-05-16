@@ -1,6 +1,7 @@
 /* eslint-disable linebreak-style */
 import React, { useCallback, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import Toast from '@/components/Toast';
 import CrawlCard from './CrawlCard';
 import CrawlCardComment from './CrawlComment';
 
@@ -27,6 +28,11 @@ export default function CrawlCardLayout({
   const onComment = () => {
     setVisible(!visible);
   };
+
+  const onShare = useCallback(() => {
+    navigator.clipboard.writeText(url);
+    Toast.notify('URL주소가 복사 되었습니다.');
+  }, []);
 
   useEffect(() => {
   });
@@ -58,7 +64,7 @@ export default function CrawlCardLayout({
           provider={provider}
           isBookmark={isBookmark}
               // onBookmark={onBookmark}
-              // onShare={onShare}
+          onShare={onShare}
           onComment={onComment}
           count={comments}
         >
