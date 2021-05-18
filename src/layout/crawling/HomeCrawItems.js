@@ -9,9 +9,9 @@ export default function HomeCrawlItems({ articles }) {
   return (
     <>
       {articles.map((article, i) => (
-        <div key={i} className={styles.crawlItems__container}>
-          <CrawlCardLayout article={article} />
-        </div>
+        // <div key={i} className={styles.crawlItems__container}>
+        <CrawlCardLayout article={article} key={i} />
+        // </div>
       ))}
     </>
   );

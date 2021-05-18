@@ -1,3 +1,5 @@
+@import '../../../utils/styles/variable.module.scss';
+
 .border{
   background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23DCDCDCFF' stroke-width='1' stroke-dasharray='26%2c 16' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e") !important;
   border:0 !important;
@@ -12,8 +14,8 @@
     font-weight: 400;
     height: 437px;
     justify-content: center;
+    padding: 16px 0;
     width: 396px;
-
   }
   &_box {
     height: 94%;
@@ -27,8 +29,7 @@
   &_content {
     p {
       font-size: 14px;
-
-      line-height: 28px;
+      line-height: 2;
     }
     &_withImg {
       height: 52px;
@@ -41,6 +42,7 @@
     &_Img {
       border: 1px solid;
       height: 220px;
+      width: 339px;
     }
     div {
       border: 1px solid;
