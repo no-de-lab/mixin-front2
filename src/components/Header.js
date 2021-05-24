@@ -19,7 +19,7 @@ function SubbarProfile(props) {
   return (
     <div className={styles.subbar_profile}>
       <div className={styles.profile_header}>
-        <Avatar imgUrl={authStore.user.imageUrl} />
+        <Avatar />
         <div className={styles.icons}>
           <Image src='/images/svg/url_home.svg' alt='url_home' width={20} height={20} />
           <Image src='/images/svg/url_git.svg' alt='url_git' width={20} height={20} />

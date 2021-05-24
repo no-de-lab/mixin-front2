@@ -34,7 +34,6 @@ const Tabs = (props) => {
 };
 
 export default observer(function ProfileLayout(props) {
-  const {children, comment} = props;
   const [sticky, setSticky] = useState(false);
   const tabs = ['profile', 'questions', 'answers', 'bookmark'];
   const {authStore} = useStore();
@@ -72,13 +71,13 @@ export default observer(function ProfileLayout(props) {
           ))}
         </div>
         <p className={styles.profile_header__comment}>
-          {comment || '한 줄 소개'}
+          {authStore.user.introduction || '한 줄 소개'}
         </p>
       </div>
       <div className={[styles.profile_tabs, sticky && styles.sticky].filter(Boolean).join(' ')}>
         {tabs.map((tab) => <Tabs key={tab} path={tab} prefix="/mypage" />)}
       </div>
-      <ProfileBody sticky={sticky}>{children}</ProfileBody>
+      <ProfileBody sticky={sticky}>{props.children}</ProfileBody>
     </div>
   );
 })

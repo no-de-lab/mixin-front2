@@ -9,6 +9,10 @@ export const Auth = {
   register: (name, email, password) => axios.post('/user/register', { name, email, password }),
 };
 
+export const Profile = {
+  options: (type) => axios.get(`/api/user/${type}`),
+};
+
 export const Article = {
   all: ({search, page, offset}) => {
     const queryString = qs.stringify({
