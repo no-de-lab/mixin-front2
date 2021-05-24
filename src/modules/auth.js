@@ -18,6 +18,7 @@ class UserStore {
   constructor(initialData = initialAuth) {
     this.user = initialData?.user;
     this.loaded = false;
+    this.info();
   }
 
   @action async login({ provider, accessToken }) {
@@ -26,7 +27,7 @@ class UserStore {
     if(res?.data?.token) {
       Cookies.set('userInfo', res.data.token, { expires: 1 })
       const [auth, err] = await handleAsync(Auth.info());
-      this.setAuth(auth.data);
+      this.setAuth(auth);
     }
     return [err === undefined, err];
   }
@@ -37,12 +38,13 @@ class UserStore {
 
   @action async info() {
     const [auth, err] = await handleAsync(Auth.info());
-    this.setAuth(auth.data);
+    this.setAuth(auth);
     return [err === undefined, err];
   }
  
   @action setAuth(auth) {
-    this.user = auth;
+    if(!auth) return;
+    this.user = auth.data;
     this.loaded = true;
   }
 }
