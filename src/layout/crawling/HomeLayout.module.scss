@@ -1,19 +1,24 @@
 @import '../../utils/styles/variable.module.scss';
 
 .crawl__container{
-    margin: $HEADER_HEIGT $SIDEBAR_WIDTH 0;
+    left: $SIDEBAR_WIDTH;
+    margin: $HEADER_HEIGT 0 0;
+    position: relative;
     @media (min-width: $breakpount-laptopL) and (max-width: $breakpount-desktop){
-        width: 1740px;
-
+        // width: 1740px;
+        // min-width: 1200px;
+        width: calc(100% - 240px);
     }
     @media (min-width: $breakpount-laptopS) and (max-width: $breakpount-laptopL){
-        width: 1200px;
-        
+        // max-width: 1200px;
+        // width: 1200px;
+        // min-width: 832px;
+        width: calc(100% - 240px);
     }
     @media (min-width: $breakpount-tablet) and (max-width: $breakpount-laptopS){
-        width: 832px;
         
-        
+        // max-width: 832px;
+        width: calc(100% - 240px);
     }
     @media (min-width: $breakpount-mobile) and (max-width: $breakpount-tablet){
         width: 832px;
@@ -26,18 +31,23 @@
 }
 
 .crawl__box{
+  @media (min-width: $breakpount-desktop) {
+    grid-template-columns: repeat(4, 1fr);
+  }
     @media (min-width: $breakpount-laptopL) and (max-width: $breakpount-desktop){
-        grid-template-columns: repeat(4, 1fr); 
-
+      grid-template-columns: repeat(4, 1fr); 
+      // grid-template-columns: 379px 379px 379px;
     }
     @media (min-width: $breakpount-laptopS) and (max-width: $breakpount-laptopL){
-        grid-template-columns: 428px 428px 428px 396px;
-
+        // grid-template-columns: 428px 428px 428px 396px;
+        // grid-template-columns: repeat(3, 1fr); 
+        grid-template-columns: repeat(2,1fr);
+        width:100%;
         
     }
-    @media (min-width: $breakpount-tablet) and (max-width: $breakpount-laptopS){
+    @media (min-width: $breakpount-tablet) and (max-width: $breakpount-laptopS ){
         grid-template-columns: repeat(2,1fr);
-        
+        width:100%;
         
     }
     @media (min-width: $breakpount-mobile) and (max-width: $breakpount-tablet){
@@ -47,10 +57,12 @@
     @media (max-width: $breakpount-mobile){
         grid-template-columns: repeat(1, 1fr);
     }
+    column-gap: 20px;
     display: grid;
-    grid-auto-rows: minmax(469px, auto);
+    grid-auto-rows: minmax(427px, auto);
     margin: 0 auto;
     max-width: 123.3rem;
+    row-gap: 32px;
 
 }
 
