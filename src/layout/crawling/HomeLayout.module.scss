@@ -3,8 +3,8 @@
 .crawl__container{
     // left: $SIDEBAR_WIDTH;
     margin: $HEADER_HEIGT $SIDEBAR_WIDTH 0;
+    max-width: calc(100vw - 240px);
     position: relative;
-    width: calc(100vw - 240px);
 }
 
 .crawl__box{
