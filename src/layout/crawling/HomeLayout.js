@@ -15,8 +15,8 @@ export default function HomeLayout() {
         <div className={styles.crawl__box}>
           <HomeCrawlItems articles={issues} />
         </div>
+        {loading && <div><Spinner /></div>}
       </div>
-      {loading && <div><Spinner /></div>}
     </>
   );
 }

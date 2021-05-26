@@ -42,7 +42,8 @@ CrawlCard.Text = function CrawlCardText({children, line, ...props}){
   return (
     <>
       {children && (
-      <div className={!props.type? styles.card_content : styles.card__comment__text} line={line} {...props}>{children}</div>
+      <div className={[!props.type? styles.card_content : styles.card__comment__text, line ==2? styles.card_content_withImg : styles.card_content_text].join(' ')} 
+           {...props}>{children}</div>
     )}
     </>
   );

@@ -1,56 +1,33 @@
 @import '../../utils/styles/variable.module.scss';
 
 .crawl__container{
+    // left: $SIDEBAR_WIDTH;
     margin: $HEADER_HEIGT $SIDEBAR_WIDTH 0;
-    @media (min-width: $breakpount-laptopL) and (max-width: $breakpount-desktop){
-        width: 1740px;
-
-    }
-    @media (min-width: $breakpount-laptopS) and (max-width: $breakpount-laptopL){
-        width: 1200px;
-        
-    }
-    @media (min-width: $breakpount-tablet) and (max-width: $breakpount-laptopS){
-        width: 832px;
-        
-        
-    }
-    @media (min-width: $breakpount-mobile) and (max-width: $breakpount-tablet){
-        width: 832px;
-    }
-    
-    @media (max-width: $breakpount-mobile){
-        width: 20.3rem;
-    }
-
+    max-width: calc(100vw - 240px);
+    position: relative;
 }
 
 .crawl__box{
+  @media (min-width: $breakpount-desktop) {
+    grid-template-columns: repeat(4, 1fr);
+  }
     @media (min-width: $breakpount-laptopL) and (max-width: $breakpount-desktop){
-        grid-template-columns: repeat(4, 1fr); 
+      grid-template-columns: repeat(3, 1fr); 
 
     }
-    @media (min-width: $breakpount-laptopS) and (max-width: $breakpount-laptopL){
-        grid-template-columns: 428px 428px 428px 396px;
-
-        
-    }
-    @media (min-width: $breakpount-tablet) and (max-width: $breakpount-laptopS){
+    @media (min-width: $breakpount-laptopS) and (max-width: $breakpount-laptopL - 1px){
         grid-template-columns: repeat(2,1fr);
-        
-        
     }
-    @media (min-width: $breakpount-mobile) and (max-width: $breakpount-tablet){
+
+    @media (min-width: $breakpount-mobile) and (max-width: $breakpount-laptopS - 1px){
         grid-template-columns: repeat(1, 1fr);
     }
-    
-    @media (max-width: $breakpount-mobile){
-        grid-template-columns: repeat(1, 1fr);
-    }
+    column-gap: 20px;
     display: grid;
-    grid-auto-rows: minmax(469px, auto);
+    grid-auto-rows: minmax(427px, auto);
     margin: 0 auto;
-    max-width: 123.3rem;
+    // max-width: 123.3rem;
+    row-gap: 32px;
 
 }
 
