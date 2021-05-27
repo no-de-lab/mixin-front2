@@ -37,6 +37,7 @@ export default observer(function ProfileLayout(props) {
   const [sticky, setSticky] = useState(false);
   const tabs = ['profile', 'questions', 'answers', 'bookmark'];
   const {authStore} = useStore();
+  // FIXME : update mobx timing issue
   // const router = useRouter();
   const ref = useRef(null);
   const handleScroll = () => {
@@ -53,7 +54,7 @@ export default observer(function ProfileLayout(props) {
   return (
     <div className={styles.container}>
       <div className={styles.profile_header} ref={ref}>
-        <Avatar imgUrl={authStore.user.imgUrl} />
+        <Avatar />
         <p className={styles.profile_header__name}>{authStore.user.name}</p>
         <p className={styles.profile_header__job}>[ JOB ]</p>
         <p className={styles.profile_header__rank}>RANK</p>
