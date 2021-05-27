@@ -9,7 +9,7 @@ export default observer(function Login(props) {
   const {authStore} = useStore();
 
   async function onSuccess(res, provider) {
-    const [success, err] = await authStore.login({ provider, accessToken: res.tokenId});
+    const [success, err] = await authStore.login({ provider, res});
     if (!success) {
       alert(err);
       return;
