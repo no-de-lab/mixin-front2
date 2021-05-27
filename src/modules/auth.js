@@ -21,19 +21,25 @@ class UserStore {
     this.info();
   }
 
-  @action async login({ provider, accessToken }) {
-    const [res, err] = await handleAsync(Auth.login({ provider, accessToken }));
-
-    if(res?.data?.token) {
-      Cookies.set('userInfo', res.data.token, { expires: 1 })
+  @action async login({ provider, res }) {
+    const [login, err] = await handleAsync(Auth.login({ provider, accessToken: res.tokenId }));
+    const {token, userAccountId} = login.data;
+    if(token) {
+      Cookies.set('userInfo', login.data.token, { expires: 1 })
       const [auth, err] = await handleAsync(Auth.info());
       this.setAuth(auth);
+    } else {
+      // TODO : Register
+      const {name, email, imageUrl} = res.profileObj;
+      const [auth, err] = await this.register({name, email, imgUrl: imageUrl, userAccountId});
+      // debugger
+      // this.setAuth(auth);
     }
     return [err === undefined, err];
   }
   @action async register({name, email, imgUrl, userAccountId}) {
     const [res, err] = await handleAsync(Auth.register({ name, email, imgUrl, userAccountId }));
-    return [err === undefined, err];
+    return [res, err];
   }
 
   @action async info() {
