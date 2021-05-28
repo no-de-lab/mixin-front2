@@ -19,10 +19,11 @@ class UserStore {
 
   @action async signIn({ email, password }) {
     const [res, err] = await handleAsync(Auth.signIn({ email, password }));
+  }
 
-    if (res) {
-      this.user = res.data;
-    }
+  @action async info() {
+    const [auth, err] = await handleAsync(Auth.info());
+    this.setAuth(auth?.data);
     return [err === undefined, err];
   }
 }
