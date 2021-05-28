@@ -10,6 +10,5 @@ export { default as SearchIcon } from './SearchIcon';
 export { default as LightThemeIcon } from './LightThemeIcon';
 export { default as DarkThemeIcon } from './DarkThemeIcon';
 export { default as LargeSearchIcon } from './LargeSearchIcon';
-export { default as GoogleLogo } from './GoogleLogo';
 export { default as ShareIcon } from './ShareIcon';
 export { default as CommentIcon } from './CommentIcon';
