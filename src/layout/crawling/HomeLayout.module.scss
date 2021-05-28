@@ -1,0 +1,40 @@
+@import '../../utils/styles/variable.module.scss';
+
+.crawl__container{
+    // left: $SIDEBAR_WIDTH;
+    margin: $HEADER_HEIGT $SIDEBAR_WIDTH 0;
+    max-width: calc(100vw - 240px);
+    position: relative;
+}
+
+.crawl__box{
+  @media (min-width: $breakpount-desktop) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+    @media (min-width: $breakpount-laptopL) and (max-width: $breakpount-desktop){
+      grid-template-columns: repeat(3, 1fr); 
+
+    }
+    @media (min-width: $breakpount-laptopS) and (max-width: $breakpount-laptopL - 1px){
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    @media (min-width: $breakpount-mobile) and (max-width: $breakpount-laptopS - 1px){
+        grid-template-columns: repeat(1, 1fr);
+    }
+    column-gap: 20px;
+    display: grid;
+    grid-auto-rows: minmax(427px, auto);
+    margin: 0 auto;
+    // max-width: 123.3rem;
+    row-gap: 32px;
+
+}
+
+.crawlItems__container{
+    padding: 16px 0;
+    @media (max-width: $breakpount-mobile){
+      padding: 1.25rem 0;  
+    } 
+
+}

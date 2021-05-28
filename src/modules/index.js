@@ -5,19 +5,20 @@ import AuthStore, { initialAuth } from './auth';
 import ArticleStore, { initialArticle } from './article';
 import CounterStore, { initialCounter } from './counter';
 import ProfileStore, { initialProfile } from './profile';
-
+import DeveloperStore, { initialDeveloper } from './developer';
 
 const isServer = typeof window === 'undefined';
 enableStaticRendering(isServer);
 
 let store = null;
 
-const initalRoot = {
+const initialRoot = {
   // modules 추가
   authStore: initialAuth,
   articleStore: initialArticle,
   profileStore: initialProfile,
   counterStore: initialCounter,
+  developerStore: initialDeveloper,
 };
 
 class RootStore {
@@ -29,6 +30,7 @@ class RootStore {
   counterStore;
 
   profileStore;
+  developerStore;
 
   constructor(initialData) {
     // modules 추가
@@ -36,10 +38,11 @@ class RootStore {
     this.authStore = new AuthStore(initialData.authStore || initialAuth);
     this.profileStore = new ProfileStore(initialData.profileStore || initialProfile);
     this.counterStore = new CounterStore(initialData.counterStore || initialCounter);
+    this.developerStore = new DeveloperStore(initialData.developerStore || initialDeveloper);
   }
 }
 
-const initializeStore = (initialData = initalRoot) => {
+const initializeStore = (initialData = initialRoot) => {
   // 프론트 서버 안 (Nextjs 서버 안에서 이루어짐)
   // SSR -> 실행순서 -> 페이지를 만들기 전에 API 서버에서 필요한 정보를 가져와야된다
   // -> 받아온 정보를 Mobx Store에 저장 -> Store 정보를 이용해서 페이지를 만들어야 함

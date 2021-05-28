@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
@@ -20,7 +20,7 @@ const ProfileBody = ({children, sticky}) => (
 );
 
 const Tabs = (props) => {
-  const {path, prefix} = props;
+  const { path, prefix } = props;
   const router = useRouter();
   const href = path === 'profile' ? '' : `/${path}`;
   const current = router.pathname === `${prefix}${href}`;
@@ -34,6 +34,7 @@ const Tabs = (props) => {
 };
 
 export default observer(function ProfileLayout(props) {
+  const { children, comment } = props;
   const [sticky, setSticky] = useState(false);
   const tabs = ['profile', 'questions', 'answers', 'bookmark'];
   const {authStore} = useStore();
@@ -58,9 +59,9 @@ export default observer(function ProfileLayout(props) {
         <p className={styles.profile_header__name}>{authStore.user.name}</p>
         <p className={styles.profile_header__job}>[ JOB ]</p>
         <p className={styles.profile_header__rank}>RANK</p>
-        <div className={[styles.profile_header__urls, "flex w-30 my-3"].join(' ')}>
+        <div className={[styles.profile_header__urls, 'flex w-30 my-3'].join(' ')}>
           {/* TODO : url list with api */}
-          {['url_default', 'url_git', 'url_home'].map(url => (
+          {['url_default', 'url_git', 'url_home'].map((url) => (
             <div className={styles.icons} key={url}>
               <Image
                 src={`/images/svg/${url}.svg`}

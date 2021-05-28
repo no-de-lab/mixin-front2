@@ -1,3 +1,7 @@
+export { default as GithubIcon } from './GithubIcon';
+export { default as UrlIcon } from './UrlIcon';
+export { default as BookmarkIcon } from './BookmarkIcon';
+export { default as ProfileIcon } from './ProfileIcon';
 export { default as MenuIcon } from './MenuIcon';
 export { default as LogoIcon } from './LogoIcon';
 export { default as CloseIcon } from './CloseIcon';
@@ -7,3 +11,5 @@ export { default as LightThemeIcon } from './LightThemeIcon';
 export { default as DarkThemeIcon } from './DarkThemeIcon';
 export { default as LargeSearchIcon } from './LargeSearchIcon';
 export { default as GoogleLogo } from './GoogleLogo';
+export { default as ShareIcon } from './ShareIcon';
+export { default as CommentIcon } from './CommentIcon';
