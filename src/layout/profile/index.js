@@ -3,25 +3,17 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import styles from './index.module.scss';
-
+import { observer } from "mobx-react-lite"
+import { useStore } from '../../modules';
+import Avatar from '@/components/Avatar';
 /*
   TODO: mypage
     - connect mobx
     - style refactoring
 */
 
-const Avatar = (props) => {
-  const img = '';
-  const { imgUrl } = props;
-  return (
-    <>
-      {img
-        ? <img src={imgUrl} className={styles.avatar__img} alt="user avatar" />
-        : <div className={styles.avatar__color} />}
-    </>
-  );
-};
-const ProfileBody = ({ children, sticky }) => (
+
+const ProfileBody = ({children, sticky}) => (
   <div className={[styles.profile_body, sticky && styles.sticky].filter(Boolean).join(' ')}>
     {children}
   </div>
@@ -41,10 +33,12 @@ const Tabs = (props) => {
   );
 };
 
-export default function ProfileLayout(props) {
+export default observer(function ProfileLayout(props) {
   const { children, comment } = props;
   const [sticky, setSticky] = useState(false);
   const tabs = ['profile', 'questions', 'answers', 'bookmark'];
+  const {authStore} = useStore();
+  // FIXME : update mobx timing issue
   // const router = useRouter();
   const ref = useRef(null);
   const handleScroll = () => {
@@ -62,7 +56,7 @@ export default function ProfileLayout(props) {
     <div className={styles.container}>
       <div className={styles.profile_header} ref={ref}>
         <Avatar />
-        <p className={styles.profile_header__name}>name</p>
+        <p className={styles.profile_header__name}>{authStore.user.name}</p>
         <p className={styles.profile_header__job}>[ JOB ]</p>
         <p className={styles.profile_header__rank}>RANK</p>
         <div className={[styles.profile_header__urls, 'flex w-30 my-3'].join(' ')}>
@@ -79,13 +73,13 @@ export default function ProfileLayout(props) {
           ))}
         </div>
         <p className={styles.profile_header__comment}>
-          {comment || '한 줄 소개'}
+          {authStore.user.introduction || '한 줄 소개'}
         </p>
       </div>
       <div className={[styles.profile_tabs, sticky && styles.sticky].filter(Boolean).join(' ')}>
         {tabs.map((tab) => <Tabs key={tab} path={tab} prefix="/mypage" />)}
       </div>
-      <ProfileBody sticky={sticky}>{children}</ProfileBody>
+      <ProfileBody sticky={sticky}>{props.children}</ProfileBody>
     </div>
   );
-}
+})

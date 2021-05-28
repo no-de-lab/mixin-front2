@@ -5,8 +5,13 @@ import qs from 'qs';
 const axios = createAxios();
 
 export const Auth = {
-  signIn: ({ email, password }) => axios.post('/user/sign_in', { email, password }),
-  register: (name, email, password) => axios.post('/user/register', { name, email, password }),
+  login: ({ provider, accessToken }) => axios.post('/api/user/login', { provider, accessToken }),
+  register: ({name, email, imgUrl, userAccountId}) => axios.post('/api/user/register', { name, email, imgUrl, userAccountId }),
+  info: () => axios.post('/api/user/me'),
+};
+
+export const Profile = {
+  options: (type) => axios.get(`/api/user/${type}`),
 };
 
 export const Article = {

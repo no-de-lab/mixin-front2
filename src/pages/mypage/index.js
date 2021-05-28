@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, {useState, useEffect} from 'react';
 import Head from 'next/head';
 import ProfileLayout from '@/layout/profile';
 import styles from './index.module.scss';
+import { observer } from "mobx-react-lite"
+import { useStore } from '../../modules';
 
 /*
   TODO: Profile Edit page
@@ -34,6 +36,7 @@ const ProfileInput = (props) => {
   const handleChange = (e) => {
     setContent(e.target.value);
   };
+  
   return (
     <div className={styles.mypage__form_input}>
       <label htmlFor={name}>{label}</label>
@@ -41,24 +44,33 @@ const ProfileInput = (props) => {
     </div>
 
   );
-};
+}
 
-const Mypage = () => (
-  <>
-    <Head>
-      <title>Mix in | my page</title>
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
-    <ProfileLayout>
-      <ProfileForm>
-        <ProfileInput name="nickname" label="nickname" placeHolder="믹스인에서 사용할 닉네임을 입력해주세요." />
-        <ProfileInput name="job" label="job" placeHolder="본인이 주로 작업하는 분야를 선택해주세요" />
-        <ProfileInput name="url" label="url" placeHolder="url을 넣어주세요." />
-        <ProfileInput name="about" label="about us" placeHolder="자신을 짧게 소개해주세요." />
-        <FormButton>complete</FormButton>
-      </ProfileForm>
-    </ProfileLayout>
-  </>
-);
 
-export default Mypage;
+export default observer(function Mypage() {
+  const {profileStore} = useStore();
+  useEffect(() => {
+    const fetchOptions = async () => {
+      await profileStore.getOptions('stacks');
+    }
+    fetchOptions();
+  }, []);
+  console.log(profileStore.stacks);
+  return (
+    <>
+      <Head>
+        <title>Mix in | my page</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <ProfileLayout>
+        <ProfileForm>
+          <ProfileInput name="nickname" label="nickname" placeHolder="믹스인에서 사용할 닉네임을 입력해주세요." />
+          <ProfileInput name="job" label="job" placeHolder="본인이 주로 작업하는 분야를 선택해주세요" />
+          <ProfileInput name="url" label="url" placeHolder="url을 넣어주세요." />
+          <ProfileInput name="about" label="about us" placeHolder="자신을 짧게 소개해주세요." />
+          <FormButton>complete</FormButton>
+        </ProfileForm>
+      </ProfileLayout>
+    </>
+  )
+})

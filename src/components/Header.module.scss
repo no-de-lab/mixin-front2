@@ -14,15 +14,9 @@
   color: $gray2;
   display: flex;
   height: $HEADER_HEIGT;
-
-  & > div {
-    align-items: center;
-    display: flex;
-    flex: 1;
-    justify-content: center;
-    position: relative;
-  }
-
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
   & .nav__link {
     font-size: 20px;
     letter-spacing: 0.4em;
@@ -52,18 +46,8 @@
   }
 }
 
-.logo {
+.logo, .header__subbar {
   cursor: pointer;
-  left: 40px;
-  position: absolute;
-  top: 44px;
-}
-
-.header__subbar {
-  cursor: pointer;
-  position: absolute;
-  right: 40px;
-  top: 44px;
 }
 
 .nav__link {
@@ -75,4 +59,32 @@
   letter-spacing: 0.4em;
   line-height: 24px;
   text-transform: uppercase;
+}
+
+.subbar_profile {
+  height: 100%;
+}
+.profile_header {
+  --font-base: 1rem;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #DCDCDC;
+  width: 100%;
+  padding: 3vw 0;
+  &__name {
+    font-size: calc(var(--font-base) * 1.25);
+    font-weight: 700;
+    margin: 0;
+  }
+  &__email {
+    font-size: var(--font-base);
+  }
+  &__urls {
+    .icons {
+      margin: 0 10px;
+    }
+  }
 }
