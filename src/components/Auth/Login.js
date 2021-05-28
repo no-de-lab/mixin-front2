@@ -18,7 +18,7 @@ export default observer(function Login(props) {
   return (
     <div className={styles.login__container}>
       <p className={styles.login__header}>Register / Login</p>
-      <GoogleLoginButton onSuccess={(res) => onSuccess(res, 'GOOGLE')} />
+      <GoogleLoginButton onSuccess={(res) => onSuccess(res, 'GOOGLE')} onFailure={() => {}}/>
     </div>
   )
 })

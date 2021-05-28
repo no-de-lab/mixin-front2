@@ -21,21 +21,20 @@ class UserStore {
 
   @action async login({ provider, res }) {
     // NOTE : Error handling 
-    const [login, err] = await handleAsync(Auth.login({ provider, accessToken: res.tokenId }));
-    const {token, userAccountId} = login.data;
-    if(token) {
-      Cookies.set('userInfo', login.data.token, { expires: 1 })
+    const [login, err] = await handleAsync(Auth.login({ provider, accessToken: res?.tokenId }));
+    if(login?.data?.token) {
+      Cookies.set('userInfo', login?.data?.token, { expires: 1 })
       const [auth, authErr] = await handleAsync(Auth.info());
-      this.setAuth(auth.data);
+      this.setAuth(auth?.data);
     } else {
       const [register, registerErr] = await this.register({
         name : res?.profileObj?.name, 
         email : res?.profileObj?.email, 
         imgUrl: res?.profileObj?.imageUrl, 
-        userAccountId
+        userAccountId: login?.data?.userAccountId
       });
-      Cookies.set('userInfo', register.data.token, { expires: 1 })
-      this.setAuth(register.data.user);
+      Cookies.set('userInfo', register?.data?.token, { expires: 1 })
+      this.setAuth(register?.data?.user);
     }
     return [err === undefined, err];
   }
