@@ -4,7 +4,6 @@ import { useMemo } from 'react';
 import AuthStore, { initialAuth } from './auth';
 import ArticleStore, { initialArticle } from './article';
 import CounterStore, { initialCounter } from './counter';
-import ProfileStore, { initialProfile } from './profile';
 import DeveloperStore, { initialDeveloper } from './developer';
 
 const isServer = typeof window === 'undefined';
@@ -16,7 +15,6 @@ const initialRoot = {
   // modules 추가
   authStore: initialAuth,
   articleStore: initialArticle,
-  profileStore: initialProfile,
   counterStore: initialCounter,
   developerStore: initialDeveloper,
 };
@@ -29,14 +27,12 @@ class RootStore {
 
   counterStore;
 
-  profileStore;
   developerStore;
 
   constructor(initialData) {
     // modules 추가
     this.articleStore = new ArticleStore(initialData.articleStore || initialArticle);
     this.authStore = new AuthStore(initialData.authStore || initialAuth);
-    this.profileStore = new ProfileStore(initialData.profileStore || initialProfile);
     this.counterStore = new CounterStore(initialData.counterStore || initialCounter);
     this.developerStore = new DeveloperStore(initialData.developerStore || initialDeveloper);
   }
