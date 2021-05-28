@@ -47,7 +47,7 @@ class UserStore {
 
   @action async info() {
     const [auth, err] = await handleAsync(Auth.info());
-    this.setAuth(auth);
+    this.setAuth(auth.data);
     return [err === undefined, err];
   }
  
