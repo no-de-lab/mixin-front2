@@ -11,7 +11,7 @@ const useInfiniteScroll = (fetcher, loading, setLoading) => {
   const [issues, setIssues] = useState([]);
 
   const page = useRef(1);
-  const { search } = useRouter().query;
+  const { search, sort } = useRouter().query;
 
   const loadMoreData = async () => {
     console.log('start', loading);
@@ -19,14 +19,17 @@ const useInfiniteScroll = (fetcher, loading, setLoading) => {
       setLoading(true);
 
       // 불러오기 -> 다음에 불러올 데이터가 있는가?
-      await fetcher({ search, page: page.current, offset: CONFIG.INFINITE_SCROLL_OFFSET })
+      await fetcher({
+        search, page: page.current, offset: CONFIG.INFINITE_SCROLL_OFFSET, sort,
+      })
         .then((res) => {
+          console.log('res', res);
           console.log('page', page.current);
-          if(page.current === res.data.currentPage) {
+          if (page.current === res.data.pagination.currentPage) {
             setIssues((prevState) => [...prevState].concat(res.data.articles));
-            page.current = res.data.currentPage + 1;
+            page.current = res.data.pagination.currentPage + 1;
           }
-          setHasMore(res.data.currentPage < res.data.endPageNumber);
+          setHasMore(res.data.pagination.currentPage < res.data.pagination.lastPage);
         })
         .finally(() => { setLoading(false); });
       console.log('end');
@@ -48,10 +51,10 @@ const useInfiniteScroll = (fetcher, loading, setLoading) => {
 
   // 첫 페이지 렌더링시 가져오기
   useEffect(() => {
-    if(issues.length < 1) {
+    if (issues.length < 1) {
       loadMoreData();
     }
-  }, [])
+  }, []);
 
   // 스크롤 이벤트 등록
   useEffect(() => {
