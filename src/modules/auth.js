@@ -5,6 +5,7 @@ import Cookies from 'js-cookie';
 
 export const initialAuth = {
   user: [],
+  loaded: false,
 };
 
 /*
@@ -15,7 +16,7 @@ class UserStore {
 
   constructor(initialData = initialAuth) {
     this.user = initialData?.user;
-    this.loaded = false;
+    this.loaded = initialData?.loaded;
   }
 
   @action async login({ provider, res }) {
