@@ -1,8 +1,11 @@
 import CONFIG from '../config/AppConfig';
-import createAxios from './config';
+import {createAxios, createServerAxios} from './config';
 import qs from 'qs';
 
-const axios = createAxios();
+
+const isServer = typeof window === 'undefined';
+
+const axios = isServer ? createServerAxios() : createAxios();
 
 export const Auth = {
   login: ({ provider, accessToken }) => axios.post('/api/user/login', { provider, accessToken }),

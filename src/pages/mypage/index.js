@@ -1,8 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import ProfileLayout from '@/layout/profile';
+import { observer } from 'mobx-react-lite';
+import { Profile } from '@/utils/api';
+import { handleAsync } from '@/utils/mobx';
 import styles from './index.module.scss';
-import { observer } from "mobx-react-lite"
 import { useStore } from '../../modules';
 
 /*
@@ -31,12 +33,14 @@ const ProfileForm = (props) => {
 // observer();
 function ProfileInput(props) {
   // const {authStore} = useStore();
-  const {value, label, name, placeHolder} = props;
+  const {
+    value, label, name, placeHolder,
+  } = props;
   const [content, setContent] = useState(value || '');
   const handleChange = (e) => {
     setContent(e.target.value);
   };
-  
+
   return (
     <div className={styles.mypage__form_input}>
       <label htmlFor={name}>{label}</label>
@@ -46,13 +50,13 @@ function ProfileInput(props) {
   );
 }
 
+function Mypage() {
+  const { profileStore } = useStore();
 
-export default observer(function Mypage() {
-  const {profileStore} = useStore();
   useEffect(() => {
     const fetchOptions = async () => {
       await profileStore.getOptions('stacks');
-    }
+    };
     fetchOptions();
   }, []);
   console.log(profileStore.stacks);
@@ -72,5 +76,11 @@ export default observer(function Mypage() {
         </ProfileForm>
       </ProfileLayout>
     </>
-  )
-})
+  );
+}
+
+export async function getServerSideProps() {
+  return { props: { initialState: { profileStore: { stacks: [], occupations: [] } } } };
+}
+
+export default observer(Mypage);

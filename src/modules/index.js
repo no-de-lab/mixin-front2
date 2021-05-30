@@ -7,7 +7,6 @@ import CounterStore, { initialCounter } from './counter';
 import DeveloperStore, { initialDeveloper } from './developer';
 import ProfileStore, { initialProfile } from './profile';
 
-
 const isServer = typeof window === 'undefined';
 enableStaticRendering(isServer);
 
@@ -31,6 +30,7 @@ class RootStore {
   counterStore;
 
   developerStore;
+
   profileStore;
 
   constructor(initialData) {
@@ -43,7 +43,7 @@ class RootStore {
   }
 }
 
-const initializeStore = (initialData = initialRoot) => {
+export const initializeStore = (initialData = initialRoot) => {
   // 프론트 서버 안 (Nextjs 서버 안에서 이루어짐)
   // SSR -> 실행순서 -> 페이지를 만들기 전에 API 서버에서 필요한 정보를 가져와야된다
   // -> 받아온 정보를 Mobx Store에 저장 -> Store 정보를 이용해서 페이지를 만들어야 함
