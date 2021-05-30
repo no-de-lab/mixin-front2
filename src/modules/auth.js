@@ -44,6 +44,7 @@ class UserStore {
   }
 
   @action async info() {
+    if(!Cookies.get('userInfo')) return;
     const [auth, err] = await handleAsync(Auth.info());
     this.setAuth(auth?.data);
     return [err === undefined, err];
