@@ -15,11 +15,12 @@ export const Profile = {
 };
 
 export const Article = {
-  all: ({search, page, offset}) => {
+  all: ({search, page, size, sort}) => {
     const queryString = qs.stringify({
+      sort: 'created_at', // FIXME
       page: page || 1,
-      offset: offset || CONFIG.INFINITE_SCROLL_OFFSET,
-      search: search || undefined,
+      size: size || CONFIG.INFINITE_SCROLL_OFFSET,
+      search: search || undefined
     });
 
     return axios.get(`/api/v2/articles?${queryString}`)
