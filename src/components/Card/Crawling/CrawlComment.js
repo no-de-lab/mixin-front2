@@ -26,11 +26,12 @@ export default function CrawlCardComment({ data, visible, setVisible }) {
     };
   }, [visible]);
   // const hideComment = useCallback((e) => e.stopPropagation(), []);
+
   return (
     <div className={visible ? styles.comment__container : styles.comment__hidden}>
       <div className={styles.commentCard__container}>
         <div className={styles.comment__container__close}>
-          <div onClick={() => {setVisible(!visible);}} className={styles.comment__container__close__svg}>
+          <div onClick={() => { setVisible(!visible); }} className={styles.comment__container__close__svg}>
             <CloseIcon />
           </div>
         </div>

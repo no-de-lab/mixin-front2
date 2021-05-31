@@ -27,10 +27,12 @@ export default function CrawlCardLayout({
 
   const [visible, setVisible] = useState(false);
   const [curBookmark, setCurBookmark] = useState(isBookmarked || false);
+  const [curArticle, setCurArticle] = useState(null);
 
   const onComment = useCallback(async () => {
-    const [res, err] = await handleAsync(Article.getComments({ articleId: id }));
+    const [res, err] = await handleAsync(Article.one({ articleId: id }));
     if (res) {
+      setCurArticle(res.data.article);
       setVisible(!visible);
     } else {
       console.log(err);
@@ -90,7 +92,7 @@ export default function CrawlCardLayout({
 
         </CrawlCard.Footer>
 
-        <CrawlCardComment visible={visible} setVisible={setVisible} />
+        <CrawlCardComment visible={visible} setVisible={setVisible} article={article} />
       </CrawlCard>
     </>
   );
