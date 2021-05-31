@@ -10,17 +10,17 @@ export default function CrawlCard({children, visible, ...props}){
   return <div className={visible? [styles.card_container, styles.border].join(' ') : styles.card_container} {...props}>{children}</div>;
 }
 
-CrawlCard.Box = function CrawlCardBox({children, ...props}){
-  return <div className={!props.type? styles.card_box : styles.card__comment} {...props}>{children}</div>;
+CrawlCard.Box = function CrawlCardBox({children, type, ...props}){
+  return <div className={!type? styles.card_box : styles.card__comment} {...props}>{children}</div>;
 };
 
 CrawlCard.Title = function CrawlCardTitle({children}){
   return <div className={styles.title}>{children}</div>;
 };
 
-CrawlCard.Tag = function CrawlCardTag({tag, ...props}){
+CrawlCard.Tag = function CrawlCardTag({tag, type, ...props}){
   return (
-    <div className={!props.type? styles.tag : styles.card__comment__tag} {...props}>
+    <div className={!type? styles.tag : styles.card__comment__tag} {...props}>
       {tag?.length > 0 && tag?.map((c) => (
         <span className="mr-2" key={`${c}`}>{c}</span>
     ))}
@@ -38,11 +38,11 @@ CrawlCard.Img = function CrawlCardImg({src, content, ...props}){
   );
 };
 
-CrawlCard.Text = function CrawlCardText({children, line, ...props}){
+CrawlCard.Text = function CrawlCardText({children, line, type, ...props}){
   return (
     <>
       {children && (
-      <div className={[!props.type? styles.card_content : styles.card__comment__text, line ==2? styles.card_content_withImg : styles.card_content_text].join(' ')} 
+      <div className={[!type? styles.card_content : styles.card__comment__text, line ==2? styles.card_content_withImg : styles.card_content_text].join(' ')} 
            {...props}>{children}</div>
     )}
     </>
