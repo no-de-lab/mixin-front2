@@ -48,9 +48,7 @@ CrawlCard.Text = function CrawlCardText({children, line, ...props}){
     </>
   );
 };
-CrawlCard.Footer = function CrawlCardFooter({children, url,isBookmark, onBookmark, onShare, provider,  count, ...props}){
-
-  
+CrawlCard.Footer = function CrawlCardFooter({children, url,isBookmark, onComment, onBookmark, onShare, provider,  count, ...props}){
   return (
     <>
       <div className={styles.card_footer} {...props}>
@@ -66,8 +64,8 @@ CrawlCard.Footer = function CrawlCardFooter({children, url,isBookmark, onBookmar
           </div>
           <div className={styles.card_footer_box_right}>
             <ShareIcon onClick={onShare} className={styles.card__icon} />
-            <CommentIcon className={styles.card__icon} count={count} {...props} />
-            <BookmarkIcon onClick={onBookmark} className={styles.card__icon} />
+            <CommentIcon onClick={onComment} className={styles.card__icon} count={count} {...props} />
+            <BookmarkIcon isBookmarked={isBookmark} onClick={onBookmark} className={styles.card__icon} />
           </div>
           
         </div>

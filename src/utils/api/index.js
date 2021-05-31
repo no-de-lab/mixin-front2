@@ -18,16 +18,43 @@ export const Profile = {
 };
 
 export const Article = {
+  one: ({articleId}) => axios.get(`/api/v2/article/${articleId}`), 
+
+  authOne: ({articleId}) => axios.get(`/api/v2/article/${articleId}/me`), 
+
   all: ({search, page, size, sort}) => {
     const queryString = qs.stringify({
-      sort: 'created_at', // FIXME
       page: page || 1,
       size: size || CONFIG.INFINITE_SCROLL_OFFSET,
-      search: search || undefined
+      search: search || undefined,
+      sort: sort || "created_at"
     });
 
     return axios.get(`/api/v2/articles?${queryString}`)
   },
+
+  authAll: ({search, page, size, sort}) => {
+    const queryString = qs.stringify({
+      page: page || 1,
+      size: size || CONFIG.INFINITE_SCROLL_OFFSET,
+      search: search || undefined,
+      sort: sort || "created_at"
+    });
+
+    return axios.get(`/api/v2/articles/me?${queryString}`)
+  },
+  
+  bookmark: ({ articleId }) => axios.post(`/api/v2/article/${articleId}/bookmark`),
+
+  unbookmark: ({ articleId }) => axios.delete(`/api/v2/article/${articleId}/bookmark`),
+
+  getComments: ({articleId}) => axios.get(`/api/v2/article/${articleId}/comments`), 
+  
+  addComment: ({comment, articleId}) => axios.post('/api/v2/article/comment', { comment, articleId }),
+
+  deleteComment: ({commentId}) => axios.delete(`/api/v2/article/comment/${commentId}`),
+  
+  editComment: ({commentId}) => axios.put(`/api/v2/article/comment/${commentId}`, { commentId, comment, articleId }),
 };
 
 export const Developer = {
