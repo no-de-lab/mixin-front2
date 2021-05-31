@@ -52,7 +52,7 @@ export const Article = {
   
   addComment: ({comment, articleId}) => axios.post('/api/v2/article/comment', { comment, articleId }),
 
-  deleteComment: ({commentId}) => axios.delete('/api/v2/article/comment', { commentId }),
+  deleteComment: ({commentId}) => axios.delete(`/api/v2/article/comment/${commentId}`),
   
   editComment: ({commentId}) => axios.put(`/api/v2/article/comment/${commentId}`, { commentId, comment, articleId }),
 };

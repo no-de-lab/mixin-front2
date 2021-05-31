@@ -11,7 +11,7 @@ export default observer(() => {
   // const a = useInfiniteScroll(Article.all);
   const { authStore } = useStore();
   const [loading, setLoading] = useState(false);
-  const [issues] = useInfiniteScroll(authStore.user
+  const [issues] = useInfiniteScroll(authStore.user?.id
     ? Article.authAll : Article.all, loading, setLoading);
   return (
     <>

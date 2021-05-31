@@ -70,7 +70,7 @@ App.getInitialProps = async (context) => {
         const authCookie = cookieArray[index].slice('userInfo='.length);
         axios.defaults.headers.Authorization = authCookie.replace('%20', ' ');
         const [auth] = await handleAsync(Auth.info());
-        if (auth.data) {
+        if (auth?.data) {
           return { appProps: { initialState: { authStore: { user: auth.data, loaded: true } } } };
         }
       }

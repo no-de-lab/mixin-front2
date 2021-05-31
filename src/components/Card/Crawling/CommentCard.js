@@ -5,6 +5,7 @@ import styles from './comment.module.scss';
 
 export default function CommentCard({ article }) {
   // date, name, self, profileImg, content
+
   const {
     isBookmarked,
     provider,
@@ -17,17 +18,18 @@ export default function CommentCard({ article }) {
     author,
     comments,
   } = article;
+
   return (
     <>
       {/* <CrawlCard type={type}> */}
 
-      <CrawlCard.Box type={type}>
+      <CrawlCard.Box type>
         <a href={url} rel="noopener noreferrer" target="_blank">
           <CrawlCard.Title>{title}</CrawlCard.Title>
         </a>
-        <CrawlCard.Tag tag={article?.hashtag?.length > 0 ? hashtag.split(',').map((t) => `# ${t}`) : ['# -']} type={type} />
+        <CrawlCard.Tag tag={article?.hashtag?.length > 0 ? hashtag.split(',').map((t) => `# ${t}`) : ['# -']} type />
         <a href={url} rel="noopener noreferrer" target="_blank">
-          <CrawlCard.Text line={thumbnail ? 2 : 10} type={type}>{content || (!thumbnail && title)}</CrawlCard.Text>
+          <CrawlCard.Text line={thumbnail ? 2 : 10} type>{content || (!thumbnail && title)}</CrawlCard.Text>
           <CrawlCard.Img
             src={thumbnail}
             content={content}

@@ -27,17 +27,18 @@ export default function CrawlCardLayout({
 
   const [visible, setVisible] = useState(false);
   const [curBookmark, setCurBookmark] = useState(isBookmarked || false);
-  const [curArticle, setCurArticle] = useState(null);
+  const [curComments, setCurComments] = useState([]);
 
   const onComment = useCallback(async () => {
-    const [res, err] = await handleAsync(Article.one({ articleId: id }));
+    const [res, err] = await handleAsync(Article.getComments({ articleId: id }));
     if (res) {
-      setCurArticle(res.data.article);
+      console.log('get Comments', res);
+      setCurComments(res.data);
       setVisible(!visible);
     } else {
       console.log(err);
     }
-  }, []);
+  }, [curComments, visible, setVisible, setCurComments]);
 
   const onShare = useCallback(() => {
     navigator.clipboard.writeText(url);
@@ -89,10 +90,8 @@ export default function CrawlCardLayout({
           count={comments}
         >
           {author || ''}
-
         </CrawlCard.Footer>
-
-        <CrawlCardComment visible={visible} setVisible={setVisible} article={article} />
+        <CrawlCardComment visible={visible} setVisible={setVisible} article={article} comments={curComments} />
       </CrawlCard>
     </>
   );
