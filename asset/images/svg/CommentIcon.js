@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import styles from '@/components/Card/Crawling/crawlCard.module.scss';
 
-export default function CommentIcon({ count, ...props }) {
+export default function CommentIcon({ count, onClick }) {
   const toggle = () => {
-    props.onComment();
+    onClick();
   };
 
   useEffect(() => {

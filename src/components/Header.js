@@ -2,33 +2,32 @@ import React, { useCallback, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import { observer } from "mobx-react-lite"
-import { useStore } from '../modules';
+import { observer } from 'mobx-react-lite';
 import Image from 'next/image';
 import ROUTE from '@/utils/constant/route';
 import { LogoIcon, MenuIcon } from '@/svg';
 
+import Avatar from '@/components/Avatar';
 import styles from './Header.module.scss';
 import Modal from './Modal';
-import Avatar from '@/components/Avatar';
+import { useStore } from '../modules';
 import Login from './Auth/Login';
 
-
 function SubbarProfile(props) {
-  const {authStore} = props;
+  const { authStore } = props;
   return (
     <div className={styles.subbar_profile}>
       <div className={styles.profile_header}>
         <Avatar />
         <div className={styles.icons}>
-          <Image src='/images/svg/url_home.svg' alt='url_home' width={20} height={20} />
-          <Image src='/images/svg/url_git.svg' alt='url_git' width={20} height={20} />
+          <Image src="/images/svg/url_home.svg" alt="url_home" width={20} height={20} />
+          <Image src="/images/svg/url_git.svg" alt="url_git" width={20} height={20} />
         </div>
         <p className={styles.profile_header__name}>{authStore.user.name}</p>
         <p className={styles.profile_header__email}>{authStore.user.email}</p>
-      </div> 
+      </div>
     </div>
-  )
+  );
 }
 function NavMenu({ children, route }) {
   const router = useRouter();
@@ -48,8 +47,9 @@ function NavMenu({ children, route }) {
   );
 }
 
-export default observer(function Header() {
-  const {authStore} = useStore();
+export default observer(() => {
+  const { authStore } = useStore();
+  console.log('authStore', authStore);
   const [toggleTool, setToggleTool] = useState(false);
   const toggleToolModal = useCallback(() => {
     setToggleTool(!toggleTool);
@@ -95,5 +95,5 @@ NavMenu.propTypes = {
 };
 
 SubbarProfile.propTypes = {
-  authStore: PropTypes.object
-}
+  authStore: PropTypes.object,
+};

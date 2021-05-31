@@ -1,8 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import ProfileLayout from '@/layout/profile';
+import { observer } from 'mobx-react-lite';
+import { Profile } from '@/utils/api';
+import { handleAsync } from '@/utils/mobx';
 import styles from './index.module.scss';
-import { observer } from "mobx-react-lite"
 import { useStore } from '../../modules';
 
 /*
@@ -31,12 +33,14 @@ const ProfileForm = (props) => {
 // observer();
 function ProfileInput(props) {
   // const {authStore} = useStore();
-  const {value, label, name, placeHolder} = props;
+  const {
+    value, label, name, placeHolder,
+  } = props;
   const [content, setContent] = useState(value || '');
   const handleChange = (e) => {
     setContent(e.target.value);
   };
-  
+
   return (
     <div className={styles.mypage__form_input}>
       <label htmlFor={name}>{label}</label>
@@ -45,15 +49,14 @@ function ProfileInput(props) {
   );
 }
 
-
-export default observer(function Mypage() {
-  const {profileStore, authStore} = useStore();
+function Mypage() {
+  const { profileStore, authStore } = useStore();
   const [active, setActive] = useState(false);
   const [val, setVal] = useState('본인이 주로 작업하는 분야를 선택해주세요');
   useEffect(() => {
     const fetchOptions = async () => {
       await profileStore.getOptions('stacks');
-    }
+    };
     fetchOptions();
   }, []);
   const toggleSelect = (e) => {
@@ -83,7 +86,7 @@ export default observer(function Mypage() {
               </div>
               <ul className={styles.select_options} style={{display: active ? 'block' : 'none'}}>
                 <li value="hide">본인이 주로 작업하는 분야를 선택해주세요</li>
-                {profileStore.stacks.map((stack, i) => <li key={stack.id} onClick={handleSelected}>{stack.type}</li>)}
+                {(profileStore.stacks || []).map((stack, i) => <li key={i} onClick={handleSelected}>{stack.type}</li>)}
               </ul>
             </div>
           </div>
@@ -96,5 +99,14 @@ export default observer(function Mypage() {
         </ProfileForm>
       </ProfileLayout>
     </>
-  )
-})
+  );
+}
+
+export async function getServerSideProps() {
+  return { props: { initialState: { 
+    profileStore: { stacks: [], occupations: [] },
+    authStore: { loaded: false, user: {} } 
+  } } };
+}
+
+export default observer(Mypage);
