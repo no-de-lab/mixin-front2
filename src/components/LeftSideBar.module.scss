@@ -1,14 +1,14 @@
 @import '../utils/styles/variable.module.scss';
 
 .left_sidebar {
+  display: flex;
   height: 100vh;
+  justify-content: center;
   position: relative;
   width: $SIDEBAR_WIDTH;
-
   & button {
     bottom: 40px;
     cursor: pointer;
-    left: 40px;
-    position: absolute;
+    position: fixed;
   }
 }
