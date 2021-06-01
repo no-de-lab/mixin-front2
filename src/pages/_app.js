@@ -11,14 +11,12 @@ import RightSideBar from '@/components/RightSideBar';
 import Footer from '@/components/Footer';
 import { ToastContainer } from 'react-toastify';
 import { CloseIcon } from '@/svg';
-import { handleAsync } from '@/utils/mobx';
-import { Auth } from '@/utils/api';
 import axios from 'axios';
 import { useStore } from '../modules';
+import { useCookie } from 'next-cookie'
 
-const App = ({ Component, appProps, pageProps }) => {
-  const store = useStore({ ...appProps.initialState, ...pageProps.initialState });
-
+const App = ({ Component, appProps, pageProps}) => {
+  const store = useStore({ ...appProps.initialState });
   return (
     <>
       <Head>
@@ -48,36 +46,19 @@ App.propTypes = {
   Component: PropTypes.elementType.isRequired,
 };
 
-App.getInitialProps = async (context) => {
-  const { ctx } = context; // next에서 넣어주는 context
-  const isServer = !!ctx;
-
-  const cookie = isServer ? ctx.req.headers.cookie : '';
-
-  if (isServer && cookie) {
-    let cookieArray = cookie.split(';');
-    if (cookieArray.length > 0) {
-      cookieArray = cookieArray.map((cookie) => cookie.trim());
-
-      if (isServer && cookie) {
-        // 서버 환경일 때만 쿠키를 심어줌. 클라이언트 환경일 때는 브라우저가 자동으로 쿠키를 넣어줌
-        axios.defaults.headers.Cookie = cookie;
-        // defaluts: 모든 axios 요청 시에 쿠키 데이터를 심어줌.
-      }
-
-      const index = cookieArray.findIndex((cookie) => cookie.startsWith('userInfo=Bearer%20'));
-      if (index > -1) {
-        const authCookie = cookieArray[index].slice('userInfo='.length);
-        axios.defaults.headers.Authorization = authCookie.replace('%20', ' ');
-        const [auth] = await handleAsync(Auth.info());
-        if (auth?.data) {
-          return { appProps: { initialState: { authStore: { user: auth.data, loaded: true } } } };
-        }
-      }
+App.getInitialProps = async (appContext) => {
+  const cookie = useCookie(appContext.ctx);
+  const token = cookie.get('userInfo') || '';
+  if(!token) return { appProps: { initialState: { authStore: { user: [], loaded: false } } } };
+  // 
+  const auth = await axios({
+    method: 'post',
+    url: process.env.NEXT_PUBLIC_SERVER_URL + 'api/user/me',
+    headers: {
+      Authorization : token
     }
-  }
-
-  return { appProps: { initialState: { authStore: { user: [], loaded: false } } } };
-};
+  });
+  return { appProps: { initialState: { authStore: {loaded: true, user: auth.data} } } }
+}
 
 export default App;
