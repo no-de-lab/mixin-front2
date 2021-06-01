@@ -10,7 +10,7 @@ const axios = isServer ? createServerAxios() : createAxios();
 export const Auth = {
   login: ({ provider, accessToken }) => axios.post('/api/user/login', { provider, accessToken }),
   register: ({name, email, imgUrl, userAccountId}) => axios.post('/api/user/register', { name, email, imgUrl, userAccountId }),
-  info: () => axios.post('/api/user/me'),
+  info: async () => axios.post('/api/user/me'),
 };
 
 export const Profile = {
