@@ -2,17 +2,11 @@ import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import ProfileLayout from '@/layout/profile';
 import { observer } from 'mobx-react-lite';
-import { Profile } from '@/utils/api';
-import { handleAsync } from '@/utils/mobx';
 import styles from './index.module.scss';
 import { useStore } from '../../modules';
+import { useCookie } from 'next-cookie'
+import axios from 'axios';
 
-/*
-  TODO: Profile Edit page
-    - connect mobx
-    -
-
-*/
 const FormButton = (props) => {
   const { children } = props;
   return (
@@ -32,7 +26,6 @@ const ProfileForm = (props) => {
 
 // observer();
 function ProfileInput(props) {
-  // const {authStore} = useStore();
   const {
     value, label, name, placeHolder,
   } = props;
@@ -49,7 +42,7 @@ function ProfileInput(props) {
   );
 }
 
-function Mypage() {
+function Mypage(props) {
   const { profileStore, authStore } = useStore();
   const [active, setActive] = useState(false);
   const [val, setVal] = useState('본인이 주로 작업하는 분야를 선택해주세요');
@@ -74,10 +67,9 @@ function Mypage() {
         <title>Mix in | my page</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <ProfileLayout auth={authStore.user}>
+      <ProfileLayout user={authStore.user}>
         <ProfileForm>
           <ProfileInput name="nickname" label="nickname" placeHolder="믹스인에서 사용할 닉네임을 입력해주세요." />
-          
           <div className={styles.mypage__form_input}>
           <label htmlFor='job'>job</label>
             <div className={styles.select}>
@@ -90,9 +82,6 @@ function Mypage() {
               </ul>
             </div>
           </div>
-        
-          
-          {/* <ProfileInput name="job" label="job" placeHolder="본인이 주로 작업하는 분야를 선택해주세요" /> */}
           <ProfileInput name="url" label="url" placeHolder="url을 넣어주세요." />
           <ProfileInput name="about" label="about us" placeHolder="자신을 짧게 소개해주세요." />
           <FormButton>complete</FormButton>
@@ -102,11 +91,19 @@ function Mypage() {
   );
 }
 
-export async function getServerSideProps() {
-  return { props: { initialState: { 
-    profileStore: { stacks: [], occupations: [] },
-    authStore: { loaded: false, user: {} } 
-  } } };
+export async function getServerSideProps(ctx) {
+  const cookie = useCookie(ctx);
+  const token = cookie.get('userInfo') || '';
+  if(!token) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/",
+      },
+      props: {},
+    }
+  }
+  return { props: {} };
 }
 
 export default observer(Mypage);

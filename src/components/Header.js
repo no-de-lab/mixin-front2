@@ -18,7 +18,7 @@ function SubbarProfile(props) {
   return (
     <div className={styles.subbar_profile}>
       <div className={styles.profile_header}>
-        <Avatar />
+        <Avatar imgUrl={authStore.user.imgUrl}/>
         <div className={styles.icons}>
           <Image src="/images/svg/url_home.svg" alt="url_home" width={20} height={20} />
           <Image src="/images/svg/url_git.svg" alt="url_git" width={20} height={20} />
@@ -49,7 +49,6 @@ function NavMenu({ children, route }) {
 
 export default observer(() => {
   const { authStore } = useStore();
-  console.log('authStore', authStore);
   const [toggleTool, setToggleTool] = useState(false);
   const toggleToolModal = useCallback(() => {
     setToggleTool(!toggleTool);
