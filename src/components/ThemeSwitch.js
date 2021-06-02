@@ -58,7 +58,7 @@ export default function ThemeSwitch() {
         {mode === 'light' ? <LightThemeIcon /> : <DarkThemeIcon />}
       </button>
       <Modal
-        overlay={false}
+        noOverlay
         position="theme"
         visible={toggleTheme}
         setVisible={setToggleTheme}
