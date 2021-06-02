@@ -7,6 +7,7 @@ import styles from './Modal.module.scss';
 export default function Modal({
   visible,
   setVisible,
+  overlay,
   render,
   closeButtonDisplayNone,
   position,
@@ -36,7 +37,7 @@ export default function Modal({
     ? createPortal(
         // eslint-disable-next-line react/jsx-indent
         <>
-          <div className={styles.modal__overlay} />
+          <div className={overlay ? styles.modal__overlay : [styles.modal__overlay, styles['no-overlay']].join(' ')} />
           <div onClick={toggle} className={styles.modal}>
             <div
               onClick={noneEvent}

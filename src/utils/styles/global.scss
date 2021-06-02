@@ -17,7 +17,7 @@ body {
 body::-webkit-scrollbar {
   display: none;
 }
-button {
+button, button[type='button'] {
   outline: none;
 }
 

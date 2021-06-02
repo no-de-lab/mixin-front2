@@ -11,6 +11,11 @@
   z-index: 1040;
 }
 
+.modal__overlay.no-overlay {
+  backdrop-filter: initial;
+  background-color: initial;
+}
+
 .modal {
   height: 100%;
   left: 0;
@@ -45,6 +50,11 @@
     right: 20px;
     top: 20px;
     width: 280px;
+  }
+
+  &--theme {
+    bottom: 20px;
+    left: 20px;
   }
 
   &--close {

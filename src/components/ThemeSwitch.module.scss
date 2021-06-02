@@ -1,0 +1,40 @@
+.theme-modal {
+  align-items: center;
+  display: flex;
+  height: 214px;
+  justify-content: center;
+  width: 200px;
+}
+
+.theme-modal__content {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  justify-content: space-between;
+}
+
+.theme-modal__title {
+  color: #DCDCDC;
+  font-weight: bold;
+  height: 24px;
+  text-align: center;
+}
+
+.theme-modal__item {
+  align-items: center;
+  display: flex;
+
+  & span {
+    color: #DCDCDC;
+    font-size: 14px;
+    line-height: 17px;
+    margin-left: 12px;
+  }
+}
+
+.theme-modal__close {
+  bottom: 15px;
+  left: 15px;
+  position: absolute;
+}
