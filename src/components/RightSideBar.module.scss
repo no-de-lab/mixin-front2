@@ -2,7 +2,7 @@
 
 .right_sidebar {
   height: 100vh;
-  position: relative;
+  position: sticky;
   right: 0;
   top: 0;
   width: $SIDEBAR_WIDTH;
@@ -11,13 +11,19 @@
     cursor: pointer;
   }
 
+  & button {
+    bottom: 40px;
+    position: absolute;
+    right: 40px;
+  }
+
   &--tool_box {
     align-items: center;
     display: flex;
     flex-direction: column;
     height: 104px;
     justify-content: space-between;
-    position: fixed;
+    position: absolute;
     right: 40px;
     top: 50%;
     transform: translateY(-50%);

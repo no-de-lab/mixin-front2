@@ -25,12 +25,12 @@ const dummyList = [
     bookmarked: true,
     likes: 0,
     liked: true,
-    comments: 0,
+    comments: 2,
     user: {
       id: 0,
       email: 'string',
       name: 'string',
-      imgUrl: 'string',
+      imgUrl: 'https://randomuser.me/api/portraits/med/men/1.jpg',
       createdAt: '2021-06-03T10:23:51.243Z',
       updatedAt: '2021-06-03T10:23:51.243Z',
       userLevel: 'WHITE',
@@ -40,7 +40,7 @@ const dummyList = [
         id: 'string',
         createdAt: '2021-06-03T10:23:51.243Z',
         updatedAt: '2021-06-03T10:23:51.244Z',
-        comment: 'string',
+        comment: '2',
         likes: 0,
         liked: true,
         user: {
