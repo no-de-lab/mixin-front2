@@ -60,3 +60,37 @@ export const Article = {
 export const Developer = {
   all: (page) => axios.get(`/api/dashboard?page=${page}`),
 };
+
+export const Qna = {
+  register: ({registerData}) => axios.post(`/api/v1/qna/registration`, registerData),
+  one: ({qnaId}) => axios.get(`/api/v1/qna/${qnaId}`), 
+  edit: ({qnaId, editData}) => axios.put(`/api/v1/qna/${qnaId}`, editData),
+  delete: ({qnaId}) => axios.delete(`/api/v1/qna/${qnaId}`),
+  authOne: ({qnaId}) => axios.get(`/api/v1/qna/me/${qnaId}`), 
+  all: ({search, page, size, sort}) => {
+    const queryString = qs.stringify({
+      page: page || 1,
+      size: size || CONFIG.INFINITE_SCROLL_OFFSET,
+      search: search || undefined,
+      sort: sort || "created_at"
+    });
+
+    return  axios.get(`/api/v1/qnas?${queryString}`)
+  },
+  authAll: ({search, page, size, sort}) => {
+    const queryString = qs.stringify({
+      page: page || 1,
+      size: size || CONFIG.INFINITE_SCROLL_OFFSET,
+      search: search || undefined,
+      sort: sort || "created_at"
+    });
+
+    return axios.get(`/api/v1/qnas/me?${queryString}`)
+  },
+  like: ({qnaId}) => axios.get(`/api/v1/qna/${qnaId}/like`), 
+  bookmark: ({qnaId}) => axios.get(`/api/v1/qna/${qnaId}/bookmark`), 
+  likeComment: ({commentId}) => axios.get(`/api/v1/qna/comment/${commentId}/like`),
+  comment: (registerData) => axios.post(`/api/v1/qna/comment`, registerData),
+  editComment: ({commentId, editData}) => axios.put(`/api/v1/qna/comment/${commentId}`, editData),  
+  deleteComment: ({commentId}) => axios.delete(`/api/v1/qna/comment/${commentId}`),
+}
