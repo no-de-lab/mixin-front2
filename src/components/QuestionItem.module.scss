@@ -1,0 +1,113 @@
+@import '../utils/styles/variable.module.scss';
+
+.questionItem {
+  &:not(:first-of-type) {
+    @apply mt-8;
+  }
+}
+
+.questionItem__content {
+  border: 1px solid #dcdcdc;
+
+  .dark & {
+    // TODO: replace color with variable
+    border-color: #191919;
+  }
+
+  @apply flex;
+}
+
+.questionItem__answers {
+  @apply flex flex-col items-center justify-center w-full;
+
+  border-right: 2px solid #7b7b7b;
+  font-family: 'Blender Pro', sans-serif;
+  max-width: 120px;
+}
+
+.questionItem__answerCount {
+  @apply block;
+  color: $gray2;
+  font-size: 2.875rem;
+}
+
+.questionItem__answerCountLabel {
+  @apply uppercase text-xs;
+  color: $gray4;
+  font-size: 0.75rem;
+  letter-spacing: 0.1rem;
+}
+
+.questionItem__article {
+  @apply w-full;
+  padding: 1.5rem 1.25rem;
+}
+
+.questionItem__title {
+  @apply mt-4 mb-4 font-bold text-xl;
+}
+
+.questionItem__category {
+  @apply text-sm uppercase;
+  color: $gray3;
+  letter-spacing: 0.15rem;
+}
+
+.questionItem__user {
+  @apply flex flex-col justify-center w-full pl-5 pr-5;
+  border-left: 2px solid #7b7b7b;
+  max-width: 140px;
+}
+
+.questionItem__profile {
+  @apply flex justify-between items-center;
+}
+
+.questionItem__profileImage {
+  @apply inline-block w-8 h-8 rounded-full;
+}
+
+.questionItem__level {
+  @apply text-sm ml-3 uppercase;
+  letter-spacing: 0.15rem;
+}
+
+.questionItem__username {
+  @apply mt-4 text-xs;
+  color: $gray4;
+}
+
+.questionItem__date {
+  @apply text-xs;
+  color: $gray4;
+  margin-top: 0.25rem;
+}
+
+.questionItem__actions {
+  @apply flex items-center justify-end mt-4;
+}
+
+.actionButton {
+  @apply relative;
+
+  &:global(.active) svg path {
+    fill: $active;
+  }
+
+  &:not(:first-of-type) {
+    @apply ml-6;
+  }
+}
+
+.actionButton__thumbsUpCount {
+  @apply absolute w-4 h-5 ;
+  // TODO: replace color with variable
+  background: #fff;
+  bottom: -0.7rem;
+  font-size: 0.688rem;
+  left: -0.5rem;
+
+  :global(.dark) & {
+    background: #191919;
+  }
+}

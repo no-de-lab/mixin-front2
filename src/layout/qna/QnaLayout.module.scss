@@ -1,0 +1,8 @@
+@import '../../utils/styles/variable.module.scss';
+
+.qnaList__container {
+  margin: 0 auto;
+  margin-top: $HEADER_HEIGT;
+  max-width: 820px;
+  @apply container block pt-8 pb-8;
+}
