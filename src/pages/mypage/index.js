@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import ProfileLayout from '@/layout/profile';
 import { observer } from 'mobx-react-lite';
+import { useCookie } from 'next-cookie';
+import axios from 'axios';
 import styles from './index.module.scss';
 import { useStore } from '../../modules';
-import { useCookie } from 'next-cookie'
-import axios from 'axios';
 
 const FormButton = (props) => {
   const { children } = props;
@@ -55,12 +55,12 @@ function Mypage(props) {
   const toggleSelect = (e) => {
     e.stopPropagation();
     setActive(!active);
-  }
+  };
   const handleSelected = (e) => {
     e.stopPropagation();
     setVal(e.target.textContent);
     setActive(!active);
-  }
+  };
   return (
     <>
       <Head>
@@ -71,12 +71,12 @@ function Mypage(props) {
         <ProfileForm>
           <ProfileInput name="nickname" label="nickname" placeHolder="믹스인에서 사용할 닉네임을 입력해주세요." />
           <div className={styles.mypage__form_input}>
-          <label htmlFor='job'>job</label>
+            <label htmlFor="job">job</label>
             <div className={styles.select}>
               <div className={[styles.select_styled, active && styles.active].filter(Boolean).join(' ')} onClick={toggleSelect}>
                 {val}
               </div>
-              <ul className={styles.select_options} style={{display: active ? 'block' : 'none'}}>
+              <ul className={styles.select_options} style={{ display: active ? 'block' : 'none' }}>
                 <li value="hide">본인이 주로 작업하는 분야를 선택해주세요</li>
                 {(profileStore.stacks || []).map((stack, i) => <li key={i} onClick={handleSelected}>{stack.type}</li>)}
               </ul>
@@ -94,14 +94,14 @@ function Mypage(props) {
 export async function getServerSideProps(ctx) {
   const cookie = useCookie(ctx);
   const token = cookie.get('userInfo') || '';
-  if(!token) {
+  if (!token) {
     return {
       redirect: {
         permanent: false,
-        destination: "/",
+        destination: '/',
       },
       props: {},
-    }
+    };
   }
   return { props: {} };
 }

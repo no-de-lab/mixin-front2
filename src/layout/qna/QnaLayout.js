@@ -22,9 +22,9 @@ const dummyList = [
       'string',
     ],
     bookmarks: 0,
-    bookmarked: true,
+    bookmarked: false,
     likes: 0,
-    liked: true,
+    liked: false,
     comments: 2,
     user: {
       id: 0,
@@ -42,7 +42,7 @@ const dummyList = [
         updatedAt: '2021-06-03T10:23:51.244Z',
         comment: '2',
         likes: 0,
-        liked: true,
+        liked: false,
         user: {
           id: 0,
           email: 'string',
@@ -70,9 +70,9 @@ const dummyList = [
       'string',
     ],
     bookmarks: 0,
-    bookmarked: true,
+    bookmarked: false,
     likes: 0,
-    liked: true,
+    liked: false,
     comments: 0,
     user: {
       id: 0,
@@ -90,7 +90,7 @@ const dummyList = [
         updatedAt: '2021-06-03T10:23:51.244Z',
         comment: 'string',
         likes: 0,
-        liked: true,
+        liked: false,
         user: {
           id: 0,
           email: 'string',
