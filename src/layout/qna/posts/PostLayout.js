@@ -1,8 +1,8 @@
-import QuestionItem from '@/components/QuestionItem';
-import React, { useState } from 'react';
+import React from 'react';
+import PostContent from './PostContent';
 import styles from './PostLayout.module.scss';
 
-const dummyList = {
+const dummyData = {
   id: 'string1',
   createdAt: '2021-06-03T10:23:51.243Z',
   updatedAt: '2021-06-03T10:23:51.243Z',
@@ -53,7 +53,7 @@ const dummyList = {
 
 const PostLayout = () => (
   <div className={styles.post__container}>
-    <PostLayout key={data.id} question={data} />
+    <PostContent post={dummyData} />
   </div>
 );
 
