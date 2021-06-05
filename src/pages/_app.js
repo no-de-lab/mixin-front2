@@ -49,16 +49,22 @@ App.propTypes = {
 App.getInitialProps = async (appContext) => {
   const cookie = useCookie(appContext.ctx);
   const token = cookie.get('userInfo') || '';
-  if(!token) return { appProps: { initialState: { authStore: { user: [], loaded: false } } } };
-  // 
-  const auth = await axios({
-    method: 'post',
-    url: process.env.NEXT_PUBLIC_SERVER_URL + '/api/user/me',
-    headers: {
-      Authorization : token
-    }
-  });
-  return { appProps: { initialState: { authStore: {loaded: true, user: auth.data} } } }
+  const initialState = { authStore: { user: [], loaded: false } };
+  
+  if(!token) return { appProps: { initialState } };
+  
+  try {
+    const auth = await axios({
+      method: 'post',
+      url: process.env.NEXT_PUBLIC_SERVER_URL + '/api/user/me',
+      headers: {
+        Authorization : token
+      }
+    });
+    return { appProps: { initialState: { authStore: {loaded: true, user: auth.data} } } }
+  } catch (e) {
+    return { appProps: { initialState } };
+  }
 }
 
 export default App;
