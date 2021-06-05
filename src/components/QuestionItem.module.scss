@@ -4,6 +4,9 @@
   &:not(:first-of-type) {
     @apply mt-8;
   }
+  
+  margin: 0 auto;
+  max-width: 820px;
 }
 
 .questionItem__content {
@@ -29,6 +32,10 @@
   @apply block;
   color: $gray2;
   font-size: 2.875rem;
+
+  &:global(.active) {
+    color: $active;
+  }
 }
 
 .questionItem__answerCountLabel {
@@ -50,6 +57,7 @@
 .questionItem__category {
   @apply text-sm uppercase;
   color: $gray3;
+  font-family: Blender Pro;
   letter-spacing: 0.15rem;
 }
 
