@@ -131,11 +131,20 @@
             display: flex;
             flex-direction: column;
             margin-left: 16px;
+            &__img{
+              height: 48px;
+              width: 48px;
+            }
             &__name{
                 color: #DCDCDC;
                 font-size: 16px;
                 font-weight: bold;
                 line-height: 24px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                width: 90%;
+                word-wrap: break-word;
             }
             &__date{
                 color: #696969;
