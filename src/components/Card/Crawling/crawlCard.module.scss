@@ -29,14 +29,15 @@
     margin-bottom: 1.25rem;
   }
   &_content {
+      -webkit-box-orient: vertical;
+      display: -webkit-box;
       font-size: 14px;      
       line-height: 2;
       margin-bottom: 1rem; 
       overflow: hidden;
       text-overflow: ellipsis;
-      white-space: normal;
+      // white-space: normal;
       word-wrap: break-word;
-    
     &_withImg {
       height: 52px;
       -webkit-line-clamp: 2;
