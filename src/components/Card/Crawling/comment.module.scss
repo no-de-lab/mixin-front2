@@ -49,6 +49,7 @@
         background-color: #DCDCDC; 
         bottom: 0;
         color: #191919;
+      cursor: pointer;
         font-size: 14px;
         font-weight: normal;
         height: 36px;
@@ -105,7 +106,9 @@
         }
     }
     &__button{
-        
+        color: #696969;
+        cursor: pointer;
+        font-size:12px;
         height: 100%;
         margin: auto 0;
         position: relative;
