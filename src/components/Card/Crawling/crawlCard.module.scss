@@ -112,10 +112,10 @@
     width: 24px;
   }
   &__comment__count{
-
     align-items: center;
     background: rgb(20, 19, 34);
     bottom: 0px;
+    cursor: pointer;
     display: flex;
     font-family: 'Blender Pro', sans-serif;
     font-size: 11px;
@@ -173,9 +173,16 @@
 }
 
 .title {
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
   font-weight: bold;
   height: 48px;
+  -webkit-line-clamp: 2;
   line-height: 24px;
+  overflow: hidden;
+   text-overflow: ellipsis;
+  width: 100%;
+  word-wrap: break-word;
 }
 
 .tag {
