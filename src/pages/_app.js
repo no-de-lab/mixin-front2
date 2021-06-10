@@ -56,7 +56,7 @@ App.getInitialProps = async (appContext) => {
   try {
     const auth = await axios({
       method: 'post',
-      url: process.env.NEXT_PUBLIC_SERVER_URL + '/api/user/me',
+      url: process.env.NEXT_PUBLIC_SERVER_URL + 'api/user/me',
       headers: {
         Authorization : token
       }
