@@ -26,6 +26,12 @@ function SubbarProfile(props) {
         <p className={styles.profile_header__name}>{authStore.user.name}</p>
         <p className={styles.profile_header__email}>{authStore.user.email}</p>
       </div>
+      <div>
+        <Link href={`/mypage`}><a onClick={() => props.setVisible()}>PROFILE</a></Link>
+        <Link href={`/mypage/questions`}><a onClick={() => props.setVisible()}>QUESTION</a></Link>
+        <Link href={`/mypage/answers`}><a onClick={() => props.setVisible()}>ANSWER</a></Link>
+        <Link href={`/mypage/bookmark`}><a onClick={() => props.setVisible()}>BOOKMARK</a></Link>
+      </div>
     </div>
   );
 }
@@ -74,7 +80,7 @@ export default observer(() => {
             position="right"
             visible={toggleTool}
             setVisible={setToggleTool}
-            render={authStore.loaded ? <SubbarProfile authStore={authStore} /> : <Login />}
+            render={authStore.loaded ? <SubbarProfile authStore={authStore} setVisible={setToggleTool} /> : <Login />}
           />
         </nav>
       </header>
