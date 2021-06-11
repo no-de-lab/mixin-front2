@@ -13,7 +13,7 @@ const Mypage = (props) => {
   const renderBody = ({page}) => {
     switch (page) {
       case "profile":
-        return <Profile user={authStore.user} />
+        return <Profile />
       case "questions":
         return <Qeustions />
       case "answers":
@@ -27,7 +27,7 @@ const Mypage = (props) => {
   return (
     <>
       <Head>
-        <title>Mix in | profile {props.page}</title>
+        <title>Mix in | Mypage - {props.page}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <ProfileLayout user={authStore.user}>
