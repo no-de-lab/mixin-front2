@@ -107,6 +107,7 @@
     font-size: var(--font-base);
     margin: var(--font-base) 0;
     letter-spacing: 0.4em;
+    cursor: pointer;
     &:last-child {
       font-size: calc(var(--font-base) * 0.7);
       position: absolute;

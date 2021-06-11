@@ -31,7 +31,7 @@ function SubbarProfile(props) {
         <Link href={`/mypage/questions`}><a onClick={() => props.setVisible()}>QUESTIONS</a></Link>
         <Link href={`/mypage/answers`}><a onClick={() => props.setVisible()}>ANSWERS</a></Link>
         <Link href={`/mypage/bookmark`}><a onClick={() => props.setVisible()}>BOOKMARK</a></Link>
-        <a>LOGOUT</a>
+        <a onClick={authStore.logout}>LOGOUT</a>
       </div>
     </div>
   );

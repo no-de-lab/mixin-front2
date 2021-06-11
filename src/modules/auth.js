@@ -2,7 +2,7 @@ import { action, observable } from 'mobx';
 import { Auth } from '@/utils/api';
 import { handleAsync } from '@/utils/mobx';
 import Cookies from 'js-cookie';
-
+import Router from 'next/router';
 export const initialAuth = {
   user: [],
   loaded: false,
@@ -36,6 +36,7 @@ class UserStore {
       Cookies.set('userInfo', register?.data?.token, { expires: 1 });
       this.setAuth(register?.data?.user);
     }
+    Router.reload();
     return [err === undefined, err];
   }
 
@@ -46,6 +47,12 @@ class UserStore {
       name, email, imgUrl, userAccountId,
     }));
     return [res, err];
+  }
+
+  @action logout() {
+    Cookies.remove('userInfo');
+    Router.reload();
+    Router.push('/')
   }
 
   @action async info() {
