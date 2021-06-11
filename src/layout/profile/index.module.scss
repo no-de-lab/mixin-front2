@@ -89,6 +89,7 @@
       left: calc(50% - var(--tab-font));
     }
   }
+  // TODO : header 랑 고려해봐야함
   &.sticky {
     position: fixed;
     top: 0;

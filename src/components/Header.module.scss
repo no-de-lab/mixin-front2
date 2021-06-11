@@ -1,5 +1,6 @@
 @import '../utils/styles/variable.module.scss';
 
+
 .header {
   -webkit-backdrop-filter: blur(50px);
   backdrop-filter: blur(50px);
@@ -63,28 +64,55 @@
 
 .subbar_profile {
   height: 100%;
+  display: grid;
+  grid-auto-columns: 100%;
+  grid-template-rows: 35% 65%;
+  align-items: center;
+  --font-base: 1rem;
 }
 .profile_header {
-  --font-base: 1rem;
-
   position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   color: #DCDCDC;
   width: 100%;
-  padding: 3vw 0;
+  padding: 30% 0 10% 0;
+  text-align: center;
   &__name {
     font-size: calc(var(--font-base) * 1.25);
     font-weight: 700;
-    margin: 0;
+    margin: 5px 0;
   }
   &__email {
     font-size: var(--font-base);
+    margin: 5px 0;
   }
   &__urls {
-    .icons {
+    margin: 25px 0;
+    display: flex;
+    justify-content: center;
+    * {
       margin: 0 10px;
+    }
+  }
+}
+
+.profile_body {
+  position: relative;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-top: 1px solid #DCDCDC;
+  a {
+    font-size: var(--font-base);
+    margin: var(--font-base) 0;
+    letter-spacing: 0.4em;
+    cursor: pointer;
+    &:last-child {
+      font-size: calc(var(--font-base) * 0.7);
+      position: absolute;
+      bottom: 0;
+      color: #696969;
     }
   }
 }

@@ -17,7 +17,7 @@ const ProfileBody = ({children, sticky}) => (
 const Tabs = (props) => {
   const { path, prefix } = props;
   const router = useRouter();
-  const href = path === 'profile' ? '' : `/${path}`;
+  const href = `/${path}`;
   const current = router.pathname === `${prefix}${href}`;
   return (
     <Link href={`${prefix}${href}`}>
