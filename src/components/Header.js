@@ -27,7 +27,7 @@ function SubbarProfile(props) {
         <p className={styles.profile_header__email}>{authStore.user.email}</p>
       </div>
       <div className={styles.profile_body}>
-        <Link href={`/mypage`}><a onClick={() => props.setVisible()}>PROFILE</a></Link>
+        <Link href={`/mypage/profile`}><a onClick={() => props.setVisible()}>PROFILE</a></Link>
         <Link href={`/mypage/questions`}><a onClick={() => props.setVisible()}>QUESTIONS</a></Link>
         <Link href={`/mypage/answers`}><a onClick={() => props.setVisible()}>ANSWERS</a></Link>
         <Link href={`/mypage/bookmark`}><a onClick={() => props.setVisible()}>BOOKMARK</a></Link>
