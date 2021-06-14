@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { Provider } from 'mobx-react';
-
+import { useCookie } from 'next-cookie';
 import '../utils/styles/Toast.scss';
 import '../utils/styles/global.scss';
 import Header from '@/components/Header';
@@ -13,7 +13,6 @@ import { ToastContainer } from 'react-toastify';
 import { CloseIcon } from '@/svg';
 import axios from 'axios';
 import { useStore } from '../modules';
-import { useCookie } from 'next-cookie'
 
 const App = ({ Component, appProps, pageProps}) => {
   const store = useStore({ ...appProps.initialState });

@@ -5,33 +5,37 @@ import { observer } from 'mobx-react-lite';
 import { useCookie } from 'next-cookie';
 import ProfileLayout from '@/layout/profile';
 import { useStore } from '../../modules';
-import {Profile, Answers, Bookmark, Qeustions} from './body';
+import {
+  Profile, Answers, Bookmark, Qeustions,
+} from './body';
 
 const Mypage = (props) => {
-  console.log(props)
   const { authStore } = useStore();
-  const renderBody = ({page}) => {
+  const { page } = props;
+  const renderBody = (page) => {
     switch (page) {
-      case "profile":
-        return <Profile />
-      case "questions":
-        return <Qeustions />
-      case "answers":
-        return <Answers />
-      case "bookmark":
-        return <Bookmark {...props.data}/>
+      case 'profile':
+        return <Profile />;
+      case 'questions':
+        return <Qeustions />;
+      case 'answers':
+        return <Answers />;
+      case 'bookmark':
+        return <Bookmark {...props.data} />;
       default:
-        return <p>Not Found</p>
+        return <p>Not Found</p>;
     }
-  }
+  };
   return (
     <>
       <Head>
-        <title>Mix in | Mypage - {props.page}</title>
+        <title>
+          {`Mix in | Mypage - ${page}`}
+        </title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <ProfileLayout user={authStore.user}>
-        {renderBody(props)}
+        {renderBody(page)}
       </ProfileLayout>
     </>
   );
@@ -51,19 +55,18 @@ export async function getServerSideProps(ctx) {
   }
   const axiosRequest = {
     method: 'get',
-    headers: { Authorization : token }
-  }
+    headers: { Authorization: token },
+  };
   switch (page) {
-    case "bookmark": {
+    case 'bookmark': {
       const size = 30;
-      const sort =  "created_at";
-      axiosRequest.url = process.env.NEXT_PUBLIC_SERVER_URL + `api/v2/articles/bookmarked?size=${size}&sort=${sort}`
-      const {data} = await axios(axiosRequest);
+      const sort = 'created_at';
+      axiosRequest.url = `${process.env.NEXT_PUBLIC_SERVER_URL}api/v2/articles/bookmarked?size=${size}&sort=${sort}`;
+      const { data } = await axios(axiosRequest);
       return { props: { page, data } };
     }
     default:
       return { props: { page } };
   }
-  
 }
 export default observer(Mypage);
