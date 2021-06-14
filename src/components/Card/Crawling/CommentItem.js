@@ -15,11 +15,11 @@ CommentItem.Box = function CommentItemBox({ children, ...props }) {
   );
 };
 
-CommentItem.Button = function CommentItemButton({ self }) {
+CommentItem.Button = function CommentItemButton({ self, deleteComment }) {
   return (
     <div className={styles.commentItem__button}>
-      {self? 
-        <div className={styles.commentItem__button__svg}><CloseIcon /></div> : <></>}
+      {self
+        ? <div className={styles.commentItem__button__svg} onClick={deleteComment}><CloseIcon /></div> : <></>}
       답글
     </div>
     // <button className={styles.commentItem__button}>답글</button>
@@ -31,11 +31,11 @@ CommentItem.Header = function CommentItemHeader({
 }) {
   return (
     <div className={styles.commentItem__header}>
-      {profileImg ? <img src={profileImg} alt="dd" /> : <ProfileIcon w="48" h="48" />}
+      {profileImg ? <img src={profileImg} className={styles.commentItem__header__content__img} alt="dd" /> : <ProfileIcon w="48" h="48" />}
 
       <div className={styles.commentItem__header__content}>
         <div className={styles.commentItem__header__content__name}>{profileName}</div>
-        <div className={styles.commentItem__header__content__date}>{date}</div>
+        <div className={styles.commentItem__header__content__date}>{date.slice(0, 10)}</div>
       </div>
     </div>
   );

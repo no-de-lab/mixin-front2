@@ -29,14 +29,15 @@
     margin-bottom: 1.25rem;
   }
   &_content {
+      -webkit-box-orient: vertical;
+      display: -webkit-box;
       font-size: 14px;      
       line-height: 2;
       margin-bottom: 1rem; 
       overflow: hidden;
       text-overflow: ellipsis;
-      white-space: normal;
+      // white-space: normal;
       word-wrap: break-word;
-    
     &_withImg {
       height: 52px;
       -webkit-line-clamp: 2;
@@ -111,10 +112,10 @@
     width: 24px;
   }
   &__comment__count{
-
     align-items: center;
     background: rgb(20, 19, 34);
     bottom: 0px;
+    cursor: pointer;
     display: flex;
     font-family: 'Blender Pro', sans-serif;
     font-size: 11px;
@@ -172,9 +173,16 @@
 }
 
 .title {
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
   font-weight: bold;
   height: 48px;
+  -webkit-line-clamp: 2;
   line-height: 24px;
+  overflow: hidden;
+   text-overflow: ellipsis;
+  width: 100%;
+  word-wrap: break-word;
 }
 
 .tag {

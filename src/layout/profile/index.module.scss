@@ -4,7 +4,6 @@
   --tab-font: 1rem;
   --tab-height: calc(var(--tab-font) * 4);
   --font-base: 1rem;
-
   position: relative;
   height: 100vh;
   background-color: #191919;
@@ -64,6 +63,7 @@
   }
 }
 .profile_tabs {
+  font-family: 'Blender Pro', sans-serif;
   position: relative;
   height: calc(var(--tab-height) + 2px);
   width: 100vw;
@@ -89,6 +89,7 @@
       left: calc(50% - var(--tab-font));
     }
   }
+  // TODO : header 랑 고려해봐야함
   &.sticky {
     position: fixed;
     top: 0;

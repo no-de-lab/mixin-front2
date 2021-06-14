@@ -3,22 +3,25 @@ import React from 'react';
 
 import CommentItem from './CommentItem';
 import styles from './comment.module.scss';
+import { useStore } from '../../../modules';
 
-export default function CommentItems({ data }) {
+export default function CommentItems({ comments, deleteComment }) {
+  const { authStore } = useStore();
+
   return (
     <div className={styles.commentItems__container}>
-      {data ? data.map((d) => (
+      {comments ? comments.map((comment) => (
 
-        <CommentItem key={d.id}>
+        <CommentItem key={comment.id}>
           <CommentItem.Box>
             <CommentItem.Header
-              profileImg={d.profileImg}
-              profileName={d.profileName}
-              date={d.date}
+              profileImg={comment.user?.imgUrl}
+              profileName={comment.user?.name}
+              date={comment.createdAt}
             />
-            <CommentItem.Content>{d.content}</CommentItem.Content>
+            <CommentItem.Content>{comment.comment}</CommentItem.Content>
           </CommentItem.Box>
-          <CommentItem.Button self={d.self} />
+          <CommentItem.Button self={authStore?.user?.id === comment.user?.id} deleteComment={deleteComment(comment.id)} />
         </CommentItem>
       )) : []}
 

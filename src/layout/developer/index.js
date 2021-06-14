@@ -61,7 +61,9 @@ function DeveloperLayout() {
   return (
     <>
       <div className={styles.developer_layout}>
-        <DeveloperCard developerList={developerList} />
+        {developerList.map((developer) => (
+          <DeveloperCard developer={developer} />
+        ))}
       </div>
       {loading && <div><Spinner /></div>}
     </>

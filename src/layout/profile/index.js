@@ -6,11 +6,6 @@ import styles from './index.module.scss';
 import { observer } from "mobx-react-lite"
 import { useStore } from '../../modules';
 import Avatar from '@/components/Avatar';
-/*
-  TODO: mypage
-    - connect mobx
-    - style refactoring
-*/
 
 
 const ProfileBody = ({children, sticky}) => (
@@ -22,7 +17,7 @@ const ProfileBody = ({children, sticky}) => (
 const Tabs = (props) => {
   const { path, prefix } = props;
   const router = useRouter();
-  const href = path === 'profile' ? '' : `/${path}`;
+  const href = `/${path}`;
   const current = router.pathname === `${prefix}${href}`;
   return (
     <Link href={`${prefix}${href}`}>
@@ -33,12 +28,11 @@ const Tabs = (props) => {
   );
 };
 
-export default observer(function ProfileLayout(props) {
+function ProfileLayout({user, ...props}) {
   const [sticky, setSticky] = useState(false);
   const tabs = ['profile', 'questions', 'answers', 'bookmark'];
-  const {authStore} = useStore();
-  // const router = useRouter();
   const ref = useRef(null);
+  const {auth} = props;
   const handleScroll = () => {
     if (ref.current) {
       setSticky(ref.current.getBoundingClientRect().bottom <= 1);
@@ -53,8 +47,8 @@ export default observer(function ProfileLayout(props) {
   return (
     <div className={styles.container}>
       <div className={styles.profile_header} ref={ref}>
-        <Avatar imgUrl={authStore.user.imageUrl} />
-        <p className={styles.profile_header__name}>{authStore.user.name}</p>
+        <Avatar imgUrl={user.imgUrl} />
+        <p className={styles.profile_header__name}>{user.name}</p>
         <p className={styles.profile_header__job}>[ JOB ]</p>
         <p className={styles.profile_header__rank}>RANK</p>
         <div className={[styles.profile_header__urls, 'flex w-30 my-3'].join(' ')}>
@@ -71,7 +65,7 @@ export default observer(function ProfileLayout(props) {
           ))}
         </div>
         <p className={styles.profile_header__comment}>
-          {authStore.user.introduction || '한 줄 소개'}
+          {user.introduction || '한 줄 소개'}
         </p>
       </div>
       <div className={[styles.profile_tabs, sticky && styles.sticky].filter(Boolean).join(' ')}>
@@ -80,4 +74,6 @@ export default observer(function ProfileLayout(props) {
       <ProfileBody sticky={sticky}>{props.children}</ProfileBody>
     </div>
   );
-})
+}
+
+export default observer(ProfileLayout);

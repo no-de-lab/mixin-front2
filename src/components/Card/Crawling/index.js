@@ -2,6 +2,8 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Toast from '@/components/Toast';
+import { Article } from '@/utils/api';
+import { handleAsync } from '@/utils/mobx';
 import CrawlCard from './CrawlCard';
 import CrawlCardComment from './CrawlComment';
 
@@ -11,7 +13,7 @@ export default function CrawlCardLayout({
   article,
 }) {
   const {
-    isBookmark,
+    isBookmarked,
     provider,
     id,
     url,
@@ -24,18 +26,37 @@ export default function CrawlCardLayout({
   } = article;
 
   const [visible, setVisible] = useState(false);
+  const [curBookmark, setCurBookmark] = useState(isBookmarked || false);
+  const [curComments, setCurComments] = useState([]);
 
-  const onComment = () => {
-    setVisible(!visible);
-  };
+  const onComment = useCallback(async () => {
+    const [res, err] = await handleAsync(Article.getComments({ articleId: id }));
+    if (res) {
+      console.log('get Comments', res);
+      setCurComments(res.data);
+      setVisible(!visible);
+    } else {
+      console.log(err);
+    }
+  }, [curComments, visible, setVisible, setCurComments]);
 
   const onShare = useCallback(() => {
     navigator.clipboard.writeText(url);
     Toast.notify('URL주소가 복사 되었습니다.');
   }, []);
 
+  const onBookmark = useCallback(async () => {
+    const [res, err] = await handleAsync(Article[curBookmark ? 'unbookmark' : 'bookmark']({ articleId: id }));
+    if (res) {
+      setCurBookmark(!curBookmark);
+    } else {
+      console.log(err);
+    }
+  }, [isBookmarked, curBookmark, setCurBookmark]);
+
   useEffect(() => {
-  });
+    setCurBookmark(isBookmarked);
+  }, [isBookmarked]);
 
   if (typeof window === 'undefined') return null;
   return (
@@ -62,17 +83,15 @@ export default function CrawlCardLayout({
           url={url}
           id={id}
           provider={provider}
-          isBookmark={isBookmark}
-              // onBookmark={onBookmark}
+          isBookmark={curBookmark}
+          onBookmark={onBookmark}
           onShare={onShare}
           onComment={onComment}
           count={comments}
         >
           {author || ''}
-
         </CrawlCard.Footer>
-
-        <CrawlCardComment visible={visible} setVisible={setVisible} />
+        <CrawlCardComment visible={visible} setVisible={setVisible} article={article} comments={curComments} />
       </CrawlCard>
     </>
   );

@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import GoogleLoginButton from './GoogleLoginButton';
-import { observer } from "mobx-react-lite"
+import { observer } from "mobx-react-lite";
 import { useStore } from '../../modules';
 import styles from './Auth.module.scss';
 
 export default observer(function Login(props) {
   const {authStore} = useStore();
-
   async function onSuccess(res, provider) {
     const [success, err] = await authStore.login({ provider, res});
     if (!success) {

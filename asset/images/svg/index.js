@@ -13,3 +13,7 @@ export { default as LargeSearchIcon } from './LargeSearchIcon';
 export { default as ShareIcon } from './ShareIcon';
 export { default as CommentIcon } from './CommentIcon';
 export { default as GoogleLogo } from './GoogleLogo';
+export { default as CheckAccentIcon } from './CheckAccentIcon';
+export { default as CheckIcon } from './CheckIcon';
+export { default as ThumbsUpIcon } from './ThumbsUpIcon';
+export { default as WriteIcon } from './WriteIcon';

@@ -2,33 +2,39 @@ import React, { useCallback, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import { observer } from "mobx-react-lite"
-import { useStore } from '../modules';
+import { observer } from 'mobx-react-lite';
 import Image from 'next/image';
 import ROUTE from '@/utils/constant/route';
 import { LogoIcon, MenuIcon } from '@/svg';
 
+import Avatar from '@/components/Avatar';
 import styles from './Header.module.scss';
 import Modal from './Modal';
-import Avatar from '@/components/Avatar';
+import { useStore } from '../modules';
 import Login from './Auth/Login';
 
-
 function SubbarProfile(props) {
-  const {authStore} = props;
+  const { authStore } = props;
   return (
     <div className={styles.subbar_profile}>
       <div className={styles.profile_header}>
-        <Avatar />
-        <div className={styles.icons}>
-          <Image src='/images/svg/url_home.svg' alt='url_home' width={20} height={20} />
-          <Image src='/images/svg/url_git.svg' alt='url_git' width={20} height={20} />
+        <Avatar imgUrl={authStore.user.imgUrl}/>
+        <div className={styles.profile_header__urls}>
+          <Image src="/images/svg/url_home.svg" alt="url_home" width={20} height={20} />
+          <Image src="/images/svg/url_git.svg" alt="url_git" width={20} height={20} />  
         </div>
         <p className={styles.profile_header__name}>{authStore.user.name}</p>
         <p className={styles.profile_header__email}>{authStore.user.email}</p>
-      </div> 
+      </div>
+      <div className={styles.profile_body}>
+        <Link href={`/mypage/profile`}><a onClick={() => props.setVisible()}>PROFILE</a></Link>
+        <Link href={`/mypage/questions`}><a onClick={() => props.setVisible()}>QUESTIONS</a></Link>
+        <Link href={`/mypage/answers`}><a onClick={() => props.setVisible()}>ANSWERS</a></Link>
+        <Link href={`/mypage/bookmark`}><a onClick={() => props.setVisible()}>BOOKMARK</a></Link>
+        <a onClick={authStore.logout}>LOGOUT</a>
+      </div>
     </div>
-  )
+  );
 }
 function NavMenu({ children, route }) {
   const router = useRouter();
@@ -48,8 +54,8 @@ function NavMenu({ children, route }) {
   );
 }
 
-export default observer(function Header() {
-  const {authStore} = useStore();
+export default observer(() => {
+  const { authStore } = useStore();
   const [toggleTool, setToggleTool] = useState(false);
   const toggleToolModal = useCallback(() => {
     setToggleTool(!toggleTool);
@@ -75,7 +81,7 @@ export default observer(function Header() {
             position="right"
             visible={toggleTool}
             setVisible={setToggleTool}
-            render={authStore.loaded ? <SubbarProfile authStore={authStore} /> : <Login />}
+            render={authStore.loaded ? <SubbarProfile authStore={authStore} setVisible={setToggleTool} /> : <Login />}
           />
         </nav>
       </header>
@@ -95,5 +101,5 @@ NavMenu.propTypes = {
 };
 
 SubbarProfile.propTypes = {
-  authStore: PropTypes.object
-}
+  authStore: PropTypes.object,
+};

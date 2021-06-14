@@ -1,6 +1,8 @@
 .avatar {
   &__img {
     border-radius: 100%;
+    display: block;
+    margin: 0 auto;
   }
   &__color {
     --avatar-size: 80px;

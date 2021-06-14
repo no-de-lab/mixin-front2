@@ -12,7 +12,7 @@ function DeveloperCardBody({
         <div className={styles.profile__name}>{name}</div>
         <div className={styles.profile__job}>
           [
-          {job.length ? job[0].Occupation.type : 'No Job'}
+          {job?.length ? job[0].Occupation.type : 'No Job'}
           ]
         </div>
         <div className={styles.profile__rank}>{rank}</div>
@@ -36,7 +36,7 @@ function DeveloperCardLinkBar({ socials }) {
   return (
     <div className={styles.card_layout__link_bar}>
       <div className={styles.card_layout__link_bar__social}>
-        {socials.map((social) => (
+        {socials?.map((social) => (
           <div className={styles.icon}>
             <SocialLink social={social} />
           </div>
@@ -49,21 +49,17 @@ function DeveloperCardLinkBar({ socials }) {
   );
 }
 
-function DeveloperCard({ developerList }) {
+function DeveloperCard({ developer }) {
   return (
-    <>
-      {developerList.map((developer) => (
-        <div className={styles.card_layout}>
-          <DeveloperCardBody
-            name={developer.name}
-            job={developer.UserOccupation}
-            rank={developer.userLevel}
-            imgUrl={developer.imgUrl}
-          />
-          <DeveloperCardLinkBar socials={developer.SocialUrl} />
-        </div>
-      ))}
-    </>
+    <div className={styles.card_layout}>
+      <DeveloperCardBody
+        name={developer.name}
+        job={developer.UserOccupation}
+        rank={developer.userLevel}
+        imgUrl={developer.imgUrl}
+      />
+      <DeveloperCardLinkBar socials={developer.SocialUrl} />
+    </div>
   );
 }
 

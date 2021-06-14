@@ -3,13 +3,13 @@ import Head from 'next/head';
 import HomeLayout from '@/layout/crawling/HomeLayout';
 
 const Home = () => (
-  <div>
+  <>
     <Head>
       <title>Mix in | 홈</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <HomeLayout />
-  </div>
+  </>
 );
 
 // SSR 페이지를 그리기 전에 Mix-in api 서버에서 받아와야 하는 정보들
