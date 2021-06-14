@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './Avatar.module.scss';
 
-export default function Avatar({imgUrl, ...props}) {
+export default function Avatar({ imgUrl }) {
+  const [URL, setURL] = useState(undefined);
+  useEffect(() => {
+    setURL(imgUrl);
+  }, []);
   return (
     <>
       {
-        imgUrl
+        URL
           ? <img src={imgUrl} className={styles.avatar__img} alt="user avatar" />
-          : <div className={styles.avatar__color}></div>
+          : <div className={styles.avatar__color} />
       }
     </>
   );
-};
+}

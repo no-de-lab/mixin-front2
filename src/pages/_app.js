@@ -1,20 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
+import axios from 'axios';
 import { Provider } from 'mobx-react';
 import { useCookie } from 'next-cookie';
-import '../utils/styles/Toast.scss';
-import '../utils/styles/global.scss';
 import Header from '@/components/Header';
 import LeftSideBar from '@/components/LeftSideBar';
 import RightSideBar from '@/components/RightSideBar';
 import Footer from '@/components/Footer';
 import { ToastContainer } from 'react-toastify';
 import { CloseIcon } from '@/svg';
-import axios from 'axios';
 import { useStore } from '../modules';
+import '../utils/styles/Toast.scss';
+import '../utils/styles/global.scss';
 
-const App = ({ Component, appProps, pageProps}) => {
+const App = ({ Component, appProps, pageProps }) => {
   const store = useStore({ ...appProps.initialState });
   return (
     <>
@@ -49,21 +49,19 @@ App.getInitialProps = async (appContext) => {
   const cookie = useCookie(appContext.ctx);
   const token = cookie.get('userInfo') || '';
   const initialState = { authStore: { user: [], loaded: false } };
-  
-  if(!token) return { appProps: { initialState } };
-  
+
+  if (!token) return { appProps: { initialState } };
   try {
     const auth = await axios({
       method: 'post',
       url: process.env.NEXT_PUBLIC_SERVER_URL + 'api/user/me',
       headers: {
-        Authorization : token
-      }
+        Authorization: token,
+      },
     });
-    return { appProps: { initialState: { authStore: {loaded: true, user: auth.data} } } }
+    return { appProps: { initialState: { authStore: { loaded: true, user: auth.data } } } };
   } catch (e) {
     return { appProps: { initialState } };
   }
-}
-
+};
 export default App;

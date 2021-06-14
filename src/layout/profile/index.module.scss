@@ -5,7 +5,7 @@
   --tab-height: calc(var(--tab-font) * 4);
   --font-base: 1rem;
   position: relative;
-  height: 100vh;
+  height: fit-content;
   background-color: #191919;
   font-family: 'Nunito Sans', sans-serif;
   // FIXME: navbar height 
