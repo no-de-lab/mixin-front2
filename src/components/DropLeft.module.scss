@@ -1,7 +1,7 @@
 @import '../utils/styles/variable.module.scss';
 
 .dropleft__overlay {
-  height: 100vh;
+  height: calc(100vh - 120px);
   left: 0;
   position: absolute;
   top: 0;
@@ -24,7 +24,7 @@
   z-index: 300;
 
   &__content {
-    height: 100vh;
+    height: calc(100vh - 120px);
     width: 100vw;
     z-index: 1040;
   }
