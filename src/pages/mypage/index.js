@@ -4,14 +4,16 @@ import axios from 'axios';
 import { observer } from 'mobx-react-lite';
 import { useCookie } from 'next-cookie';
 import ProfileLayout from '@/layout/profile';
-import { useStore } from '../../modules';
+import { useRouter } from 'next/router';
 import {
   Profile, Answers, Bookmark, Qeustions,
-} from './body';
+} from '@/layout/profile/body';
+import { useStore } from '../../modules';
 
 const Mypage = (props) => {
   const { authStore } = useStore();
-  const { page } = props;
+  const router = useRouter();
+  const { page } = router.query;
   const renderBody = (page) => {
     switch (page) {
       case 'profile':
@@ -30,11 +32,11 @@ const Mypage = (props) => {
     <>
       <Head>
         <title>
-          {`Mix in | Mypage - ${page}`}
+          {/* {`Mix in | Mypage - ${page}`} */}
         </title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <ProfileLayout user={authStore.user}>
+      <ProfileLayout user={authStore.user} from="mypage">
         {renderBody(page)}
       </ProfileLayout>
     </>
@@ -65,6 +67,14 @@ export async function getServerSideProps(ctx) {
       const { data } = await axios(axiosRequest);
       return { props: { page, data } };
     }
+    case undefined:
+      return {
+        redirect: {
+          permanent: false,
+          destination: '/404',
+        },
+        props: {},
+      };
     default:
       return { props: { page } };
   }

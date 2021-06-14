@@ -4,6 +4,7 @@ import { action, observable } from 'mobx';
 
 export const initialDeveloper = {
   developerList: [],
+  developer: {},
 };
 
 class DeveloperStore {
@@ -11,6 +12,10 @@ class DeveloperStore {
 
   constructor(initialData = initialDeveloper) {
     this.developerList = initialData?.developerList;
+  }
+
+  @action setDeveloper(developer) {
+    this.developer = developer;
   }
 
   @action async fetchDeveloperList(page) {
