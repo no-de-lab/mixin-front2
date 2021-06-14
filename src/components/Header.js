@@ -18,20 +18,20 @@ function SubbarProfile(props) {
   return (
     <div className={styles.subbar_profile}>
       <div className={styles.profile_header}>
-        <Avatar imgUrl={authStore.user.imgUrl}/>
+        <Avatar imgUrl={authStore.user.imgUrl} />
         <div className={styles.profile_header__urls}>
           <Image src="/images/svg/url_home.svg" alt="url_home" width={20} height={20} />
-          <Image src="/images/svg/url_git.svg" alt="url_git" width={20} height={20} />  
+          <Image src="/images/svg/url_git.svg" alt="url_git" width={20} height={20} />
         </div>
         <p className={styles.profile_header__name}>{authStore.user.name}</p>
         <p className={styles.profile_header__email}>{authStore.user.email}</p>
       </div>
       <div className={styles.profile_body}>
-        <Link href={`/mypage/profile`}><a onClick={() => props.setVisible()}>PROFILE</a></Link>
-        <Link href={`/mypage/questions`}><a onClick={() => props.setVisible()}>QUESTIONS</a></Link>
-        <Link href={`/mypage/answers`}><a onClick={() => props.setVisible()}>ANSWERS</a></Link>
-        <Link href={`/mypage/bookmark`}><a onClick={() => props.setVisible()}>BOOKMARK</a></Link>
-        <a onClick={authStore.logout}>LOGOUT</a>
+        <Link href="/mypage?page=profile"><button type="button" onClick={() => props.setVisible()}>PROFILE</button></Link>
+        <Link href="/mypage?page=questions"><button type="button" onClick={() => props.setVisible()}>QUESTIONS</button></Link>
+        <Link href="/mypage?page=answers"><button type="button" onClick={() => props.setVisible()}>ANSWERS</button></Link>
+        <Link href="/mypage?page=bookmark"><button type="button" onClick={() => props.setVisible()}>BOOKMARK</button></Link>
+        <button type="button" onClick={authStore.logout}>LOGOUT</button>
       </div>
     </div>
   );
@@ -81,7 +81,11 @@ export default observer(() => {
             position="right"
             visible={toggleTool}
             setVisible={setToggleTool}
-            render={authStore.loaded ? <SubbarProfile authStore={authStore} setVisible={setToggleTool} /> : <Login />}
+            render={
+              authStore.loaded
+                ? <SubbarProfile authStore={authStore} setVisible={setToggleTool} />
+                : <Login />
+            }
           />
         </nav>
       </header>
