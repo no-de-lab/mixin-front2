@@ -17,3 +17,5 @@ export { default as CheckAccentIcon } from './CheckAccentIcon';
 export { default as CheckIcon } from './CheckIcon';
 export { default as ThumbsUpIcon } from './ThumbsUpIcon';
 export { default as WriteIcon } from './WriteIcon';
+export { default as BackIcon } from './BackIcon';
+export { default as ArrowIcon } from './ArrowIcon';

@@ -7,15 +7,23 @@ import { useCookie } from 'next-cookie';
 import Header from '@/components/Header';
 import LeftSideBar from '@/components/LeftSideBar';
 import RightSideBar from '@/components/RightSideBar';
+import ROUTE from '@/utils/constant/route';
 import Footer from '@/components/Footer';
 import { ToastContainer } from 'react-toastify';
 import { CloseIcon } from '@/svg';
+import { useRouter } from 'next/router';
 import { useStore } from '../modules';
+
 import '../utils/styles/Toast.scss';
 import '../utils/styles/global.scss';
+import 'codemirror/lib/codemirror.css';
+import '@toast-ui/react-editor/node_modules/@toast-ui/editor/dist/toastui-editor.css';
 
 const App = ({ Component, appProps, pageProps }) => {
+  const { pathname } = useRouter();
   const store = useStore({ ...appProps.initialState });
+  const exceptLayout = [`/${ROUTE.EDITOR}`];
+
   return (
     <>
       <Head>
@@ -28,13 +36,18 @@ const App = ({ Component, appProps, pageProps }) => {
       </Head>
       {/* SSR에서 만든 애를 Hydrate 해서 클라이언트 브라우저에다가 동기화 */}
       <Provider store={store}>
-        <Header />
-        <main className="flex flex-row">
-          <LeftSideBar />
-          <Component {...pageProps} />
-          <RightSideBar />
-        </main>
-        <Footer />
+        {!exceptLayout.includes(`${pathname}`)
+          ? (
+            <>
+              <Header />
+              <main className="flex flex-row">
+                <LeftSideBar />
+                <Component {...pageProps} />
+                <RightSideBar />
+              </main>
+              <Footer />
+            </>
+          ) : <Component {...pageProps} />}
         <ToastContainer closeButton={<CloseIcon />} />
       </Provider>
     </>

@@ -2,6 +2,8 @@
 @import '~tailwindcss/components';
 @import '~tailwindcss/utilities';
 @import './theme.scss';
+@import './variable.module.scss';
+@import './editor.scss';
 
 html {
   font-family: 'Nunito Sans', 'Spoqa Han Sans Neo', 'Segoe UI', 'Roboto',
@@ -10,9 +12,16 @@ html {
 }
 
 body {
-  background-color: #0d0d0d;
   margin: 0;
-  padding: 0;
+  padding: 0
+}
+body.dark {
+  background-color: $gray8;
+  color: $gray2;
+}
+body.light {
+  background-color: #E5E5E5;
+  color: $gray7;
 }
 body::-webkit-scrollbar {
   display: none;
@@ -24,3 +33,5 @@ button, button[type='button'] {
 main {
   width: 100%;
 }
+
+input:focus { outline: none; }

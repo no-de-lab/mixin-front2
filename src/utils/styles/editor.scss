@@ -1,0 +1,62 @@
+@import "./variable.module.scss";
+
+.editor_container {
+  background-color: $gray7;
+}
+
+.editor .tui-editor-defaultUI-toolbar,
+.tui-editor-defaultUI .CodeMirror-scroll {
+  box-sizing: border-box;
+  width: 50%;
+}
+
+.editor .CodeMirror-sizer {
+  padding: 40px 20px !important;
+}
+
+.editor .te-md-container .te-preview {
+  background-color: $gray7;
+  height: calc(100% + 329px);
+  outline: 1px solid $gray2;
+  padding: 0 90px;
+  padding-top: 270px;
+  
+  position: absolute;
+  right: 0;
+  top: -329px;
+}
+
+.editor .tui-editor-contents .te-preview-highlight::after,
+.editor .tui-editor-contents td.te-preview-highlight {
+  background-color: transparent;
+  display: none;
+}
+
+.editor .te-md-container .CodeMirror,
+.editor .te-preview .tui-editor-contents p {
+  background-color: $gray7;
+  color: $gray4;
+  font-size: 18px;
+  line-height: 27px;
+}
+
+.editor .tui-editor-defaultUI .CodeMirror-scroll {
+  width: 100%;
+}
+
+.editor .tui-editor-defaultUI-toolbar,
+.editor .te-toolbar-section {
+  height: 64px;
+}
+
+.editor .te-mode-switch-section {
+  display: none !important;
+}
+
+.CodeMirror-sizer {
+  border-right-width: 1px !important;
+}
+
+.editor .CodeMirror-cursor {
+  border-color: $gray4;
+}

@@ -1,0 +1,118 @@
+@import "../../utils/styles/variable.module.scss";
+
+.editor_container {
+  background-color: $gray7;
+  color: $gray2;
+  position: relative;
+
+  & input::placeholder {
+    color: $gray2;
+  }
+}
+
+.editor_preview__header {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 50%;
+  z-index: 10;
+
+  .editor_preview__cateogry {
+    font-size: 14px;
+    height: 17px;
+    line-height: 17px;
+    margin-bottom: 16px;
+  }
+  .editor_preview__tags {
+    margin-bottom: 16px;
+  }
+}
+
+.editor_preview__title {
+  padding: 0 90px;
+  & h1 {
+    font-size: 40px;
+    font-weight: bold;
+    height: 60px;
+    line-height: 60px;
+    margin-bottom: 16px;
+    width: 100%;
+  }
+}
+
+.editor_submenu {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  height: 120px;
+  justify-content: flex-end;
+  margin: 0 40px;
+}
+
+.editor_tag {
+  width: calc(100% - 300px);
+}
+
+.editor_header {
+  align-items: center;
+  display: flex;
+  height: 120px;
+  justify-content: space-between;
+  width: 50%;
+
+  & > div {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    width: 50%;
+  }
+
+  & > svg {
+    cursor: pointer;
+    margin: 0 40px;
+  }
+}
+
+.editor_title {
+  display: flex;
+  height: 80px;
+  justify-content: space-between;
+  padding: 0 40px;
+  padding-bottom: 20px;
+  width: 50%;
+  
+
+  & input {
+    background-color: $gray7;
+    font-size: 40px;
+    font-weight: bold;
+    height: 100%;
+    line-height: 60px;
+    margin-right: 8px;
+    width: 100%;
+  }
+}
+
+.editor_category {
+  display: flex;
+  height: 64px;
+  justify-content: space-between;
+  width: 50%;
+
+  & > div:first-child {
+    border: 1px solid $gray2;
+    padding: 18px 40px;
+  }
+  & > div:last-child {
+    border: 1px solid $gray2;
+    border-left: none;
+    border-right: none;
+    width: 300px;
+  }
+  & input {
+    background-color: $gray7;
+    font-size: 14px;
+    line-height: 28px;
+    width: 100%;
+  }
+}
