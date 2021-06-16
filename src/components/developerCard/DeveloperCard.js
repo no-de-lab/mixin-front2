@@ -38,8 +38,8 @@ function DeveloperCardLinkBar({ socials }) {
   return (
     <div className={styles.card_layout__link_bar}>
       <div className={styles.card_layout__link_bar__social}>
-        {socials?.map((social) => (
-          <div className={styles.icon}>
+        {socials?.map((social, i) => (
+          <div className={styles.icon} key={`social${i}`}>
             <SocialLink social={social} />
           </div>
         ))}
@@ -56,7 +56,7 @@ function DeveloperCard({ developer }) {
   const { developerStore } = useStore();
   const routeDetail = () => {
     developerStore.setDeveloper(developer);
-    router.push('/developer/detail/?page=questions');
+    router.push(`/developer/detail/${developer.id}/?page=questions`);
   };
   return (
     <div className={styles.card_layout} onClick={routeDetail}>

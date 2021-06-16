@@ -13,12 +13,12 @@ const ProfileBody = ({ children, sticky }) => (
 );
 
 const Tabs = (props) => {
-  const { name } = props;
+  const { name, tabPath } = props;
   const router = useRouter();
-  const { pathname, query } = router;
+  const { query } = router;
   const current = query.page === name;
   return (
-    <Link href={`${pathname}?page=${name}`}>
+    <Link href={`${tabPath}?page=${name}`}>
       <span data-current={current} className={styles.profile_tabs__item}>
         {name.toLocaleUpperCase()}
       </span>
@@ -30,6 +30,7 @@ function ProfileLayout({ user, ...props }) {
   const { from } = props;
   const [sticky, setSticky] = useState(false);
   const tabs = from === 'detail' ? ['questions', 'answers'] : ['profile', 'questions', 'answers', 'bookmark'];
+  const tabPath = from === 'detail' ? `/developer/detail/${user.id}` : 'mypage/';
   const ref = useRef(null);
   const handleScroll = () => {
     if (ref.current) {
@@ -67,7 +68,7 @@ function ProfileLayout({ user, ...props }) {
         </p>
       </div>
       <div className={[styles.profile_tabs, sticky && styles.sticky].filter(Boolean).join(' ')}>
-        {tabs.map((tab) => <Tabs key={tab} name={tab} />)}
+        {tabs.map((tab) => <Tabs key={tab} name={tab} tabPath={tabPath} />)}
       </div>
       <ProfileBody sticky={sticky}>{props.children}</ProfileBody>
     </div>
