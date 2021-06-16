@@ -1,17 +1,16 @@
 import React from 'react';
 import Head from 'next/head';
+import axios from 'axios';
 import { observer } from 'mobx-react-lite';
-// import { useCookie } from 'next-cookie';
+import { useCookie } from 'next-cookie';
 import ProfileLayout from '@/layout/profile';
 import { useRouter } from 'next/router';
 import {
   Answers, Qeustions,
 } from '@/layout/profile/body';
-import { useStore } from '../../../modules';
 
-const DeveloperDetail = () => {
-  const { developerStore } = useStore();
-  const { developer } = developerStore;
+const DeveloperDetail = (props) => {
+  const { developer } = props;
   const router = useRouter();
   const { page } = router.query;
   const renderBody = (page) => {
@@ -38,12 +37,16 @@ const DeveloperDetail = () => {
     </>
   );
 };
-export async function getServerSideProps() {
-  // const { slug } = ctx.query;
-  // switch (page) {
-  //   default:
-  //     return { props: { page } };
-  // }
-  return { props: { } };
+export async function getServerSideProps(ctx) {
+  const cookie = useCookie(ctx);
+  const token = cookie.get('userInfo') || '';
+  const { user } = ctx.query;
+  const axiosRequest = {
+    method: 'get',
+    headers: { Authorization: token },
+  };
+  axiosRequest.url = `${process.env.NEXT_PUBLIC_SERVER_URL}api/user/${user}`;
+  const { data } = await axios(axiosRequest);
+  return { props: { developer: data } };
 }
 export default observer(DeveloperDetail);
