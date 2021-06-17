@@ -5,7 +5,7 @@ import CommentItem from './CommentItem';
 import styles from './comment.module.scss';
 import { useStore } from '../../../modules';
 
-export default function CommentItems({ comments, deleteComment }) {
+export default function CommentItems({ comments, deleteComment, setComment }) {
   const { authStore } = useStore();
 
   return (
@@ -21,7 +21,7 @@ export default function CommentItems({ comments, deleteComment }) {
             />
             <CommentItem.Content>{comment.comment}</CommentItem.Content>
           </CommentItem.Box>
-          <CommentItem.Button self={authStore?.user?.id === comment.user?.id} deleteComment={deleteComment(comment.id)} />
+          <CommentItem.Button self={authStore?.user?.id === comment.user?.id} deleteComment={deleteComment(comment.id)} onClick={() => setComment(`@+${comment.user?.name}`)} />
         </CommentItem>
       )) : []}
 

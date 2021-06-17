@@ -87,7 +87,7 @@ export default function CrawlCardComment({
           </div>
           <CommentCard article={article} />
         </div>
-        <CommentItems comments={curComments} deleteComment={deleteComment} />
+        <CommentItems comments={curComments} deleteComment={deleteComment} setComment={setComment} />
         <div className={styles.comment__paragraph}>
           <textarea placeholder="paragraph" value={comment} onChange={setComment} />
           <button type="button" onClick={addComment}>write</button>
