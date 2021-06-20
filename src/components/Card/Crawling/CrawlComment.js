@@ -17,7 +17,7 @@ export default function CrawlCardComment({
   const { authStore } = useStore();
   const [curComments, setCurComments] = useState(comments);
   const [comment, setComment] = useState('');
-  // const [color, setColor] = useState({ color: 'white' });
+  const [color, setColor] = useState({ color: 'white' });
 
   const addComment = useCallback(async () => {
     if (!authStore?.user?.id) {
@@ -67,7 +67,7 @@ export default function CrawlCardComment({
   const changeText = (text) => {
     setComment(`@${text} `);
     document.getElementsByTagName('textarea')[0].setAttribute('autofocus');
-    // setColor({ color: 'pink' });
+    setColor({ color: 'pink' });
   };
   useEffect(() => {
     if (visible) window.addEventListener('keydown', escapeKey);
@@ -93,13 +93,9 @@ export default function CrawlCardComment({
           </div>
           <CommentCard article={article} />
         </div>
-<<<<<<< HEAD
         <CommentItems comments={curComments} deleteComment={deleteComment} changeText={changeText} />
-=======
-        <CommentItems comments={curComments} deleteComment={deleteComment} setComment={setComment} />
->>>>>>> 5b86d862c91cca071c23d3f24ce444285f71ad67
         <div className={styles.comment__paragraph}>
-          <textarea placeholder="paragraph" value={comment} onChange={(e) => { setComment(e.target.value); }} />
+          <textarea placeholder="paragraph" value={comment} onChange={(e) => { setComment(e.target.value); setColor({ color: 'white' }); }} style={color} />
           <button type="button" onClick={addComment}>write</button>
         </div>
       </div>
