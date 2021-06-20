@@ -2,37 +2,36 @@ import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import styles from './index.module.scss';
-import { observer } from "mobx-react-lite"
-import { useStore } from '../../modules';
+import { observer } from 'mobx-react-lite';
 import Avatar from '@/components/Avatar';
+import styles from './index.module.scss';
 
-
-const ProfileBody = ({children, sticky}) => (
+const ProfileBody = ({ children, sticky }) => (
   <div className={[styles.profile_body, sticky && styles.sticky].filter(Boolean).join(' ')}>
     {children}
   </div>
 );
 
 const Tabs = (props) => {
-  const { path, prefix } = props;
+  const { name, tabPath } = props;
   const router = useRouter();
-  const href = `/${path}`;
-  const current = router.pathname === `${prefix}${href}`;
+  const { query } = router;
+  const current = query.page === name;
   return (
-    <Link href={`${prefix}${href}`}>
+    <Link href={`${tabPath}?page=${name}`}>
       <span data-current={current} className={styles.profile_tabs__item}>
-        {path.toLocaleUpperCase()}
+        {name.toLocaleUpperCase()}
       </span>
     </Link>
   );
 };
 
-function ProfileLayout({user, ...props}) {
+function ProfileLayout({ user, ...props }) {
+  const { from } = props;
   const [sticky, setSticky] = useState(false);
-  const tabs = ['profile', 'questions', 'answers', 'bookmark'];
+  const tabs = from === 'detail' ? ['questions', 'answers'] : ['profile', 'questions', 'answers', 'bookmark'];
+  const tabPath = from === 'detail' ? `/developer/detail/${user.id}` : 'mypage/';
   const ref = useRef(null);
-  const {auth} = props;
   const handleScroll = () => {
     if (ref.current) {
       setSticky(ref.current.getBoundingClientRect().bottom <= 1);
@@ -48,7 +47,7 @@ function ProfileLayout({user, ...props}) {
     <div className={styles.container}>
       <div className={styles.profile_header} ref={ref}>
         <Avatar imgUrl={user.imgUrl} />
-        <p className={styles.profile_header__name}>{user.name}</p>
+        <p className={styles.profile_header__name}>{user.name || ''}</p>
         <p className={styles.profile_header__job}>[ JOB ]</p>
         <p className={styles.profile_header__rank}>RANK</p>
         <div className={[styles.profile_header__urls, 'flex w-30 my-3'].join(' ')}>
@@ -69,7 +68,7 @@ function ProfileLayout({user, ...props}) {
         </p>
       </div>
       <div className={[styles.profile_tabs, sticky && styles.sticky].filter(Boolean).join(' ')}>
-        {tabs.map((tab) => <Tabs key={tab} path={tab} prefix="/mypage" />)}
+        {tabs.map((tab) => <Tabs key={tab} name={tab} tabPath={tabPath} />)}
       </div>
       <ProfileBody sticky={sticky}>{props.children}</ProfileBody>
     </div>

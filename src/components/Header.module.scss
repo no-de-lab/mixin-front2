@@ -12,10 +12,9 @@
 }
 
 .header__nav {
-  color: $gray2;
+  align-items: center;
   display: flex;
   height: $HEADER_HEIGT;
-  align-items: center;
   justify-content: space-between;
   padding: 0 40px;
   & .nav__link {
@@ -52,7 +51,6 @@
 }
 
 .nav__link {
-  color: $gray2;
   font-family: 'Blender Pro', sans-serif;
   font-size: 20px;
   font-style: normal;
@@ -63,19 +61,19 @@
 }
 
 .subbar_profile {
-  height: 100%;
+  align-items: center;
   display: grid;
   grid-auto-columns: 100%;
   grid-template-rows: 35% 65%;
-  align-items: center;
+  height: 100%;
   --font-base: 1rem;
 }
 .profile_header {
-  position: relative;
   color: #DCDCDC;
-  width: 100%;
   padding: 30% 0 10% 0;
+  position: relative;
   text-align: center;
+  width: 100%;
   &__name {
     font-size: calc(var(--font-base) * 1.25);
     font-weight: 700;
@@ -86,9 +84,9 @@
     margin: 5px 0;
   }
   &__urls {
-    margin: 25px 0;
     display: flex;
     justify-content: center;
+    margin: 25px 0;
     * {
       margin: 0 10px;
     }
@@ -96,25 +94,25 @@
 }
 
 .profile_body {
-  position: relative;
-  height: 100%;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
   align-items: center;
   border-top: 1px solid #DCDCDC;
+  display: flex;
+  flex-direction: column;
   font-family: 'Blender Pro', sans-serif;
-  a {
-    font-size: calc(var(--font-base) * 1.2);
-    margin: var(--font-base) 0;
-    letter-spacing: 0.4em;
+  height: 100%;
+  padding: 20px;
+  position: relative;
+  button {
     cursor: pointer;
+    font-size: calc(var(--font-base) * 1.2);
+    letter-spacing: 0.4em;
+    margin: var(--font-base) 0;
     &:last-child {
-      font-size: calc(var(--font-base) * 0.8);
-      position: absolute;
       bottom: 0;
       color: #696969;
+      font-size: calc(var(--font-base) * 0.8);
       letter-spacing: 0.1em;
+      position: absolute;
     }
   }
 }

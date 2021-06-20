@@ -3,6 +3,7 @@ const ROUTE = {
   CRAWLING: 'home',
   DEVELOPER: 'developer',
   QNA: 'qna',
+  EDITOR: 'editor',
   MYPAGE: 'mypage',
   BOOKMARK: 'bookmark',
   PRIVACY_POLICY: 'privacy_policy',

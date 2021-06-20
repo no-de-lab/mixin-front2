@@ -1,7 +1,9 @@
+import { useRouter } from 'next/router';
 import React from 'react';
 import { BookmarkIcon, ProfileIcon } from '../../../asset/images/svg';
 import styles from './DeveloperCard.module.scss';
 import SocialLink from './SocialLink';
+import { useStore } from '../../modules';
 
 function DeveloperCardBody({
   name, job, rank, imgUrl,
@@ -36,8 +38,8 @@ function DeveloperCardLinkBar({ socials }) {
   return (
     <div className={styles.card_layout__link_bar}>
       <div className={styles.card_layout__link_bar__social}>
-        {socials?.map((social) => (
-          <div className={styles.icon}>
+        {socials?.map((social, i) => (
+          <div className={styles.icon} key={`social${i}`}>
             <SocialLink social={social} />
           </div>
         ))}
@@ -50,8 +52,14 @@ function DeveloperCardLinkBar({ socials }) {
 }
 
 function DeveloperCard({ developer }) {
+  const router = useRouter();
+  const { developerStore } = useStore();
+  const routeDetail = () => {
+    developerStore.setDeveloper(developer);
+    router.push(`/developer/detail/${developer.id}/?page=questions`);
+  };
   return (
-    <div className={styles.card_layout}>
+    <div className={styles.card_layout} onClick={routeDetail}>
       <DeveloperCardBody
         name={developer.name}
         job={developer.UserOccupation}

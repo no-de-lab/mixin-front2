@@ -10,7 +10,7 @@ const Modal = dynamic(() => import('./Modal'));
 const DropLeft = dynamic(() => import('./DropLeft'));
 
 export default function RightSideBar() {
-  const { pathname } = useRouter();
+  const router = useRouter();
   const [toggleSearch, setToggleSearch] = useState(false);
   const [toggleFilter, setToggleFilter] = useState(false);
 
@@ -23,7 +23,7 @@ export default function RightSideBar() {
   }, [toggleFilter, setToggleFilter]);
 
   const writeQna = useCallback(() => {
-
+    router.push(`/${ROUTE.EDITOR}`);
   }, []);
 
   return (
@@ -39,7 +39,7 @@ export default function RightSideBar() {
         />
         <DropLeft visible={toggleFilter} setVisible={setToggleFilter} />
       </div>
-      {pathname === `/${ROUTE.QNA}` && <button type="button" onClick={writeQna}><WriteIcon /></button>}
+      {router.pathname === `/${ROUTE.QNA}` && <button type="button" onClick={writeQna}><WriteIcon /></button>}
     </aside>
   );
 }

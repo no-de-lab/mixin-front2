@@ -76,20 +76,23 @@ export default function CrawlCardComment({
   // const hideComment = useCallback((e) => e.stopPropagation(), []);
 
   return (
-    <div className={visible ? styles.comment__container : styles.comment__hidden}>
-      <div className={styles.commentCard__container}>
-        <div className={styles.comment__container__close}>
-          <div onClick={() => { setVisible(!visible); }} className={styles.comment__container__close__svg}>
-            <CloseIcon />
+    <>
+      <div className={visible ? styles.comment__total__box : styles.comment__hidden} onClick={() => setVisible(!visible)} />
+      <div className={visible ? styles.comment__container : styles.comment__hidden}>
+        <div className={styles.commentCard__container}>
+          <div className={styles.comment__container__close}>
+            <div onClick={() => { setVisible(!visible); }} className={styles.comment__container__close__svg}>
+              <CloseIcon />
+            </div>
           </div>
+          <CommentCard article={article} />
         </div>
-        <CommentCard article={article} />
+        <CommentItems comments={curComments} deleteComment={deleteComment} />
+        <div className={styles.comment__paragraph}>
+          <textarea placeholder="paragraph" value={comment} onChange={setComment} />
+          <button type="button" onClick={addComment}>write</button>
+        </div>
       </div>
-      <CommentItems comments={curComments} deleteComment={deleteComment} />
-      <div className={styles.comment__paragraph}>
-        <textarea placeholder="paragraph" value={comment} onChange={setComment} />
-        <button type="button" onClick={addComment}>write</button>
-      </div>
-    </div>
+    </>
   );
 }

@@ -1,11 +1,138 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&display=swap');
 
+$background: transparent;
+$select-color: #DCDCDC;
+$select-background: #191919;
+
+.mypage__form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 2rem 0;
+  position: relative;
+  width: 50%;
+  &_input {
+    margin: 2rem 0;
+    position: relative;
+    width: 100%;
+    label {
+      color: #696969;
+      font-size: calc(var(--font-base) * 0.75);
+      text-transform: uppercase;
+    }
+    input {
+      background-color: transparent;
+      border: none;
+      border-bottom: 1px solid #dcdcdc;
+      font-size: var(--font-base);
+      height: 48px;
+      outline: none;
+      width: 100%;
+      &::placeholder {
+        color: #dcdcdc;
+      }
+    }
+  }
+  button {
+    border: none;
+    outline: none;
+  }
+  .form__botton {
+    --btn-size: calc(var(--font-base) * 0.75);
+    align-self: flex-end;
+    background-color: #dcdcdc;
+    color: #191919;
+    font-size: var(--btn-size);
+    letter-spacing: 0.15em;
+    padding: calc(var(--btn-size) * 1.5) calc(var(--btn-size) * 2);
+    text-transform: uppercase;
+  }
+}
+
+
+
+.select {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  font-size: 16px;
+  color: #ffffff;
+  width: 100%;
+  height: 45px;
+}
+.select_hidden {
+  display: none;
+  visibility: hidden;
+  padding-right: 10px;
+}
+.select_styled {
+  position: absolute; 
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: transparent;
+  padding: 8px 15px;
+  border-bottom: 1px solid #dcdcdc;
+  transition: all 0.15s ease-in;
+  &:after {
+    content:"";
+    width: 0;
+    height: 0;
+    border: 7px solid transparent;
+    border-color: $select-color transparent transparent transparent;
+    position: absolute;
+    top: 16px;
+    right: 10px;
+  }
+  &:hover {
+    background-color: $select-background;
+  }
+  &:active, &.active {
+    background-color: $select-background;
+    &:after {
+      top: 9px;
+      border-color: transparent transparent $select-color transparent;
+    }
+  }
+}
+
+.select_options {
+  display: none; 
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  z-index: 999;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background-color: #191919;
+  border: 1px solid #DCDCDC;
+  border-top: none;
+  border-bottom: none;
+  li {
+    margin: 0;
+    padding: 12px 0;
+    text-indent: 15px;
+    border-bottom: 1px solid #dcdcdc;
+    transition: all 0.15s ease-in;
+    &:hover {
+      color: $select-background;
+      background: $select-color;
+    }
+    &[value="hide"] {
+      display: none;
+    }
+  }
+}
 .container {
   --tab-font: 1rem;
   --tab-height: calc(var(--tab-font) * 4);
   --font-base: 1rem;
   position: relative;
-  height: 100vh;
+  height: fit-content;
   background-color: #191919;
   font-family: 'Nunito Sans', sans-serif;
   // FIXME: navbar height 

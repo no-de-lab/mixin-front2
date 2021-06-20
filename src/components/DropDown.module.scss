@@ -1,0 +1,106 @@
+@import "../utils/styles/variable.module.scss";
+
+
+.dropdown {
+  display: flex;
+  height: 100%;
+  padding: 20px 40px;
+  position: relative;
+  width: 300px;
+  z-index: 10;
+}
+
+.dropdown > svg {
+  position: absolute;
+  right: 20px;
+  top : 20px;
+}
+
+.dropdown__On {
+  color: #01010f;
+}
+
+.dropdown__Off {
+  color: #c8cbcb;
+}
+
+.arrow_up {
+  transform: rotate(180deg);
+}
+
+.value_form {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  height: 40px;
+  justify-content: flex-end;
+  position: relative;
+  width: 100%;
+  z-index: 100;
+}
+
+.filterArrow {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+
+
+.chosen_value,
+.value_list {
+  outline: none;
+  width: 100%;
+}
+
+.chosen_value {
+  align-items: center;
+  color: $gray2;
+  display: flex;
+  font-size: 14px;
+  height: 100%;
+  line-height: 17px;
+  padding-left: 15px;
+  transition: 0.3s ease-in-out;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &.open {
+    color: $gray2;
+  }
+}
+
+.value_list {
+  left: 0;
+  list-style: none;
+  margin-top: 62px;
+  max-height: 0px;
+  overflow: hidden;
+  padding: 0px;
+  position: absolute;
+  top: 0;
+  transition: 0.3s ease-in-out;
+
+  &.open {
+    max-height: 400px;
+  }
+
+  li {
+    align-items: center;
+    background-color: #0f0e1c;
+    color: #434853;
+    cursor: pointer;
+    display: flex;
+    height: 40px;
+    opacity: 1;
+    padding: 1rem;
+    position: relative;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #0f0e1c;
+    }
+  }
+}

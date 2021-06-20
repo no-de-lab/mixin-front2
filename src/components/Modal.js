@@ -72,11 +72,12 @@ Modal.defaultProps = {
   closeButtonDisplayNone: false,
   position: 'center',
   render: <div>render</div>,
+  visible: false,
 };
 
 Modal.propTypes = {
   setVisible: PropTypes.func,
-  visible: PropTypes.bool.isRequired,
+  visible: PropTypes.bool,
   render: PropTypes.node,
   closeButtonDisplayNone: PropTypes.bool,
   position: PropTypes.string,
