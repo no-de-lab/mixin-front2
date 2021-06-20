@@ -16,7 +16,8 @@ export default function CrawlCardComment({
 }) {
   const { authStore } = useStore();
   const [curComments, setCurComments] = useState(comments);
-  const [comment, setComment, resetComment] = useInput('');
+  const [comment, setComment] = useState('');
+  // const [color, setColor] = useState({ color: 'white' });
 
   const addComment = useCallback(async () => {
     if (!authStore?.user?.id) {
@@ -31,11 +32,12 @@ export default function CrawlCardComment({
     const [res, err] = await handleAsync(Article.addComment({ comment, articleId: article.id }));
     if (res) {
       setCurComments([...curComments, res?.data]);
-      resetComment();
+      // resetComment();
+      setComment('');
     } else {
       console.log(err);
     }
-  }, [comment, setComment, curComments, setCurComments, resetComment]);
+  }, [comment, setComment, curComments, setCurComments]);
 
   const deleteComment = useCallback((commentId) => async () => {
     const [res, err] = await handleAsync(Article.deleteComment({ commentId }));
@@ -48,7 +50,7 @@ export default function CrawlCardComment({
     } else {
       console.log(err);
     }
-  }, [comment, setComment, curComments, setCurComments, resetComment]);
+  }, [comment, setComment, curComments, setCurComments]);
 
   const toggle = useCallback(() => {
     setVisible(!visible);
@@ -62,6 +64,11 @@ export default function CrawlCardComment({
     }
   };
 
+  const changeText = (text) => {
+    setComment(`@${text} `);
+    document.getElementsByTagName('textarea')[0].setAttribute('autofocus');
+    // setColor({ color: 'pink' });
+  };
   useEffect(() => {
     if (visible) window.addEventListener('keydown', escapeKey);
     else if (!visible) window.removeEventListener('keydown', escapeKey);
@@ -74,7 +81,6 @@ export default function CrawlCardComment({
     setCurComments(comments);
   }, [comments]);
   // const hideComment = useCallback((e) => e.stopPropagation(), []);
-
   return (
     <>
       <div className={visible ? styles.comment__total__box : styles.comment__hidden} onClick={() => setVisible(!visible)} />
@@ -87,9 +93,9 @@ export default function CrawlCardComment({
           </div>
           <CommentCard article={article} />
         </div>
-        <CommentItems comments={curComments} deleteComment={deleteComment} />
+        <CommentItems comments={curComments} deleteComment={deleteComment} changeText={changeText} />
         <div className={styles.comment__paragraph}>
-          <textarea placeholder="paragraph" value={comment} onChange={setComment} />
+          <textarea placeholder="paragraph" value={comment} onChange={(e) => { setComment(e.target.value); }} />
           <button type="button" onClick={addComment}>write</button>
         </div>
       </div>

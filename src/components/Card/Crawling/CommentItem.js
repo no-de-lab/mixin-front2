@@ -15,9 +15,11 @@ CommentItem.Box = function CommentItemBox({ children, ...props }) {
   );
 };
 
-CommentItem.Button = function CommentItemButton({ self, deleteComment }) {
+CommentItem.Button = function CommentItemButton({
+  self, deleteComment, changeText, value,
+}) {
   return (
-    <div className={styles.commentItem__button}>
+    <div className={styles.commentItem__button} onClick={() => { changeText(value); }}>
       {self
         ? <div className={styles.commentItem__button__svg} onClick={deleteComment}><CloseIcon /></div> : <></>}
       답글
