@@ -26,7 +26,7 @@ const useInfiniteScroll = (fetcher, loading, setLoading) => {
           console.log('res', res);
           console.log('page', page.current);
           if (page.current === res.data.pagination.currentPage) {
-            setIssues((prevState) => [...prevState].concat(res.data.articles));
+            setIssues((prevState) => [...prevState].concat(res.data.articles || res?.data?.qnaList));
             page.current = res.data.pagination.currentPage + 1;
           }
           setHasMore(res.data.pagination.currentPage < res.data.pagination.lastPage);

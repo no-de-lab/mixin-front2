@@ -18,9 +18,10 @@ const ActionButton = ({
 const QuestionItem = (props) => {
   const {
     question: {
-      comments, tags, title, qnaType, createdAt, liked, bookmarked, user: { imgUrl, name },
+      comments, tags, title, qnaType, createdAt, liked, bookmarked, user,
     },
   } = props;
+
   const [curLiked, setCurLiked] = useState(liked);
   const [curBookmarked, setCurBookmarked] = useState(bookmarked);
 
@@ -52,10 +53,10 @@ const QuestionItem = (props) => {
         </div>
         <div className={styles.questionItem__user}>
           <div className={styles.questionItem__profile}>
-            <img className={styles.questionItem__profileImage} src={imgUrl} alt={name} />
+            <img className={styles.questionItem__profileImage} src={user?.imgUrl} alt={user?.name} />
             <span className={styles.questionItem__level}>WHITE</span>
           </div>
-          <span className={styles.questionItem__username}>{name}</span>
+          <span className={styles.questionItem__username}>{user?.name}</span>
           <span className={styles.questionItem__date}>{dayjs(createdAt).format('YYYY.MM.DD')}</span>
         </div>
       </div>

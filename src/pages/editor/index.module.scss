@@ -116,3 +116,22 @@
     width: 100%;
   }
 }
+
+.editor_write__btn {
+  align-items: center;
+  background: $gray2;
+  bottom: 27px;
+  display: flex;
+  left: calc(50% - 70px);
+  padding: 10px 14px;
+  position: absolute;
+  transform: rotate(90deg);
+
+  span {
+    color: $gray7;
+    font-family: 'Blender Pro';
+    font-size: 14px;
+    line-height: 17px;
+    margin-left: 10px;
+  }
+}

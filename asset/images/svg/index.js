@@ -19,3 +19,4 @@ export { default as ThumbsUpIcon } from './ThumbsUpIcon';
 export { default as WriteIcon } from './WriteIcon';
 export { default as BackIcon } from './BackIcon';
 export { default as ArrowIcon } from './ArrowIcon';
+export { default as EditorWriteIcon } from './EditorWriteIcon';

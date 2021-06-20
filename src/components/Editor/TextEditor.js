@@ -8,30 +8,10 @@ const EditorWithForwardedRef = forwardRef((props, ref) => (
   <Editor {...props} forwardedRef={ref} />
 ));
 
-function ProfileInput(props) {
-  const {
-    value, label, name, placeHolder,
-  } = props;
-  const [content, setContent] = useState(value || '');
-  const handleChange = (e) => {
-    setContent(e.target.value);
-  };
-
-  return (
-    <div className={styles.mypage__form_input}>
-      <label htmlFor={name}>{label}</label>
-      <input type="text" id={name} name={name} autoComplete="off" placeholder={placeHolder} value={content} onChange={handleChange} />
-    </div>
-  );
-}
-
 export default function TextEditor(props) {
   const {
-    initialValue, previewStyle, height, initialEditType, useCommandShortcut,
+    initialValue, previewStyle, height, initialEditType, useCommandShortcut, content, setContent,
   } = props;
-
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
 
   const editorRef = useRef();
   const handleChange = useCallback(() => {
@@ -51,7 +31,7 @@ export default function TextEditor(props) {
         {...props}
         initialValue={initialValue || 'hello react editor world!'}
         previewStyle={previewStyle || 'vertical'}
-        height={height || '600px'}
+        height={height || '700px'}
         initialEditType={initialEditType || 'markdown'}
         useCommandShortcut={useCommandShortcut || true}
         ref={editorRef}
