@@ -17,7 +17,7 @@ const Mypage = (props) => {
   const renderBody = (page) => {
     switch (page) {
       case 'profile':
-        return <Profile />;
+        return <Profile {...authStore} />;
       case 'questions':
         return <Qeustions />;
       case 'answers':
