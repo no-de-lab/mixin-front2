@@ -5,6 +5,7 @@
   position: fixed;
   top:0;
   width: 100vw;
+  z-index: 100;
 }
 .comment__container{
     background: #0D0D0D;
@@ -15,6 +16,7 @@
     right: 0;
     top: 0px;
     width: 400px;
+  z-index: 200;
     z-index: 5000;
     &__close{
         align-items: flex-end;
