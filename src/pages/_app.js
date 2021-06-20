@@ -62,12 +62,11 @@ App.getInitialProps = async (appContext) => {
   const cookie = useCookie(appContext.ctx);
   const token = cookie.get('userInfo') || '';
   const initialState = { authStore: { user: [], loaded: false } };
-
   if (!token) return { appProps: { initialState } };
   try {
     const auth = await axios({
       method: 'post',
-      url: process.env.NEXT_PUBLIC_SERVER_URL + 'api/user/me',
+      url: process.env.NEXT_PUBLIC_SERVER_URL + '/api/user/me',
       headers: {
         Authorization: token,
       },
