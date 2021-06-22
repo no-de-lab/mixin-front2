@@ -3,8 +3,8 @@ import { Profile } from '@/utils/api';
 import { handleAsync } from '@/utils/mobx';
 
 export const initialProfile = {
-  stacks : [],
-  occupations: []
+  stacks: [],
+  occupations: [],
 };
 
 class ProfileStore {
@@ -12,9 +12,10 @@ class ProfileStore {
 
   constructor(initialData = initialProfile) {
   }
+
   @action async getOptions(type) {
     const [res, err] = await handleAsync(Profile.options(type));
-    this[type] = res.data;
+    this[type] = res?.data;
     return [err === undefined, err];
   }
 }
