@@ -17,7 +17,7 @@ export default function SearchBar({ cb }) {
   };
 
   const onSearch = useCallback(() => {
-    router.push(`/?search=${value}`);
+    router.push(`/home?search=${value}`);
     if (cb) {
       cb();
     }
