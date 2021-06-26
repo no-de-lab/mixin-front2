@@ -87,8 +87,10 @@ export const Qna = {
 
     return axios.get(`/api/v1/qnas/me?${queryString}`)
   },
-  like: ({qnaId}) => axios.get(`/api/v1/qna/${qnaId}/like`), 
-  bookmark: ({qnaId}) => axios.get(`/api/v1/qna/${qnaId}/bookmark`), 
+  like: ({qnaId}) => axios.post(`/api/v1/qna/${qnaId}/like`), 
+  unlike: ({qnaId}) => axios.delete(`/api/v1/qna/${qnaId}/like`), 
+  bookmark: ({qnaId}) => axios.post(`/api/v1/qna/${qnaId}/bookmark`), 
+  unbookmark: ({qnaId}) => axios.delete(`/api/v1/qna/${qnaId}/bookmark`), 
   likeComment: ({commentId}) => axios.get(`/api/v1/qna/comment/${commentId}/like`),
   comment: (registerData) => axios.post(`/api/v1/qna/comment`, registerData),
   editComment: ({commentId, editData}) => axios.put(`/api/v1/qna/comment/${commentId}`, editData),  

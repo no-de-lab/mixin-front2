@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { BookmarkIcon, ThumbsUpIcon } from '@/svg';
 import dayjs from 'dayjs';
+import { handleAsync } from '@/utils/mobx';
+import { Qna } from '@/utils/api';
 import Tag from './Tag';
 import styles from './QuestionItem.module.scss';
 
@@ -18,20 +20,44 @@ const ActionButton = ({
 const QuestionItem = (props) => {
   const {
     question: {
-      comments, tags, title, qnaType, createdAt, liked, bookmarked, user,
+      comments, tags, title, qnaType, createdAt, liked, bookmarked, user, id, likes,
     },
   } = props;
 
   const [curLiked, setCurLiked] = useState(liked);
-  const [curBookmarked, setCurBookmarked] = useState(bookmarked);
+  const [curBookmark, setCurBookmark] = useState(bookmarked);
+  const [curLikes, setCurLikes] = useState(likes);
+
+  const onBookmark = useCallback(async () => {
+    const [res, err] = await handleAsync(Qna[curBookmark ? 'unbookmark' : 'bookmark']({ qnaId: id }));
+    if (res) {
+      setCurBookmark(!curBookmark);
+    } else {
+      console.log(err);
+    }
+  }, [bookmarked, curBookmark, setCurBookmark]);
+
+  const onLike = useCallback(async () => {
+    const [res, err] = await handleAsync(Qna[curLiked ? 'unlike' : 'like']({ qnaId: id }));
+    if (res) {
+      curLiked ? setCurLikes((prev) => prev - 1) : setCurLikes((prev) => prev + 1);
+      setCurLiked(!curLiked);
+    } else {
+      console.log(err);
+    }
+  }, [liked, curLiked, setCurLiked, likes, curLikes, setCurLikes]);
 
   useEffect(() => {
-    setCurBookmarked(bookmarked);
-  }, [curBookmarked]);
+    setCurBookmark(bookmarked);
+  }, [bookmarked]);
 
   useEffect(() => {
     setCurLiked(liked);
-  }, [curLiked]);
+  }, [liked]);
+
+  useEffect(() => {
+    setCurLikes(likes);
+  }, [likes]);
 
   return (
     <div className={styles.questionItem}>
@@ -61,12 +87,12 @@ const QuestionItem = (props) => {
         </div>
       </div>
       <div className={styles.questionItem__actions}>
-        <ActionButton className={curLiked ? 'active' : undefined} onClick={() => setCurLiked(!curLiked)}>
+        <ActionButton className={curLiked ? 'active' : undefined} onClick={onLike}>
           <ThumbsUpIcon />
-          <span className={styles.actionButton__thumbsUpCount}>0</span>
+          <span className={styles.actionButton__thumbsUpCount}>{curLikes}</span>
         </ActionButton>
 
-        <ActionButton className={curLiked ? 'active' : undefined} onClick={() => setCurBookmarked(!curBookmarked)}>
+        <ActionButton className={curBookmark ? 'active' : undefined} onClick={onBookmark}>
           <BookmarkIcon />
         </ActionButton>
       </div>

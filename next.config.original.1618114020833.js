@@ -14,6 +14,14 @@ const nextConfig = {
 
     const prod = process.env.NODE_ENV === 'production';
 
+    config.module.rules.push({ // 웹팩설정에 로더 추가함
+      test: /\.svg$/,
+      issuer: {
+        test: /\.(js|ts)x?$/,
+      },
+      use: ['@svgr/webpack'],
+    });
+
     config.plugins.push(new webpack.IgnorePlugin(/(?:\/tests|__mocks)/));
     // moment locale size is too big
     config.plugins.push(

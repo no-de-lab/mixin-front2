@@ -32,6 +32,16 @@
   display: none;
 }
 
+.editor .tui-editor-contents h1,
+.editor .tui-editor-contents h2,
+.editor .tui-editor-contents h3,
+.editor .tui-editor-contents h4,
+.editor .tui-editor-contents h5,
+.editor .tui-editor-contents h6 {
+  border: none;
+  color: $gray4;
+}
+
 .editor .te-md-container .CodeMirror,
 .editor .te-preview .tui-editor-contents p {
   background-color: $gray7;
@@ -49,7 +59,8 @@
   height: 64px;
 }
 
-.editor .te-mode-switch-section {
+.editor .te-mode-switch-section,
+.editor .tui-scrollsync {
   display: none !important;
 }
 
@@ -60,3 +71,27 @@
 .editor .CodeMirror-cursor {
   border-color: $gray4;
 }
+
+.editor .tui-editor-defaultUI-toolbar {
+  align-items: center;
+  background-color: $gray7;
+  border-bottom: 1px solid $gray4;
+  display: flex;
+
+  button {
+    margin-right: 16px;
+  }
+
+  button:nth-child(2),
+  button:nth-child(7) {
+    margin-right: 40px;
+  }
+}
+
+.editor .tui-editor-defaultUI-toolbar button,
+.editor .tui-editor-defaultUI-toolbar button:focus,
+.editor .tui-editor-defaultUI-toolbar button:hover {
+  background-color: transparent;
+  border: none;
+}
+

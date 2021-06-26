@@ -17,7 +17,7 @@ import { useStore } from '../modules';
 import '../utils/styles/Toast.scss';
 import '../utils/styles/global.scss';
 import 'codemirror/lib/codemirror.css';
-import '@toast-ui/react-editor/node_modules/@toast-ui/editor/dist/toastui-editor.css';
+import '../utils/styles/toastui-editor.css';
 
 const App = ({ Component, appProps, pageProps }) => {
   const { pathname } = useRouter();

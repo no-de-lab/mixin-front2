@@ -9,6 +9,9 @@ import useInput from '@/utils/hooks/useInput';
 import DropLeft from '@/components/DropLeft';
 import Tag from '@/components/Tag';
 import { Qna } from '@/utils/api';
+import Toast from '@/components/Toast';
+import { observer } from 'mobx-react-lite';
+import { useStore } from '../../modules';
 import styles from './index.module.scss';
 
 const dummyCategory = [
@@ -23,12 +26,13 @@ const dummyCategory = [
   },
 ];
 
-const EditorPage = () => {
+const EditorPage = observer(() => {
+  const { authStore } = useStore();
   const router = useRouter();
   const [title, changeTitle] = useInput('headline');
   const [lock, setLock] = useState(false);
   const [content, setContent] = useState('');
-  const [tag, changeTag] = useInput('# tag');
+  const [tag, changeTag] = useInput('tag');
   const [category, setCategory] = useState('WEB');
   const [visible, setVisible] = useState(false);
 
@@ -45,16 +49,21 @@ const EditorPage = () => {
   }, [lock, setLock]);
 
   const changeCategory = useCallback((category) => {
-    setCategory(category.slice(2, category.length - 1));
+    setCategory(category.slice(1, category.length - 1));
   }, [category, setCategory]);
 
   const addQna = useCallback(async () => {
+    if (!authStore.user?.id) {
+      Toast.alert('로그인 후 이용해주세요.');
+      return;
+    }
+
     const registerData = {
       profileExpose: lock,
       title,
       content,
       qnaType: category,
-      tags: tag.split('#').slice(1, tag.length).map((tag) => tag.trim()),
+      tags: tag.split(',').map((tag) => tag.trim()),
     };
 
     await Qna.register({ registerData });
@@ -76,7 +85,7 @@ const EditorPage = () => {
             <h1>{title}</h1>
             <div className={styles.editor_preview__cateogry}>{category}</div>
             <div className={styles.editor_preview__tags}>
-              {tag.split('#').slice(1, tag.length).map((tag) => <Tag key={tag}><a href="#">{tag}</a></Tag>)}
+              {tag.split(',').map((tag) => <Tag key={tag}><a href="#">{tag.trim()}</a></Tag>)}
             </div>
           </div>
         </div>
@@ -86,11 +95,11 @@ const EditorPage = () => {
         </div>
         <label className={styles.editor_title}>
           <input type="text" value={title} name="title" placeholder="headline" onChange={changeTitle} />
-          <button type="button" onClick={changeLock}><LockIcon /></button>
+          <button type="button" onClick={changeLock}><LockIcon lock={lock} /></button>
         </label>
         <div className={styles.editor_category}>
           <div className={styles.editor_tag}>
-            <input type="text" value={tag} name="title" placeholder="# tag" onChange={changeTag} />
+            <input type="text" value={tag} name="tag" placeholder="tag" onChange={changeTag} />
           </div>
           <div>
             <DropDown
@@ -117,6 +126,6 @@ const EditorPage = () => {
       </div>
     </>
   );
-};
+});
 
 export default EditorPage;
