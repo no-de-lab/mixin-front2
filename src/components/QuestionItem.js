@@ -3,6 +3,7 @@ import { BookmarkIcon, ThumbsUpIcon } from '@/svg';
 import dayjs from 'dayjs';
 import { handleAsync } from '@/utils/mobx';
 import { Qna } from '@/utils/api';
+import Link from 'next/link';
 import Tag from './Tag';
 import styles from './QuestionItem.module.scss';
 
@@ -68,9 +69,9 @@ const QuestionItem = (props) => {
         </div>
         <div className={styles.questionItem__article}>
           <div>
-            {tags.map((tag) => <Tag key={tag}><a href={`/tags/${tag}`}>{tag}</a></Tag>)}
+            {tags.map((tag) => <Tag key={tag}><a href="#">{tag}</a></Tag>)}
           </div>
-          <h1 className={styles.questionItem__title}><a href={title}>{title}</a></h1>
+          <h1 className={styles.questionItem__title}><Link href={`qna/post/${id}`}><a>{title}</a></Link></h1>
           <span className={styles.questionItem__category}>
             [
             {qnaType}
