@@ -118,6 +118,8 @@ $select-background: #191919;
 .select_options {
   display: none; 
   position: absolute;
+  height: 20vh;
+  overflow: scroll;
   top: 100%;
   right: 0;
   left: 0;
@@ -128,7 +130,7 @@ $select-background: #191919;
   background-color: #191919;
   border: 1px solid #DCDCDC;
   border-top: none;
-  border-bottom: none;
+  
   li {
     margin: 0;
     padding: 12px 0;
@@ -141,6 +143,9 @@ $select-background: #191919;
     }
     &[value="hide"] {
       display: none;
+    }
+    &:last-of-type {
+      border-bottom: none;
     }
   }
 }

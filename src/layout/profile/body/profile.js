@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
 import { useStore } from '../../../modules';
 import styles from '../index.module.scss';
+
 const FormButton = (props) => {
   const { children } = props;
   return (
@@ -21,7 +22,7 @@ const ProfileForm = (props) => {
 
 function ProfileInput(props) {
   const {
-    value, label, name, placeHolder
+    value, label, name, placeHolder,
   } = props;
   const [content, setContent] = useState(value);
   const handleChange = (e) => {
@@ -41,7 +42,7 @@ function URLInput(props) {
     type,
     url,
   } = props;
-  const [urlAddr, setContent] = useState(url);
+  const [urlAddr, setContent] = useState(url || '');
   const [urlType, setUrl] = useState(type);
   const [active, setActive] = useState(false);
   const toggleSelect = (e) => {
@@ -49,7 +50,7 @@ function URLInput(props) {
     setActive(!active);
   };
   const handleChange = (e) => {
-    if(e.target.dataset.name) {
+    if (e.target.dataset.name) {
       setUrl(e.target.dataset.name);
       setActive(!active);
     } else {
@@ -73,15 +74,18 @@ function URLInput(props) {
   );
 }
 
-function Profile(props) {
-  const {UserOccupation, SocialUrl, name, introduction} = props.user;
+function Profile({ user }) {
+  const {
+    job, SocialUrl, name, introduction,
+  } = user;
+
   const { profileStore } = useStore();
   const [active, setActive] = useState(false);
-  const [val, setVal] = useState(UserOccupation.type);
+  const [authJob, setJob] = useState(job);
   const [Urls, setUrls] = useState(SocialUrl);
   useEffect(() => {
     const fetchOptions = async () => {
-      await profileStore.getOptions('stacks');
+      await profileStore.getOptions('jobType');
     };
     fetchOptions();
   }, []);
@@ -91,43 +95,43 @@ function Profile(props) {
   };
   const handleSelected = (e) => {
     e.stopPropagation();
-    setVal(e.target.textContent);
+    setJob(e.target.textContent);
     setActive(!active);
   };
   const addURL = (e) => {
     e.stopPropagation();
     const tempForm = {
       id: Date.now(),
-      type: "",
-      url: "",
-    }
-    setUrls.push(tempForm)
-  }
+      type: '',
+      url: '',
+    };
+    const newArray = [...Urls, tempForm];
+    setUrls(newArray);
+  };
   return (
     <ProfileForm>
       <ProfileInput name="nickname" label="nickname" placeHolder="믹스인에서 사용할 닉네임을 입력해주세요." value={name} />
       <div className={styles.mypage__form_input}>
-        <label htmlFor="job">job</label>
+        <label>job</label>
         <div className={styles.select}>
           <div className={[styles.select_styled, active && styles.active].filter(Boolean).join(' ')} onClick={toggleSelect}>
-            {val}
+            {authJob}
           </div>
           <ul className={styles.select_options} style={{ display: active ? 'block' : 'none' }}>
             <li value="hide">본인이 주로 작업하는 분야를 선택해주세요</li>
-            {(profileStore.stacks || []).map((stack, i) => <li key={i} onClick={handleSelected}>{stack.type}</li>)}
+            {(profileStore?.jobType || []).map((stack, i) => <li key={i} onClick={handleSelected}>{stack}</li>)}
           </ul>
         </div>
       </div>
       <div className={styles.mypage__form_input}>
         <label>url</label>
         <button onClick={addURL}>URL 추가</button>
-        {Urls.map(sUrl => <URLInput key={sUrl.id} {...sUrl}/>)}
+        {Urls?.map((sUrl) => <URLInput key={sUrl?.id} {...sUrl} />)}
       </div>
-      <ProfileInput name="about" label="about us" placeHolder="자신을 짧게 소개해주세요." value={introduction}/>
+      <ProfileInput name="about" label="about us" placeHolder="자신을 짧게 소개해주세요." value={introduction} />
       <FormButton>complete</FormButton>
     </ProfileForm>
   );
 }
-
 
 export default observer(Profile);
