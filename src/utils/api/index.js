@@ -61,6 +61,7 @@ export const Developer = {
   all: (page) => axios.get(`/api/dashboard?page=${page}`),
   authAll: (page) => axios.get(`/api/dashboard/me?page=${page}`),
   bookmarkDeveloper: ({ targetId }) => axios.patch(`/api/dashboard/bookmark/${targetId}`),
+  getBookmarkDeveloper: () => axios.get(`/api/dashboard/me`),
 };
 
 export const Qna = {

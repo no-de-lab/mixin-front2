@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { BookmarkIcon, ProfileIcon } from '../../../asset/images/svg';
 import styles from './DeveloperCard.module.scss';
 import SocialLink from './SocialLink';
@@ -36,15 +36,7 @@ function DeveloperCardBody({
   );
 }
 
-function DeveloperCardLinkBar({ socials }) {
-  const onBookmarkClick = useCallback(async () => {
-    const [res, err] = await handleAsync(Developer.bookmarkDeveloper({ targetId: developerId }));
-    if (res) {
-
-    } else {
-      console.log(err);
-    }
-  }, []);
+function DeveloperCardLinkBar({ socials, developerId, isBookmarked, onBookmarkClick }) {
 
   return (
     <div className={styles.card_layout__link_bar}>
@@ -56,7 +48,7 @@ function DeveloperCardLinkBar({ socials }) {
         ))}
       </div>
       <div className={styles.card_layout__link_bar__bookmark}>
-        <BookmarkIcon onClick={onBookmarkClick} />
+        <BookmarkIcon onClick={onBookmarkClick} isBookmarked={isBookmarked} />
       </div>
     </div>
   );
@@ -65,19 +57,34 @@ function DeveloperCardLinkBar({ socials }) {
 function DeveloperCard({ developer }) {
   const router = useRouter();
   const { developerStore } = useStore();
+  const { name, UserOccupation, userLevel, imgUrl, SocialUrl, id, isBookmarked } = developer;
+  const [curDeveloperBookmark, setCurDeveloperBookmark] = useState(isBookmarked || false);
   const routeDetail = () => {
     developerStore.setDeveloper(developer);
     router.push(`/developer/detail/${developer.id}/?page=questions`);
   };
+  const onBookmarkClick = async () => {
+    const [res, err] = await handleAsync(Developer.bookmarkDeveloper({ targetId: id }));
+    if (res) {
+      setCurDeveloperBookmark(!curDeveloperBookmark);
+    } else {
+      console.log(err);
+    }
+  };
   return (
     <div className={styles.card_layout} >
       <DeveloperCardBody
-        name={developer.name}
-        job={developer.UserOccupation}
-        rank={developer.userLevel}
-        imgUrl={developer.imgUrl}
+        name={name}
+        job={UserOccupation}
+        rank={userLevel}
+        imgUrl={imgUrl}
       />
-      <DeveloperCardLinkBar socials={developer.SocialUrl} developerId={developer.id} />
+      <DeveloperCardLinkBar
+        socials={SocialUrl}
+        developerId={id}
+        isBookmarked={curDeveloperBookmark}
+        onBookmarkClick={onBookmarkClick}
+      />
     </div>
   );
 }
