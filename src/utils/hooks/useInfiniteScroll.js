@@ -7,15 +7,14 @@ import CONFIG from '../config/AppConfig';
 
 const useInfiniteScroll = (fetcher, loading, setLoading) => {
   // { search, page, offset; }
-  const [hasMore, setHasMore] = useState(true);
   const [issues, setIssues] = useState([]);
 
   const page = useRef(1);
+  const endPage = useRef(1);
   const { search, sort } = useRouter().query;
 
   const loadMoreData = async () => {
-    console.log('start', loading);
-    if (!loading && hasMore) {
+    if (!loading && page.current <= endPage.current) {
       setLoading(true);
 
       // 불러오기 -> 다음에 불러올 데이터가 있는가?
@@ -25,11 +24,12 @@ const useInfiniteScroll = (fetcher, loading, setLoading) => {
         .then((res) => {
           console.log('res', res);
           console.log('page', page.current);
+
           if (page.current === res.data.pagination.currentPage) {
             setIssues((prevState) => [...prevState].concat(res.data.articles || res?.data?.qnaList));
             page.current = res.data.pagination.currentPage + 1;
+            endPage.current = res.data.pagination.lastPage || res.data.pagination.endPage;
           }
-          setHasMore(res.data.pagination.currentPage < res.data.pagination.lastPage);
         })
         .finally(() => { setLoading(false); });
       console.log('end');

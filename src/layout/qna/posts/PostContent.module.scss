@@ -1,0 +1,48 @@
+@import "../../../utils/styles/variable.module.scss";
+
+.content__container {
+  .post_header {
+    color: $gray2;
+    font-size: 40px;
+    font-weight: bold;
+    line-height: 60px;
+    margin-bottom: 16px;
+    @apply uppercase flex items-center;
+  }
+
+  .post_category {
+    color: $gray3;
+    font-family: 'Blender Pro', sans-serif;
+    font-size: 14px;
+    line-height: 17px;
+    margin-bottom: 16px;
+    @apply flex items-center;
+  }
+
+  .post_tag {
+    font-size: 12px;
+    line-height: 16px;
+    margin-bottom: 40px;
+    @apply flex items-center;
+  }
+
+  .post_content {
+    margin-bottom: 40px;
+  }
+
+  .post_date { 
+    color: $gray4;
+    font-size: 12px;
+    line-height: 16px;
+    @apply flex flex-row justify-end;
+    
+    
+    span:first-child {
+      margin-right: 16px;
+    }
+
+    &:last-child {
+      margin-bottom: 20px;
+    }
+  }
+}

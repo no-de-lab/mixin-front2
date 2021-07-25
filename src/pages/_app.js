@@ -22,8 +22,7 @@ import '../utils/styles/toastui-editor.css';
 const App = ({ Component, appProps, pageProps }) => {
   const { pathname } = useRouter();
   const store = useStore({ ...appProps.initialState });
-  const exceptLayout = [`/${ROUTE.EDITOR}`];
-
+  const exceptLayout = [`/${ROUTE.EDITOR}`, `/${ROUTE.POST}`];
   return (
     <>
       <Head>

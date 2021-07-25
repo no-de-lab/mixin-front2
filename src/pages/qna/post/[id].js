@@ -1,18 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
-import { Qna } from '@/utils/api';
 import { useCookie } from 'next-cookie';
-import { handleAsync } from '@/utils/mobx';
 import PostLayout from '@/layout/qna/posts/PostLayout';
+import CONFIG from '@/utils/config/AppConfig';
+import axios from 'axios';
 
 const PostPage = (props) => {
-  console.log('posts props', props);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const mode = JSON.parse(localStorage.getItem('theme')) || CONFIG.DEFAULT_THEME;
+      const bodyEl = document.querySelector('body');
+      bodyEl.classList.remove(mode === 'light' ? 'dark' : 'light');
+      bodyEl.classList.add(mode);
+    }
+  }, []);
+
   return (
     <>
       <Head>
         <title>Mix in | Posts</title>
       </Head>
-      <PostLayout />
+      <PostLayout post={props?.pageProps?.post} />
     </>
   );
 };
@@ -28,23 +37,28 @@ export async function getServerSideProps(ctx) {
 
   const token = cookie.get('userInfo') || '';
 
-  // const [res, error] = await handleAsync(token ? Qna.authOne({ qnaId: id }) : Qna.one({ qnaId: id }));
+  try {
+    const post = await axios({
+      method: 'get',
+      url: process.env.NEXT_PUBLIC_SERVER_URL + `/api/v1/qna/${id}`,
+      headers: {
+        Authorization: token,
+      },
+    });
 
-  // if (res) {
-  //   console.log('res', res);
-  // }
-
-  // if (error) {
-  //   return {
-  //     redirect: {
-  //       permanent: false,
-  //       destination: '/qna',
-  //     },
-  //     props: {},
-  //   };
-  // }
-
-  return { props: { } };
+    if(post) {
+      return { props: { pageProps: { post: post.data }} };
+    }
+  } catch (e) {
+    console.log('error', e);
+    return {
+      redirect: {
+        permanent: false,
+        destination: '/qna',
+      },
+      props: {},
+    };
+  }
 }
 
 export default PostPage;

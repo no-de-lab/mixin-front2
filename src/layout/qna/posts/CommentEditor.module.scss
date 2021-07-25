@@ -1,0 +1,37 @@
+@import "../../../utils/styles/variable.module.scss";
+
+.comment_editor__container {
+  border: 1px solid $gray2;
+  border-left: 0;
+  border-right: 0;
+  left: -90px;
+  padding: 24px 0;
+  position: relative;
+  width: calc(100% + 180px);
+  @apply flex justify-center;
+
+  textarea {
+    background-color: $gray8;
+    color: $gray4;
+    height: 200px;
+    outline: none;
+    resize: none;
+    width: 640px;
+  }
+
+  .comment_editor__write {
+    background-color: $gray2;
+    bottom: 0;
+    color: $gray7;
+    font-family: 'Blender Pro', sans-serif;
+    font-size: 14px;
+    height: 36px;
+    letter-spacing: 0.15em;
+    line-height: 17px;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    text-transform: uppercase;
+    width:80px;
+  }
+}

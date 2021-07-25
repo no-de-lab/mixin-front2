@@ -54,7 +54,7 @@ const EditorPage = observer(() => {
 
   const addQna = useCallback(async () => {
     if (!authStore.user?.id) {
-      Toast.alert('로그인 후 이용해주세요.');
+      Toast.notify('로그인 후 이용해주세요.');
       return;
     }
 
@@ -66,7 +66,12 @@ const EditorPage = observer(() => {
       tags: tag.split(',').map((tag) => tag.trim()),
     };
 
-    await Qna.register({ registerData });
+    try {
+      await Qna.register({ registerData });
+      onBack();
+    } catch (err) {
+      console.log(err);
+    }
   }, [lock, title, content, category, tag]);
 
   return (

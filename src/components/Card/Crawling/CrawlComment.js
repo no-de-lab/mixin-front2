@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { createPortal } from 'react-dom';
 import CloseIcon from '@/svg/CloseIcon';
 
 import useInput from '@/utils/hooks/useInput';
