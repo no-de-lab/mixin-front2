@@ -5,10 +5,12 @@ import throttle from 'lodash/throttle';
 import { Developer } from '@/utils/api';
 import { handleAsync } from '@/utils/mobx';
 import { Spinner } from '@/components/Spinner';
+import { useStore } from '../../modules';
 import DeveloperCard from '../../components/developerCard/DeveloperCard';
 import styles from './index.module.scss';
 
 function DeveloperLayout() {
+  const { authStore } = useStore();
   const DEVELOPER_COUNT = 10;
   const [developerList, setDeveloperList] = useState([]);
   const [endPage, setEndPage] = useState(0);
@@ -19,7 +21,8 @@ function DeveloperLayout() {
   const getDeveloperList = async () => {
     try {
       setLoading(true);
-      const [res] = await handleAsync(Developer.all(currentPage.current));
+      const fetcher = authStore.user?.id ? Developer.authAll : Developer.all;
+      const [res] = await handleAsync(fetcher(currentPage.current));
       const { data: { users } } = res;
       setEndPage(res.data.endPageNumber);
       const dl = developerList.concat(users);

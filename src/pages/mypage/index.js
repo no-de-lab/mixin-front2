@@ -63,7 +63,7 @@ export async function getServerSideProps(ctx) {
     case 'bookmark': {
       const size = 30;
       const sort = 'created_at';
-      axiosRequest.url = `${process.env.NEXT_PUBLIC_SERVER_URL}api/v2/articles/bookmarked?size=${size}&sort=${sort}`;
+      axiosRequest.url = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v2/articles/bookmarked?size=${size}&sort=${sort}`;
       const { data } = await axios(axiosRequest);
       return { props: { page, data } };
     }

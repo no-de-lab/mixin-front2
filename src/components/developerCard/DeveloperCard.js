@@ -1,15 +1,17 @@
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useState } from 'react';
 import { BookmarkIcon, ProfileIcon } from '../../../asset/images/svg';
 import styles from './DeveloperCard.module.scss';
 import SocialLink from './SocialLink';
 import { useStore } from '../../modules';
+import { handleAsync } from '@/utils/mobx';
+import { Developer } from '@/utils/api';
 
 function DeveloperCardBody({
-  name, job, rank, imgUrl,
+  name, job, rank, imgUrl, onClick
 }) {
   return (
-    <div className={styles.card_layout__body}>
+    <div className={styles.card_layout__body} onClick={onClick}>
       <div className={styles.card_layout__body__profile}>
         <div className={styles.profile__name}>{name}</div>
         <div className={styles.profile__job}>
@@ -34,7 +36,7 @@ function DeveloperCardBody({
   );
 }
 
-function DeveloperCardLinkBar({ socials }) {
+function DeveloperCardLinkBar({ socials, developerId, isBookmarked, onBookmarkClick }) {
   return (
     <div className={styles.card_layout__link_bar}>
       <div className={styles.card_layout__link_bar__social}>
@@ -45,7 +47,7 @@ function DeveloperCardLinkBar({ socials }) {
         ))}
       </div>
       <div className={styles.card_layout__link_bar__bookmark}>
-        <BookmarkIcon />
+        <BookmarkIcon onClick={onBookmarkClick} isBookmarked={isBookmarked} />
       </div>
     </div>
   );
@@ -54,19 +56,36 @@ function DeveloperCardLinkBar({ socials }) {
 function DeveloperCard({ developer }) {
   const router = useRouter();
   const { developerStore } = useStore();
+  const { name, UserOccupation, userLevel, imgUrl, SocialUrl, id, isBookmarked } = developer;
+  const [curDeveloperBookmark, setCurDeveloperBookmark] = useState(isBookmarked || false);
   const routeDetail = () => {
     developerStore.setDeveloper(developer);
     router.push(`/developer/detail/${developer.id}/?page=questions`);
   };
+
+  const onBookmarkClick = async () => {
+    const [res, err] = await handleAsync(Developer.bookmarkDeveloper({ targetId: id }));
+    if (res) {
+      setCurDeveloperBookmark(!curDeveloperBookmark);
+    } else {
+      console.log(err);
+    }
+  }
   return (
-    <div className={styles.card_layout} onClick={routeDetail}>
+    <div className={styles.card_layout}>
       <DeveloperCardBody
-        name={developer.name}
-        job={developer.UserOccupation}
-        rank={developer.userLevel}
-        imgUrl={developer.imgUrl}
+        name={name}
+        job={UserOccupation}
+        rank={userLevel}
+        imgUrl={imgUrl}
+        onClick={routeDetail}
       />
-      <DeveloperCardLinkBar socials={developer.SocialUrl} />
+      <DeveloperCardLinkBar
+        socials={SocialUrl}
+        developerId={id}
+        isBookmarked={curDeveloperBookmark}
+        onBookmarkClick={onBookmarkClick}
+      />
     </div>
   );
 }

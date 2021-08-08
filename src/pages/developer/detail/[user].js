@@ -45,7 +45,7 @@ export async function getServerSideProps(ctx) {
     method: 'get',
     headers: { Authorization: token },
   };
-  axiosRequest.url = `${process.env.NEXT_PUBLIC_SERVER_URL}api/user/${user}`;
+  axiosRequest.url = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/user/${user}`;
   const { data } = await axios(axiosRequest);
   return { props: { developer: data } };
 }
