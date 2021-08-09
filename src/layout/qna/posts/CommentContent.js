@@ -47,7 +47,7 @@ const CommentContent = observer(({ comment, onDelete }) => {
 
   return (
     <div className={styles.content__container}>
-      <div>
+      <div className={styles.comment__profile_img}>
         <ProfileIcon />
       </div>
       <div>

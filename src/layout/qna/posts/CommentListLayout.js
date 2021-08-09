@@ -9,6 +9,42 @@ import styles from './CommentListLayout.module.scss';
 import CommentContent from './CommentContent';
 import CommentEditor from './CommentEditor';
 
+const dummyComment = [
+  {
+    id: 'string',
+    createdAt: '2021-07-25T04:23:05.403Z',
+    updatedAt: '2021-07-25T04:23:05.403Z',
+    comment: 'string',
+    likes: 0,
+    liked: true,
+    user: {
+      id: 0,
+      email: 'string',
+      name: 'string',
+      imgUrl: 'string',
+      createdAt: '2021-07-25T04:23:05.403Z',
+      updatedAt: '2021-07-25T04:23:05.403Z',
+      userLevel: 'WHITE',
+    },
+  }, {
+    id: 'string',
+    createdAt: '2021-07-25T04:23:05.403Z',
+    updatedAt: '2021-07-25T04:23:05.403Z',
+    comment: 'string',
+    likes: 0,
+    liked: true,
+    user: {
+      id: 0,
+      email: 'string',
+      name: 'string',
+      imgUrl: 'string',
+      createdAt: '2021-07-25T04:23:05.403Z',
+      updatedAt: '2021-07-25T04:23:05.403Z',
+      userLevel: 'WHITE',
+    },
+  },
+];
+
 const CommentListLayout = observer(({ comments }) => {
   const { authStore } = useStore();
   const [curComments, setCurComments] = useState();
@@ -55,7 +91,7 @@ const CommentListLayout = observer(({ comments }) => {
     <>
       <CommentEditor comment={comment} setComment={setComment} addComment={addComment} />
       <div className={styles.comment_list__container}>
-        {comments.length > 0 && comments.map((item) => (
+        {dummyComment.length > 0 && dummyComment.map((item) => (
           <CommentContent comment={item} deleteComment={deleteComment} />))}
       </div>
     </>

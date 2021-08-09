@@ -3,6 +3,7 @@
 .content__container {
   display: flex; 
   margin-bottom: 40px;
+  margin-right: 16px;
   width: 100%;
 }
 
@@ -36,5 +37,9 @@
   .comment__footer_content {
     display: flex;
     justify-content: space-around;
+  }
+
+  .comment__profile_img {
+    margin-right: 16px;
   }
 }
