@@ -9,43 +9,7 @@ import styles from './CommentListLayout.module.scss';
 import CommentContent from './CommentContent';
 import CommentEditor from './CommentEditor';
 
-const dummyComment = [
-  {
-    id: 'string',
-    createdAt: '2021-07-25T04:23:05.403Z',
-    updatedAt: '2021-07-25T04:23:05.403Z',
-    comment: 'string',
-    likes: 0,
-    liked: true,
-    user: {
-      id: 0,
-      email: 'string',
-      name: 'string',
-      imgUrl: 'string',
-      createdAt: '2021-07-25T04:23:05.403Z',
-      updatedAt: '2021-07-25T04:23:05.403Z',
-      userLevel: 'WHITE',
-    },
-  }, {
-    id: 'string',
-    createdAt: '2021-07-25T04:23:05.403Z',
-    updatedAt: '2021-07-25T04:23:05.403Z',
-    comment: 'string',
-    likes: 0,
-    liked: true,
-    user: {
-      id: 0,
-      email: 'string',
-      name: 'string',
-      imgUrl: 'string',
-      createdAt: '2021-07-25T04:23:05.403Z',
-      updatedAt: '2021-07-25T04:23:05.403Z',
-      userLevel: 'WHITE',
-    },
-  },
-];
-
-const CommentListLayout = observer(({ comments }) => {
+const CommentListLayout = observer(({ comments, postId }) => {
   const { authStore } = useStore();
   const [curComments, setCurComments] = useState();
   const [comment, setComment, resetComment] = useInput('');
@@ -62,21 +26,23 @@ const CommentListLayout = observer(({ comments }) => {
 
     const registerData = {
       comment,
+      qnaId: postId,
     };
 
-    const [res, err] = await handleAsync(Qna.comment({ registerData }));
+    const [res, err] = await handleAsync(Qna.comment(registerData));
     if (res) {
-      setCurComments([...curComments, res?.data]);
+      console.log('res', res);
+      setCurComments([...curComments]);
       resetComment();
     } else {
       console.log(err);
     }
   }, [comment, setComment, curComments, setCurComments, resetComment]);
 
-  const deleteComment = useCallback(async (commentId) => {
+  const deleteComment = useCallback((commentId) => async () => {
     const [res, err] = await handleAsync(Qna.deleteComment({ commentId }));
     if (res) {
-      const filteredComments = curComments.filter((comment) => comment.id !== commentId);
+      const filteredComments = curComments?.filter((comment) => comment.id !== commentId);
       setCurComments(filteredComments);
     } else {
       console.log(err);
@@ -91,7 +57,7 @@ const CommentListLayout = observer(({ comments }) => {
     <>
       <CommentEditor comment={comment} setComment={setComment} addComment={addComment} />
       <div className={styles.comment_list__container}>
-        {dummyComment.length > 0 && dummyComment.map((item) => (
+        {curComments?.length > 0 && curComments?.map((item) => (
           <CommentContent comment={item} deleteComment={deleteComment} />))}
       </div>
     </>

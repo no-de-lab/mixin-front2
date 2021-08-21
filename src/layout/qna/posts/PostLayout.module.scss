@@ -10,4 +10,16 @@
   padding: 120px 90px;
   padding-bottom: 0;
   @apply h-full;
+
+  & .post__back {
+    left: 40px;
+    position: absolute;
+    top: 44px;
+  }
+
+  & .post__submenu {
+    position: absolute;
+    right: 40px;
+    top: 44px;
+  }
 }

@@ -1,4 +1,4 @@
-import { CloseIcon, ProfileIcon, ThumbsUpIcon } from '@/svg';
+import { SmallCloseIcon, ProfileIcon, LikeIcon } from '@/svg';
 import { Qna } from '@/utils/api';
 import { handleAsync } from '@/utils/mobx';
 import dayjs from 'dayjs';
@@ -18,7 +18,7 @@ const ActionButton = ({
   );
 };
 
-const CommentContent = observer(({ comment, onDelete }) => {
+const CommentContent = observer(({ comment, deleteComment }) => {
   const { authStore } = useStore();
   const {
     user, createdAt, likes, liked, id,
@@ -45,12 +45,16 @@ const CommentContent = observer(({ comment, onDelete }) => {
     setCurLikes(likes);
   }, [likes]);
 
+  const style = {
+    background: `url(${user?.imgUrl}) center center / cover no-repeat #ccc`
+  }
+
   return (
     <div className={styles.content__container}>
-      <div className={styles.comment__profile_img}>
-        <ProfileIcon />
+      <div className={styles.comment__profile_img_wrap}>
+        {user?.imgUrl ? <div className={styles.comment__profile_img} style={style} /> : <ProfileIcon />}
       </div>
-      <div>
+      <div className={styles.comment__content}>
         <div className={styles.comment__header_writer}>
           <div className={styles['comment__header_writer-info']}>
             <h6>{user?.name}</h6>
@@ -61,13 +65,13 @@ const CommentContent = observer(({ comment, onDelete }) => {
           {comment?.comment}
         </div>
         <div className={styles.comment__footer_content}>
-          <ActionButton className={curLiked ? 'active' : undefined} onClick={onLike}>
-            <ThumbsUpIcon />
+          <ActionButton className={curLiked ? 'active' : ''} onClick={onLike}>
+            <LikeIcon />
             <span className={styles.actionButton__thumbsUpCount}>{curLikes}</span>
           </ActionButton>
           {authStore?.user?.id === comment.user?.id && (
-          <ActionButton onClick={onDelete(id)}>
-            <CloseIcon />
+          <ActionButton onClick={deleteComment(id)}>
+            <SmallCloseIcon />
           </ActionButton>
           )}
         </div>

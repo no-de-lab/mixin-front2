@@ -31,7 +31,6 @@ const App = ({ Component, appProps, pageProps }) => {
           name="viewport"
           content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
         />
-        <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests" />
         <title>Mix in</title>
       </Head>
       {/* SSR에서 만든 애를 Hydrate 해서 클라이언트 브라우저에다가 동기화 */}

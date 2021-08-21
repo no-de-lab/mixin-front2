@@ -20,3 +20,5 @@ export { default as WriteIcon } from './WriteIcon';
 export { default as BackIcon } from './BackIcon';
 export { default as ArrowIcon } from './ArrowIcon';
 export { default as EditorWriteIcon } from './EditorWriteIcon';
+export { default as LikeIcon } from './LikeIcon';
+export { default as SmallCloseIcon } from './SmallCloseIcon';
