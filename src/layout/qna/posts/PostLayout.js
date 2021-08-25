@@ -1,12 +1,17 @@
-import DropLeft from '@/components/DropLeft';
-import { BackIcon, MenuIcon } from '@/svg';
-import { useRouter } from 'next/router';
 import React, { useCallback, useState } from 'react';
+import Modal from '@/components/Modal';
+import { BackIcon, MenuIcon } from '@/svg';
+import { observer } from 'mobx-react-lite';
+import { useRouter } from 'next/router';
+import { SubbarProfile } from '@/components/Header';
+import Login from '@/components/Auth/Login';
+import { useStore } from '../../../modules';
 import CommentListLayout from './CommentListLayout';
 import PostContent from './PostContent';
 import styles from './PostLayout.module.scss';
 
-const PostLayout = ({ post }) => {
+const PostLayout = observer(({ post }) => {
+  const { authStore } = useStore();
   const [visible, setVisible] = useState(false);
   const router = useRouter();
 
@@ -31,14 +36,19 @@ const PostLayout = ({ post }) => {
         </div>
         <PostContent post={post} />
         <CommentListLayout postId={post.id} comments={post?.commentList} />
-        <DropLeft
+        <Modal
           position="right"
           visible={visible}
           setVisible={setVisible}
+          render={
+              authStore.loaded
+                ? <SubbarProfile authStore={authStore} setVisible={toggleMenu} />
+                : <Login />
+            }
         />
       </div>
     </main>
   );
-};
+});
 
 export default PostLayout;

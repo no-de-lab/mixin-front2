@@ -14,6 +14,15 @@ const CommentListLayout = observer(({ comments, postId }) => {
   const [curComments, setCurComments] = useState();
   const [comment, setComment, resetComment] = useInput('');
 
+  const refreshComment = useCallback(async () => {
+    const [res, err] = await handleAsync(Qna[authStore.user?.id ? 'commentsAuthAll' : 'commentsAll']({ qnaId: postId }));
+    if (res) {
+      setCurComments(res?.data);
+    } else {
+      console.log(err);
+    }
+  }, [curComments, setCurComments]);
+
   const addComment = useCallback(async () => {
     if (!authStore.user?.id) {
       Toast.notify('로그인 후 이용해주세요.');
@@ -32,7 +41,7 @@ const CommentListLayout = observer(({ comments, postId }) => {
     const [res, err] = await handleAsync(Qna.comment(registerData));
     if (res) {
       console.log('res', res);
-      setCurComments([...curComments]);
+      refreshComment();
       resetComment();
     } else {
       console.log(err);
@@ -58,7 +67,7 @@ const CommentListLayout = observer(({ comments, postId }) => {
       <CommentEditor comment={comment} setComment={setComment} addComment={addComment} />
       <div className={styles.comment_list__container}>
         {curComments?.length > 0 && curComments?.map((item) => (
-          <CommentContent comment={item} deleteComment={deleteComment} />))}
+          <CommentContent key={item.id} comment={item} deleteComment={deleteComment} />))}
       </div>
     </>
   );

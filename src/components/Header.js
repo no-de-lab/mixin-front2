@@ -13,7 +13,7 @@ import Modal from './Modal';
 import { useStore } from '../modules';
 import Login from './Auth/Login';
 
-function SubbarProfile(props) {
+export function SubbarProfile(props) {
   const { authStore } = props;
   return (
     <div className={styles.subbar_profile}>

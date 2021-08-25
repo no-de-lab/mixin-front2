@@ -98,4 +98,6 @@ export const Qna = {
   comment: (registerData) => axios.post(`/api/v1/qna/comment`, registerData),
   editComment: ({ commentId, editData }) => axios.put(`/api/v1/qna/comment/${commentId}`, editData),
   deleteComment: ({ commentId }) => axios.delete(`/api/v1/qna/comment/${commentId}`),
+  commentsAll: ({ qnaId }) => axios.get(`/api/v1/comments/${qnaId}`),
+  commentsAuthAll: ({ qnaId }) => axios.get(`/api/v1/me/comments/${qnaId}`),
 }

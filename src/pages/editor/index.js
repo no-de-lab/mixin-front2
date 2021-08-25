@@ -6,11 +6,13 @@ import LockIcon from '@/svg/LockIcon';
 import { useRouter } from 'next/router';
 import DropDown from '@/components/DropDown';
 import useInput from '@/utils/hooks/useInput';
-import DropLeft from '@/components/DropLeft';
 import Tag from '@/components/Tag';
 import { Qna } from '@/utils/api';
 import Toast from '@/components/Toast';
 import { observer } from 'mobx-react-lite';
+import Modal from '@/components/Modal';
+import { SubbarProfile } from '@/components/Header';
+import Login from '@/components/Auth/Login';
 import { useStore } from '../../modules';
 import styles from './index.module.scss';
 
@@ -122,10 +124,15 @@ const EditorPage = observer(() => {
           <span>WRITE</span>
         </button>
 
-        <DropLeft
+        <Modal
           position="right"
           visible={visible}
           setVisible={setVisible}
+          render={
+              authStore.loaded
+                ? <SubbarProfile authStore={authStore} setVisible={toggleMenu} />
+                : <Login />
+            }
         />
 
       </div>
